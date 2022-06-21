@@ -1,24 +1,61 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import AdminLogin from "./pages/Admin/AdminLogin";
+import Language from "./pages/Admin/Language";
+import QuestionBankCode from "./pages/Admin/QuestionBank/QuestionBankCode";
+import QuestionBankLanguage from "./pages/Admin/QuestionBank/QuestionBankLanguage";
+import QuestionBankLevel from "./pages/Admin/QuestionBank/QuestionBankLevel";
+import QuestionBankQuestions from "./pages/Admin/QuestionBank/QuestionBankQuestions";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Experiment from "./pages/Experiment";
+import Home from "./pages/Home";
+import Level from "./pages/Level";
+import Questions from "./pages/Questions";
+import Read from "./pages/Read";
+import Register from "./pages/Register";
+
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <Navbar/>
+
+    {/* <Home/> */}
+
+    {/* <Register/> */}
+      <Experiment/>
+    {/* <Read/> */}
+    
+    {/* <Level/> */}
+     {/* <Questions/>  */}
+
+    {/* Admin Pages  */}
+
+    {/* <AdminLogin/> */}
+    <Language/>
+
+    /
+
+    
+
+    {/* <BrowserRouter>
+     <Routes>
+         <Route path="/level" element={<QuestionBankLevel/>} />
+         <Route path="/" element={<QuestionBankLanguage/>} />
+         <Route path="/code" element={<QuestionBankCode/>}/>
+         <Route path="/question" element={<QuestionBankQuestions/>}/>
+         </Routes>
+     </BrowserRouter> */}
+
+
+    <Footer/> 
+
+
+    </>
+    
   );
 }
 
