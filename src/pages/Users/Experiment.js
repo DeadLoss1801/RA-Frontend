@@ -1,10 +1,10 @@
 import React from "react";
 
 import { Box, Container, Grid, Typography } from "@mui/material";
-import Card from "../components/Layout"
+import Card from "../../components/Layout"
 
 
-import Layout from "../components/Layout";
+import Layout from "../../components/Layout";
 
 import Button from '@mui/material/Button';
 

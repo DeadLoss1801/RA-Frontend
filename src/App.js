@@ -8,12 +8,12 @@ import QuestionBankLanguage from "./pages/Admin/QuestionBank/QuestionBankLanguag
 import QuestionBankLevel from "./pages/Admin/QuestionBank/QuestionBankLevel";
 import QuestionBankQuestions from "./pages/Admin/QuestionBank/QuestionBankQuestions";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Experiment from "./pages/Experiment";
+import Experiment from "./pages/Users/Experiment";
 import Home from "./pages/Users/Home";
-import Level from "./pages/Level";
-import Questions from "./pages/Questions";
-import Read from "./pages/Read";
-import Register from "./pages/Register";
+import Level from "./pages/Users/Level";
+import Questions from "./pages/Users/Questions";
+import Read from "./pages/Users/Read";
+import Register from "./pages/Users/Register";
 
 
 
@@ -25,11 +25,10 @@ function App() {
 
     {/* <Home/> */}
 
-    <Register/>
+    {/* <Register/> */}
       {/* <Experiment/> */}
-    {/* <Read/> */}
-    
-    {/* <Level/> */}
+    <Read/>
+{/*    <Level/> */}
      {/* <Questions/>  */}
 
     {/* Admin Pages  */}

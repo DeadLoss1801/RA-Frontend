@@ -2,10 +2,10 @@ import * as React from 'react';
 
 import { createTheme ,ThemeProvider} from '@mui/material/styles';
 
-import Timer from '../components/Timer';
+import Timer from '../../components/Timer';
 import Grid from '@mui/material/Grid';
 
-import Question from "../components/Question"
+import Question from "../../components/Question"
 import { Button, Typography } from '@mui/material';
 
 import { Box, Container } from "@mui/system";

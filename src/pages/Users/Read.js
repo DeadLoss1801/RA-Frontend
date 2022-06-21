@@ -5,7 +5,7 @@ import { styled } from '@mui/system';
 import { createTheme ,ThemeProvider} from '@mui/material/styles';
 
 import { Button, Typography } from "@mui/material";
-import Timer from "../components/Timer";
+import Timer from "../../components/Timer";
 
 const theme = createTheme({
   palette: {
