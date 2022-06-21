@@ -9,7 +9,7 @@ import QuestionBankLevel from "./pages/Admin/QuestionBank/QuestionBankLevel";
 import QuestionBankQuestions from "./pages/Admin/QuestionBank/QuestionBankQuestions";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Experiment from "./pages/Experiment";
-import Home from "./pages/Home";
+import Home from "./pages/Users/Home";
 import Level from "./pages/Level";
 import Questions from "./pages/Questions";
 import Read from "./pages/Read";
@@ -25,8 +25,8 @@ function App() {
 
     {/* <Home/> */}
 
-    {/* <Register/> */}
-      <Experiment/>
+    <Register/>
+      {/* <Experiment/> */}
     {/* <Read/> */}
     
     {/* <Level/> */}
@@ -35,7 +35,7 @@ function App() {
     {/* Admin Pages  */}
 
     {/* <AdminLogin/> */}
-    <Language/>
+    {/* <Language/> */}
 
     /
 
