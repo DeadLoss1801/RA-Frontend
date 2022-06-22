@@ -27,7 +27,7 @@ function App() {
 
     {/* <Register/> */}
       {/* <Experiment/> */}
-    <Read/>
+    {/* <Read/> */}
 {/*    <Level/> */}
      {/* <Questions/>  */}
 
@@ -36,18 +36,19 @@ function App() {
     {/* <AdminLogin/> */}
     {/* <Language/> */}
 
-    /
-
     
 
-    {/* <BrowserRouter>
+    
+    {/* <QuestionBankCode/> */}
+
+    <BrowserRouter>
      <Routes>
          <Route path="/level" element={<QuestionBankLevel/>} />
          <Route path="/" element={<QuestionBankLanguage/>} />
          <Route path="/code" element={<QuestionBankCode/>}/>
          <Route path="/question" element={<QuestionBankQuestions/>}/>
          </Routes>
-     </BrowserRouter> */}
+     </BrowserRouter>
 
 
     <Footer/> 
