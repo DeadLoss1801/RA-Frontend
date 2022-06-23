@@ -26,8 +26,8 @@ function App() {
     {/* <Home/> */}
 
     {/* <Register/> */}
-      {/* <Experiment/> */}
-    <Read/>
+      <Experiment/>
+    {/* <Read/> */}
 {/*    <Level/> */}
      {/* <Questions/>  */}
 
