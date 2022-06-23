@@ -19,14 +19,6 @@ const Register = () => {
         const data = {name, email, dob, age, gender, country, state, profession};
         console.log(data);
 
-        fetch('https://summerinternshipproject.pythonanywhere.com/demographic/', {
-            method: 'POST',
-            headers: { "Content-Type": "application/json" }, 
-            body: JSON.stringify(data)
-        }).then(() => {
-            console.log('Registered');
-        })
-
         const fullNameField = document.getElementById("fullname");
         const nameError = document.getElementById("nameError");
         var val = /^[A-Za-z ]{1,}$/;
@@ -49,6 +41,14 @@ const Register = () => {
                 alert('Please check the terms and conditions box');
             }
             else {
+                // fetch('https://summerinternshipproject.pythonanywhere.com/demographic/', {
+                //         method: 'POST',
+                //         headers: { "Content-Type": "application/json" }, 
+                //         body: JSON.stringify(data)
+                //     }).then(() => {
+                //         console.log('Registered');
+                //     })
+
                 alert('Registered successfully');
             }
         }
@@ -187,8 +187,8 @@ const Register = () => {
             <label id="Tnc"><input type="checkbox" id="cbox"
                 onChange={checkboxHandler}
             />By using this form you agree with the storage and handling of your data by this website in accordance with our Privacy Policy.</label>
-           <button >Cancel</button>
-            <button >Submit</button>
+            <Link to={"/"}><button >Cancel</button></Link>
+            <Link to={"/expertise"}><button >Submit</button></Link>
         </form>
     </div>
   );

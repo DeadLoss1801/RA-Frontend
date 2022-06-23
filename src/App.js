@@ -21,24 +21,28 @@ import Register from "./pages/Users/Register";
 function App() {
   return (
     <>
+    <BrowserRouter>
     <Navbar/>
+
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<AdminLogin />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/expertise" element={<Experiment />} />
+    </Routes>
 
     {/* <Home/> */}
 
     {/* <Register/> */}
       {/* <Experiment/> */}
-    <Read/>
+    {/* <Read/> */}
 {/*    <Level/> */}
      {/* <Questions/>  */}
 
     {/* Admin Pages  */}
 
     {/* <AdminLogin/> */}
-    {/* <Language/> */}
-
-    /
-
-    
+    {/* <Language/> */}    
 
     {/* <BrowserRouter>
      <Routes>
@@ -51,7 +55,7 @@ function App() {
 
 
     <Footer/> 
-
+    </BrowserRouter>
 
     </>
     

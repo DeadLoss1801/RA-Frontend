@@ -45,10 +45,13 @@ const Home = () => {
 
      <ParentBox>
       
+        <Link to={"/login"} >
         <ParentButton>Admin</ParentButton>
+        </Link>
         
+        <Link to={"/register"} >
         <ParentButton>Participant</ParentButton>
-        
+        </Link>
       
       </ParentBox>
       
