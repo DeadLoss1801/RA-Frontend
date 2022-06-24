@@ -36,10 +36,13 @@ function App() {
     {/* <AdminLogin/> */}
     {/* <Language/> */}
 
-    /
-
     
 
+    
+    {/* <QuestionBankCode/> */}
+    {/* <QuestionBankLanguage/> */}
+    {/* <QuestionBankLevel/> */}
+    {/* <QuestionBankQuestions/> */}
     {/* <BrowserRouter>
      <Routes>
          <Route path="/level" element={<QuestionBankLevel/>} />
@@ -48,6 +51,8 @@ function App() {
          <Route path="/question" element={<QuestionBankQuestions/>}/>
          </Routes>
      </BrowserRouter> */}
+
+     
 
 
     <Footer/> 

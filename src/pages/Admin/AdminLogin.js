@@ -29,16 +29,21 @@ const AdminLogin = () => {
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  
+
+  const submitForm = (e) =>
+  {
+    e.preventDefault();
+    console.log("hello Admin");
+    console.log(username);
+    console.log(password);
+  }
 
   return (
     <Container maxWidth="lg">
       <Grid container spacing={0} >
-
-
         <Container className='container' maxWidth="sm" sx={{ mb: 4, textAlign: "center", backgroundColor: "white", borderRadius: 2, boxShadow: 5, mt: 4 }}>
-
           <form className={classes.root} onSubmit="">
-
             <h1>Admin Dashboard</h1>
             <TextField
               label="Username"
@@ -60,13 +65,12 @@ const AdminLogin = () => {
               <Button variant="contained" onClick="">
                 Cancel
               </Button>
-              <Button type="submit" variant="contained" color="primary">
+              <Button type="submit" variant="contained" color="primary" onClick={submitForm}>
                 Login
               </Button>
             </div>
           </form>
         </Container>
-
       </Grid>
     </Container>
   );
