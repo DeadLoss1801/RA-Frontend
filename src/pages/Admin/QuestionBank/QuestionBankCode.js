@@ -32,24 +32,44 @@ function QuestionBankCode() {
 
   // const [code,setCode] = useState("");
   const [selectedcode, setSelectedCode] = useState("");
-  const [selectedImage, setSelectedImage] = useState("");
+  const [code_image, setcode_image] = useState();
   const [isImageSelected, setIsImageSelected] = useState(false);
-  const [codeTimer, setCodeTimer] = useState("");
-  const [questionTimer, setQuestionTimer] = useState("");
-  const [codeInstruction, setCodeInstruction] = useState("");
+  const [codeTimer, setcodeTimer] = useState();
+  const [questionTimer, setquestionTimer] = useState();
+  const [code_text, setcode_text] = useState("");
+  const [fqblid, setfqblid] = useState(1);
 
-  
-  const handleImage = (e) =>
-  {
-    setSelectedImage(e.target.files[0]);
-    setIsImageSelected(true);   
+  const code_time = parseInt(codeTimer);
+  const question_time = parseInt(questionTimer);
+
+
+  const handleImage = (e) => {
+    setcode_image(e.target.files[0]);
+
+    setIsImageSelected(true);
+
   }
+  console.log(code_image);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    var formdata = new FormData();
+    formdata.append("code_text", code_text);
+    formdata.append("code_time", code_time);
+    formdata.append("question_time", question_time);
+    formdata.append("code_image", code_image);
 
-  const handleSubmit = () =>
-  {
-    console.log(selectedImage);
-	};
-  
+    var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+    };
+
+    fetch("https://summerinternshipproject.pythonanywhere.com/code/", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
+  };
+
 
   return (
 
@@ -67,40 +87,28 @@ function QuestionBankCode() {
         </FormControl>
         <br></br>
         <br></br>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 500 }} id="outlined-basic" label="Code Instruction" multiline maxRows={100} variant="filled" onChange={e => setCodeInstruction(e.target.value)} />
+        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 500 }} id="outlined-basic" label="Code Instruction" multiline maxRows={100} variant="filled" onChange={e => setcode_text(e.target.value)} />
 
-        <p>{codeInstruction}</p>
+        <p>{code_text}</p>
         <br></br><br></br>
 
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Code Timer" required multiline maxRows={100} variant="filled" onChange={e => setCodeTimer(e.target.value)} />
+        <TextField type="number" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Code Timer" required multiline maxRows={100} variant="filled" onChange={e => setcodeTimer(e.target.value)} />
         <p>{codeTimer}</p>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Question Timer" required multiline maxRows={100} variant="filled" onChange={e => setQuestionTimer(e.target.value)} />
+        <TextField type="number" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Question Timer" required multiline maxRows={100} variant="filled" onChange={e => setquestionTimer(e.target.value)} />
         <p>{questionTimer}</p>
         <br></br>
         <br></br>
 
-        <input accept="image/*" type="file" id="select-image" onChange={handleImage} />
-        {isImageSelected ? (
-				<div>
-					<p>Filename: {selectedImage.name}</p>
-					<p>Filetype: {selectedImage.type}</p>
-					<p>Size in bytes: {selectedImage.size}</p>
-					<p>
-						lastModifiedDate:{' '}
-						{selectedImage.lastModifiedDate.toLocaleDateString()}
-					</p>
-				</div>
-			) :  (
-				<p>Select a file to show details</p>
-			)}
+        <input type="file" id="select-image" onChange={handleImage} />
+
         <label htmlFor="select-image">
         </label>
         <br></br>
         <br></br>
         {/* <Link to={"/question"}> */}
-          <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
-            Next
-          </Button>
+        <Button type="submit" variant="contained" color="primary" onClick={handleSubmit}>
+          Next
+        </Button>
         {/* </Link> */}
         <br></br> <br></br>
       </Container>

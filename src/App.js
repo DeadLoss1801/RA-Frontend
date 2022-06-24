@@ -40,15 +40,19 @@ function App() {
 
     
     {/* <QuestionBankCode/> */}
-
-    <BrowserRouter>
+    {/* <QuestionBankLanguage/> */}
+    {/* <QuestionBankLevel/> */}
+    <QuestionBankQuestions/>
+    {/* <BrowserRouter>
      <Routes>
          <Route path="/level" element={<QuestionBankLevel/>} />
          <Route path="/" element={<QuestionBankLanguage/>} />
          <Route path="/code" element={<QuestionBankCode/>}/>
          <Route path="/question" element={<QuestionBankQuestions/>}/>
          </Routes>
-     </BrowserRouter>
+     </BrowserRouter> */}
+
+     
 
 
     <Footer/> 
