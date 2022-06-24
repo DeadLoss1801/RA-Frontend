@@ -42,7 +42,7 @@ function App() {
     {/* <QuestionBankCode/> */}
     {/* <QuestionBankLanguage/> */}
     {/* <QuestionBankLevel/> */}
-    <QuestionBankQuestions/>
+    {/* <QuestionBankQuestions/> */}
     {/* <BrowserRouter>
      <Routes>
          <Route path="/level" element={<QuestionBankLevel/>} />
