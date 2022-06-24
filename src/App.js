@@ -26,10 +26,10 @@ function App() {
     {/* <Home/> */}
 
     {/* <Register/> */}
-      <Experiment/>
+      {/* <Experiment/> */}
     {/* <Read/> */}
 {/*    <Level/> */}
-     {/* <Questions/>  */}
+     <Questions/> 
 
     {/* Admin Pages  */}
 
