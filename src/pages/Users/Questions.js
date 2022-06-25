@@ -10,6 +10,9 @@ import { Button, Typography } from '@mui/material';
 
 import { Box, Container } from "@mui/system";
 import SliderQuestion from './SliderQuestion';
+import Question1 from './UsersQuestions/Question1';
+import Question2 from './UsersQuestions/Question2';
+import Question3 from './UsersQuestions/Question3';
 
 
 const theme = createTheme({
@@ -34,7 +37,7 @@ const Questions = ()=>{
     return (
     
     <ThemeProvider theme={theme}>
-    <Container maxWidth="lg" sx={{bgcolor:"primary.main",height:"100vh",mt:4,mb:2,borderRadius:2,boxShadow:7}}>
+    <Container maxWidth="lg" sx={{bgcolor:"primary.main",height:"325vh",mt:4,mb:2,borderRadius:2,boxShadow:7}}>
 
      {/* <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
       <Typography variant="h3">Questions</Typography>
@@ -59,7 +62,14 @@ const Questions = ()=>{
       </Grid>
        
 
-       <SliderQuestion />
+       {/* <SliderQuestion /> */}
+
+
+       <Question1/>
+
+       <Question2/>
+
+       <Question3/>
 
 
        <Box  sx={{bgcolor: '#fffde7', width:"100%",
