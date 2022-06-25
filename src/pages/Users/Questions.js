@@ -59,7 +59,7 @@ const Questions = ()=>{
       </Grid>
        
 
-       <SliderQuestion />
+       <SliderQuestion  />
 
 
        <Box  sx={{bgcolor: '#fffde7', width:"100%",
