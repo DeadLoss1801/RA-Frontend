@@ -14,14 +14,25 @@ import Level from "./pages/Users/Level";
 import Questions from "./pages/Users/Questions";
 import Read from "./pages/Users/Read";
 import Register from "./pages/Users/Register";
-
+// import {BrowserRouter,Route,Routes} from "react-router-dom";
 
 
 
 function App() {
+
+
+  
   return (
+    // <BrowserRouter>
     <>
+
+    
     <Navbar/>
+    {/* <Routes>
+      <Route path="/" element={<Home/>}/>
+      <Route path="/register" element={<Register/>} ></Route>
+    </Routes> */}
+
 
     {/* <Home/> */}
 
@@ -54,6 +65,7 @@ function App() {
 
 
     </>
+    // </BrowserRouter>
     
   );
 }

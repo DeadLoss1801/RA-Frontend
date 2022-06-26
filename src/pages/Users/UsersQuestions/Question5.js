@@ -11,9 +11,19 @@ import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
 
 import RadioGroup from '@mui/material/RadioGroup';
+import { useState } from "react";
 
 
-const Question5 = () =>{
+const Question5 = (props) =>{
+
+// const [value,setValue] = useState("");
+// console.log(value);
+const handleChange = (e)=>{
+
+    // setValue(e.target.value);
+
+    props.onChangeResponse5(e.target.value);
+}
 
 return (
 
@@ -21,23 +31,26 @@ return (
       
     <Paper elevation={3} sx={{width:"100%",height:350}}>
      <Box sx={{p:3}}>
-     <Typography variant="h6" >loremjnmc  dnmnmfnmdf ndsmnmdn</Typography>
+     <Typography variant="h6" >{`Q.5  ${props.item.question_text}`}</Typography>
      <Box sx={{ typography: 'subtitle2',mt:2 }}>
      
-     <FormControl>
-    <FormLabel id="demo-controlled-radio-buttons-group">Choose a correct option</FormLabel>
-    <RadioGroup
-      aria-labelledby="demo-controlled-radio-buttons-group"
-      name="controlled-radio-buttons-group"
-    //   value={value}
-    //   onChange={handleChange}
-    >
-      <FormControlLabel value="option1" control={<Radio />} label="option1" />
-      <FormControlLabel value="option2" control={<Radio />} label="option2" />
-      <FormControlLabel value="option3" control={<Radio />} label="option3" />
-      <FormControlLabel value="option4" control={<Radio />} label="option4" />
-    </RadioGroup>
-  </FormControl>
+      <FormControl>
+        
+        <FormLabel id="question1-response">Choose a correct option</FormLabel>
+        <RadioGroup  aria-labelledby="question1-response"
+         name="question1-container"
+         value={props.response5}
+         onChange={handleChange}
+         >
+        
+        <FormControlLabel control={<Radio />}   label={props.item.option1}  value={props.item.option1}     />
+        <FormControlLabel control={<Radio />}   label={props.item.option2}  value={props.item.option2}     />
+        <FormControlLabel control={<Radio />}   label={props.item.option3}  value={props.item.option3}     />
+        <FormControlLabel control={<Radio />}   label={props.item.option4}  value={props.item.option4}     />     
+
+        </RadioGroup>
+        
+      </FormControl> 
 
     
 
