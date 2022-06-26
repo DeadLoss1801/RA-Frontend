@@ -62,60 +62,9 @@ const SliderQuestion = ()=>{
 
     const arraynum = [ 1 , 2 , 3 , 4 , 5 ];
 
+
+
    
-     async function getData  ()  {
-   
-        let updated = [];
-        for(let val = 0;val <=2;val++ )
-        {
-            const response = await fetch(`https://summerinternshipproject.pythonanywhere.com/getquestion/?question=${val}`);
-            const data = await response.json();
-         
-           updated.push(data);
-           
-
-
-
-          
-        
-        }
-      
-       
-        setItems(updated);
-       
-
-        // const obj=JSON.parse(data);
-        // console.log(data);
-
-        
-
-        // console.log(items.length);
-      
-        // console.log(items[0].option1);
-        
-
-     }
-     
-    //  getData();
-    useEffect(()=>{
-
-    
-        // fetch("https://summerinternshipproject.pythonanywhere.com/getquestion/?question=0").then((response)=>{
-        //     return response.json();
-        // }).then((res)=>{
-         
-        //     const data=res;
-
-
-            // console.log(data && data[0]);
-            // items.push(data);
-
-        // })
-      
-        getData();
-
-    },[]);
-
 
 
 

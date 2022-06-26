@@ -46,8 +46,10 @@ const Home = () => {
      <ParentBox>
       
         <ParentButton>Admin</ParentButton>
-        
+        <Link  to={"/register"}>
         <ParentButton>Participant</ParentButton>
+        </Link>
+        
         
       
       </ParentBox>
