@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import {
   MenuItem,
   makeStyles,
@@ -18,22 +18,36 @@ import { useState } from 'react';
 
 function QuestionBankLevel() {
 
-
+  const navigate = useNavigate();
   const levels = [
     {
       name: 'Easy',
-      value: '1',
+      value: 'easy',
     },
     {
       name: 'Medium',
-      value: '2',
+      value: 'medium',
     },
     {
       name: 'Hard',
-      value: '3',
+      value: 'hard',
     },
   ];
 
+  var params = useParams();
+  var nextLev = "dummy";
+
+  if(params.lev==="easy")
+  {
+    nextLev = "medium";
+  }
+  else if(params.lev === "medium")
+  {
+    nextLev = "hard";
+  }
+  
+
+ 
 
 
   const [selectedLevel, setSelectedLevel] = useState("")
@@ -44,26 +58,26 @@ function QuestionBankLevel() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // var myHeaders = new Headers();
+    // myHeaders.append("Content-Type", "application/json");
+    // var raw = JSON.stringify({
+    //   "qlevel": "1",
+    //   "fqbid": 0
+    // });
 
-    var myHeaders = new Headers();
-    myHeaders.append("Content-Type", "application/json");
+    // var requestOptions = {
+    //   method: 'POST',
+    //   headers: myHeaders,
+    //   body: raw,
+    //   redirect: 'follow'
+    // };
+    // fetch("https://summerinternshipproject.pythonanywhere.com/questionbanklevel/", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
 
-    var raw = JSON.stringify({
-      "qlevel": "1",
-      "fqbid": 0
-    });
 
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-
-    fetch("https://summerinternshipproject.pythonanywhere.com/questionbanklevel/", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+     navigate(`/code/${params.lev}/code1`)
   }
 
   return (
@@ -82,11 +96,11 @@ function QuestionBankLevel() {
         </FormControl>
         <br></br>
         <br></br>
-        {/* <Link to={"/code"} > */}
+        
         <Button type="submit" variant="contained" color="primary" sx={{ mb: 2 }} onClick={handleSubmit}>
           Next
         </Button>
-        {/* </Link> */}
+    
       </Container>
     </Grid>
   )

@@ -13,8 +13,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Container, Typography } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
 
 function QuestionBankQuestions() {
+  const navigate = useNavigate();
 
   const questions = [
     {
@@ -50,6 +53,34 @@ function QuestionBankQuestions() {
   const [questionTimer, setquestionTimer] = useState(10);
   //const [fcid,setFcid] = useState();
 
+  
+  var params = useParams();
+  
+  var nextQs = "dummy";
+  
+  if(params.id === "1") {
+    nextQs = "2";
+  }
+  else if (params.id === "2") {
+    nextQs = "3";
+  }
+  else if(params.id === "3")
+  {
+    nextQs = "4";
+  }
+  else if(params.id === "4")
+  {
+    nextQs = "5";
+  }
+   else if(params.id === "5") 
+   {
+    nextQs = "6";
+   }
+  
+  
+
+
+
   const marks = parseFloat(questionMarks);
   const question_time = parseInt(questionTimer);
   const handleChange = (e) => {
@@ -58,16 +89,26 @@ function QuestionBankQuestions() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { question_text, option1, option2, option3, option4, correct_option, marks, question_time };
+    // const data = { question_text, option1, option2, option3, option4, correct_option, marks, question_time };
 
-    console.log(data);
-    fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    }).then(() => {
-      console.log('posted succesfully');
-    })
+    // console.log(data);
+    // fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
+    //   method: 'POST',
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(data)
+    // }).then(() => {
+    //   console.log('posted succesfully');
+    // })
+    if(nextQs==="6")
+    {
+      
+      navigate(`/code/${params.lev}/${params.type}`)
+      
+    }
+    else{ 
+    navigate(`/question/${params.lev}/${params.type}/${nextQs}`)
+    }
+   
   };
 
 
