@@ -24,19 +24,19 @@ import AdminNavbar from "./pages/Admin/AdminNavbar";
 
 function App() {
 
-  // const token = localStorage.getItem('token');
-  // console.log(token)
+  const token = localStorage.getItem('token');
+  console.log(token)
 
-  // if(!token) {
-  //   return <AdminLogin />
-  // }
+  if(!token) {
+    return <AdminLogin />
+  }
 
  
   
   return (
     // <BrowserRouter>
     <>
-      {/* <Navbar /> */}
+      <Navbar />
 
       {/* <Home/> */}
 
@@ -58,15 +58,15 @@ function App() {
       
       {/* <QuestionBankLevel/> */}
       {/* <QuestionBankQuestions/> */}
-      {/* <AdminNavbar/> */}
-      {/* <BrowserRouter>
+      <AdminNavbar/>
+      <BrowserRouter>
      <Routes>
          <Route path="/level/:lev" element={<QuestionBankLevel/>} />
          <Route path="/" element={<QuestionBankLanguage/>} />
          <Route path="/code/:lev/:type" element={<QuestionBankCode/>}/>
          <Route path="/question/:lev/:type/:id" element={<QuestionBankQuestions/>}/>
          </Routes>
-     </BrowserRouter> */}
+     </BrowserRouter>
 
 
 
