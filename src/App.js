@@ -14,52 +14,67 @@ import Level from "./pages/Users/Level";
 import Questions from "./pages/Users/Questions";
 import Read from "./pages/Users/Read";
 import Register from "./pages/Users/Register";
+import { useState } from "react";
+import AdminNavbar from "./pages/Admin/AdminNavbar";
+
+
 
 
 
 
 function App() {
+
+  // const token = localStorage.getItem('token');
+  // console.log(token)
+
+  // if(!token) {
+  //   return <AdminLogin />
+  // }
+
+ 
+  
   return (
     <>
-    <Navbar/>
+      {/* <Navbar /> */}
 
-    {/* <Home/> */}
+      {/* <Home/> */}
 
-    {/* <Register/> */}
+      {/* <Register/> */}
       {/* <Experiment/> */}
-    {/* <Read/> */}
-{/*    <Level/> */}
-     <Questions/> 
+      {/* <Read/> */}
+      {/*    <Level/> */}
+      {/* <Questions/>  */}
 
-    {/* Admin Pages  */}
+      {/* Admin Pages  */}
 
-    {/* <AdminLogin/> */}
-    {/* <Language/> */}
+      {/* <AdminLogin /> */}
+      {/* <Language/> */}
 
-    
-
-    
-    {/* <QuestionBankCode/> */}
-    {/* <QuestionBankLanguage/> */}
-    {/* <QuestionBankLevel/> */}
-    {/* <QuestionBankQuestions/> */}
-    {/* <BrowserRouter>
+      {/* <QuestionBankCode/> */}
+      
+      
+      {/* <QuestionBankLanguage/> */}
+      
+      {/* <QuestionBankLevel/> */}
+      {/* <QuestionBankQuestions/> */}
+      {/* <AdminNavbar/> */}
+      {/* <BrowserRouter>
      <Routes>
-         <Route path="/level" element={<QuestionBankLevel/>} />
+         <Route path="/level/:lev" element={<QuestionBankLevel/>} />
          <Route path="/" element={<QuestionBankLanguage/>} />
-         <Route path="/code" element={<QuestionBankCode/>}/>
-         <Route path="/question" element={<QuestionBankQuestions/>}/>
+         <Route path="/code/:lev/:type" element={<QuestionBankCode/>}/>
+         <Route path="/question/:lev/:type/:id" element={<QuestionBankQuestions/>}/>
          </Routes>
      </BrowserRouter> */}
 
-     
 
 
-    <Footer/> 
+
+      <Footer />
 
 
     </>
-    
+
   );
 }
 

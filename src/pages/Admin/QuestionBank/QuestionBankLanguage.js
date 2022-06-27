@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   MenuItem,
   makeStyles,
@@ -19,33 +19,32 @@ import QuestionBankLevel from './QuestionBankLevel';
 
 function QuestionBankLanguage() {
 
-
+  const navigate  = useNavigate();
   const options = [
     {
       name: 'C++',
-      value: 'C++',
+      value: '1',
     },
-    {
-      name: 'C',
-      value: 'C',
-    },
-    {
-      name: 'Java',
-      value: 'Java',
-    },
-    {
-      name: 'Python',
-      value: 'Python',
-    },
-    {
-      name: 'Javascript',
-      value: 'Javascript',
-    },
+    // {
+    //   name: 'C',
+    //   value: 'C',
+    // },
+    // {
+    //   name: 'Java',
+    //   value: 'Java',
+    // },
+    // {
+    //   name: 'Python',
+    //   value: 'Python',
+    // },
+    // {
+    //   name: 'Javascript',
+    //   value: 'Javascript',
+    // },
   ];
 
   const [Language, setLanguage] = useState("");
-  const [selectedValue, setSelectedValue] = useState("")
-
+  const [selectedValue, setSelectedValue] = useState("");
   const handleChange = (e) => {
     setSelectedValue(e.target.value)
   }
@@ -53,24 +52,29 @@ function QuestionBankLanguage() {
   const handleSubmit = (e) => {
 
     e.preventDefault();
-    var formdata = new FormData();
-    formdata.append("admin_programming_language", "1");
+    // var formdata = new FormData();
+    // formdata.append("admin_programming_language", "1");
 
-    var requestOptions = {
-      method: 'POST',
-      body: formdata,
-      redirect: 'follow'
-    };
+    // var requestOptions = {
+    //   method: 'POST',
+    //   body: formdata,
+    //   redirect: 'follow'
+    // };
 
-    fetch("https://summerinternshipproject.pythonanywhere.com/questionbank/", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+    // fetch("https://summerinternshipproject.pythonanywhere.com/questionbank/", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
 
+      navigate('/level/easy');
   }
 
+  
+
   return (
-    <Grid container spacing={0} sx={{ backgroundColor: "Lightblue" }}>
+    <>
+  
+      <Grid container spacing={0} sx={{ backgroundColor: "Lightblue" }}>
       <Container className='container-question-bank' maxWidth="sm" sx={{ mb: 4, textAlign: "center", backgroundColor: "white", borderRadius: 2, boxShadow: 5, mt: 4 }}>
         <Typography>QuestionBank</Typography>
         <FormControl sx={{ m: 1, minWidth: 250 }}   >
@@ -88,13 +92,18 @@ function QuestionBankLanguage() {
         <br></br>
         <br></br>
 
-        {/* <Link to={"/level"} > */}
-        <Button type="submit" variant="contained" color="primary" sx={{ mb: 2 }} onClick={handleSubmit}>
+      
+        <Button type="submit" variant="contained" color="primary" sx={{ mb: 2 }} onClick={handleSubmit} >
           Next
         </Button>
-        {/* </Link> */}
+
+        
+       
       </Container>
     </Grid>
+   
+   
+    </>
   )
 }
 
