@@ -10,6 +10,13 @@ import { Button, Typography } from '@mui/material';
 
 import { Box, Container } from "@mui/system";
 import SliderQuestion from './SliderQuestion';
+import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+
+import { useState  } from 'react';
+// import { useContext } from 'react';
+// import { ReadContext } from '../../timeContext/checkTime';
+
 
 
 const theme = createTheme({
@@ -26,9 +33,25 @@ const theme = createTheme({
 
 const Questions = ()=>{
 
-
-
+  // const cc = useContext(ReadContext);
+  // console.log("Reamin: ", cc.counterRead);
+  var leve = useParams();
+  var levelNext = "dummy";
+  if(leve.test === "second") {
+    if(leve.type === "Easy") {
+      levelNext = "Medium";
+    }
+    if(leve.type === "Medium") {
+      levelNext = "Hard";
+    }
+    
+  }
   
+  const [isValid, setIsValid] = useState(false);
+
+  React.useEffect(() => {
+    setIsValid(true);
+  })
 
 
     return (
@@ -52,7 +75,7 @@ const Questions = ()=>{
         <Grid item xs={4}  >
         
         <Typography sx={{textAlign:"center",color:"#ffffff"}} variant="h6">Timer</Typography>
-        <Timer/>
+        {isValid && <Timer limit="5"/>}
           
         </Grid>
 
@@ -75,7 +98,7 @@ const Questions = ()=>{
       
        
 
-       <Button variant="contained" color="success" size="large" sx={{ml:2}} >Submit & next</Button>
+       <Link to={leve.test === "second" ? `/level/${levelNext}` : `/codeRead/${leve.type}/code1`}><Button variant="contained" color="success" size="large" sx={{ml:2}} >Submit & next</Button></Link>
         
         </Box>
 

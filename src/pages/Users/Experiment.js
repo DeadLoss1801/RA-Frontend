@@ -7,13 +7,14 @@ import Card from "../../components/Layout"
 import Layout from "../../components/Layout";
 
 import Button from '@mui/material/Button';
+import { Link } from "react-router-dom";
+
+export const flow = "Easy";
 
 
 
 
-
-
-const Experiment = () => {
+const Experiment = (props) => {
 
 
 
@@ -118,7 +119,7 @@ const Experiment = () => {
       
        
 
-       <Button variant="contained" color="success" size="large" sx={{ml:2}} >Next</Button>
+       <Link to={"/level/Easy"}><Button variant="contained" color="success" size="large" sx={{ml:2}} >Next</Button></Link>
       </Box>
    
       

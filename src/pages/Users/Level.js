@@ -8,6 +8,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+
+//import { flow } from "./Experiment";
 
 
 import Modal from '@mui/material/Modal';
@@ -32,7 +36,9 @@ const Level = ()=>{
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  let params = useParams();
 
+  //const lev = flow;
 
 return (
 
@@ -52,7 +58,7 @@ return (
       /> */}
       <CardContent >
         <Typography gutterBottom variant="h4" component="div" sx={{color:"green"}}>
-          Level Easy
+          Level {params.type}
         </Typography>
         <Typography variant="body2" color="text.secondary">
           This Level contains 2 codes and each code have maximum of 5 questions respectively.
@@ -70,7 +76,7 @@ return (
           <Typography id="modal-modal-title" variant="h6" component="h2" color="warning.main">
             Are you Ready to Start ?
           </Typography>
-          <Button variant="contained" color="success" size="medium" sx={{m:2}} >Confirm</Button>
+          <Link to={`/codeRead/${params.type}/code0`}><Button variant="contained" color="success" size="medium" sx={{m:2}} >Confirm</Button></Link>
           <Button variant="contained" color="warning" size="medium"  sx={{m:2}} onClick={handleClose} >Back</Button>
         </Box>
       </Modal>

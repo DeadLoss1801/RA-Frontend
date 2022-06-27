@@ -14,23 +14,65 @@ import Level from "./pages/Users/Level";
 import Questions from "./pages/Users/Questions";
 import Read from "./pages/Users/Read";
 import Register from "./pages/Users/Register";
+import Timer from "./components/Timer";
 
+// import { TimeContext } from "./timeContext/checkTime";
+// import { useReducer } from "react";
+// import { ReadContext } from "./timeContext/checkTime";
 
+// const initialState =  "false";
 
+// const reducer = (state, action) => {
+//   console.log(action); 
+//     if(action === "true") {
+//         return "true";
+//     }
+//     else {
+//         return initialState;
+//     }
+// }
+
+// const initialState1 = -1;
+  
+// const reducer1 = (state, action) => {
+    
+//   console.log(action);
+//   if(action !== state.read) {
+      
+//         return action;
+//     }
+//     else {
+        
+//         return initialState1;
+//     }
+
+// }
 
 function App() {
+
+  // const [time, dispatch] = useReducer(reducer, initialState );
+  // const [read, read_dispatch] = useReducer(reducer1, initialState1 );
   return (
     <>
     <BrowserRouter>
     <Navbar/>
-
+    {/* <ReadContext.Provider value={{counterRead: read, counterReadDispatch: read_dispatch}}>
+    <TimeContext.Provider value={{counterTime: time, counterDispatch: dispatch}}> */}
     <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/expertise" element={<Experiment />} />
-    </Routes>
+        <Route path="/level/:type" element={<Level />} />
 
+        
+        <Route path="/codeRead/:type/:option" element={<Read />} />
+        {/* <Route path="/aaaa" element={<Timer />} /> */}
+        <Route path="/quiztime/:type/:test" element={<Questions />} />
+        
+    </Routes>
+    {/* </TimeContext.Provider>
+    </ReadContext.Provider> */}
     {/* <Home/> */}
 
     {/* <Register/> */}

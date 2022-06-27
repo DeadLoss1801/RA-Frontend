@@ -1,11 +1,21 @@
 import { Container ,Box} from "@mui/system";
-import React from "react";
+import React, { useContext } from "react";
 import Grid from '@mui/material/Grid';
 import { styled } from '@mui/system';
 import { createTheme ,ThemeProvider} from '@mui/material/styles';
 
-import { Button, Typography } from "@mui/material";
+import { Button, Typography, useStepContext } from "@mui/material";
 import Timer from "../../components/Timer";
+import { useState, useEffect } from "react";
+
+import { Link, useParams } from "react-router-dom";
+// import { createContext } from "react";
+// import { TimeContext } from "../../timeContext/checkTime";
+
+import { useNavigate } from "react-router-dom";
+
+
+let x;
 
 const theme = createTheme({
   palette: {
@@ -31,10 +41,101 @@ const Image = styled('img')({
 
 });
 
+const Read = () => {
 
-const Read =()=>{
+  // const a = useContext(TimeContext);
+  const navigate = useNavigate();
+
+  const [codedata, setCodedata] = useState(null);
+  //const [isLoading, setIsLaoding] = useState(true);
+  const [isValid, setIsValid] = useState(false);
+
+  const mainUrl = "https://summerinternshipproject.pythonanywhere.com";
+
+  var levv = useParams();
+  var lev = useParams();
+  if(lev.type === "Easy") {
+    lev = 1;
+  }
+  else if(lev.type === "Medium") {
+    lev = 2;
+  }
+  else {
+    lev = 3;
+  }
+
+  var codeno = useParams();
+  var quizNext = "dummy";
+  if(codeno.option === "code0") {
+    codeno = 0;
+    quizNext = "first";
+  }
+  else {
+    codeno = 1;
+    quizNext = "second";
+  }
+
+  // const getcodeData = async() => {
+  //   const data = await fetch(`https://summerinternshipproject.pythonanywhere.com/getcode/?level=${lev}&code=${codeno}`)
+  //   const images = await data.json();
+  //   setCodedata(images);
+  //   console.log(images);
+  //   //setIsLaoding(false);
+  // }
+  useEffect(() => {
+    fetch(`https://summerinternshipproject.pythonanywhere.com/getcode/?level=${lev}&code=${codeno}`)
+        .then(res => {
+            return res.json();
+        })
+        .then(dta => {
+            console.log(dta);
+            setCodedata(dta);
+            //setIsLaoding(false);
+            setIsValid(true);
+        })
+   //getcodeData();
+    console.log(codedata);
+   },[]);
+
+  // if(isLoading) {
+  //   return <h2> LOading .... </h2>
+  // }
+  var url = "jsm";
+  var c_time = 8;
+  var qs_time = 0;
+  if(codedata != null) {
+    //setCodedata(codedata.code_image);
+    url = mainUrl + codedata.code_image; 
+    c_time = codedata.code_time;
+    qs_time = codedata.question_time;
+    // console.log(codedata.code_time);
+    // console.log(codedata.code_image);
+  }
+
+  // function stopin() {
+  //   // console.log("jmd");
+  //   setTimeout(() => {
+  //     navigate(`/quiztime/${levv.type}/${quizNext}`);
+  //   }, 5000)
+  // }
+  
+// const handleClick = (e) => {
+//   e.preventDefault();
+  
+//   // setTimeout(() =>{
+//     a.counterDispatch("true");
+//     // stopin();
+//     // setTimeout(stopin, 5000);
+//     // navigate(`/quiztime/${levv.type}/${quizNext}`);
+//   // }, 10000)
+//   }
+
+
+
 
 return (
+  
+
   <ThemeProvider theme={theme}>
     <Container  maxWidth="lg" >
     
@@ -50,7 +151,7 @@ return (
           boxShadow: 5,
           }}  >
           
-          <Image  src="https://www.journaldev.com/wp-content/uploads/2012/12/compile-run-java-program-from-java-program-eclipse.jpg"></Image>
+          <Image  src={codedata && url} alt="code"></Image>
           
           </Box>
         </Grid>
@@ -63,9 +164,8 @@ return (
          
          <Typography variant="h4" sx={{color: "#ffffff",fontWeight: 'Regular' ,p:3}}>Timer</Typography>
          
-           <Timer/> 
-         
-
+           {isValid && <Timer limit={c_time} typ={levv.type} nex={quizNext} />} 
+           
          </Box>
         </Grid>
         <Grid item xs={12}>
@@ -77,11 +177,19 @@ return (
         justifyContent:"center"}}>
         
         
-        <Button variant="contained" size="large" color="secondary" sx={{mr:2}} >Back</Button>
+        {/* <Button variant="contained" size="large" color="secondary" sx={{mr:2}} >Back</Button> */}
       
        
 
-       <Button variant="contained" color="success" size="large" sx={{ml:2}} >Next</Button>
+       <Link to={`/quiztime/${levv.type}/${quizNext}`} >
+                      <Button variant="contained" color="success" 
+                      size="large" sx={{ml:2}} 
+                      // onClick={()=>{a.counterDispatch("true")}}
+                      // onClick={setTimeout(handleClick,20000)}
+                      // onClick={handleClick}
+
+                      >Next</Button>
+                      </Link>
         
         </Box>
         </Grid>
