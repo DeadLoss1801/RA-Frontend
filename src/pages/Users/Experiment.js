@@ -9,12 +9,10 @@ import Layout from "../../components/Layout";
 import Button from '@mui/material/Button';
 import { SettingsRemote } from "@material-ui/icons";
 
+import { Link } from "react-router-dom";
 
 
-
-
-
-const Experiment = () => {
+const Experiment = (props) => {
 
 
 
@@ -154,11 +152,15 @@ const Experiment = () => {
 
  
           <Button variant="contained" size="large" color="secondary" sx={{ mr: 2 }} >Back</Button>
+       <Link to={"/level/Easy"}><Button variant="contained" color="success" size="large" sx={{ml:2}} >Next</Button></Link>
+      </Box>
+   
+      
 
 
 
-          <Button variant="contained" color="success" size="large" sx={{ ml: 2 }}  >Next</Button>
-        </Box>
+          {/* <Button variant="contained" color="success" size="large" sx={{ ml: 2 }}  >Next</Button>
+        </Box> */}
 
 
 
