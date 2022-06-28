@@ -17,6 +17,13 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import Question4 from './UsersQuestions/Question4';
 import Question5 from './UsersQuestions/Question5';
+import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+
+
+// import { useContext } from 'react';
+// import { ReadContext } from '../../timeContext/checkTime';
+
 
 
 const theme = createTheme({
@@ -50,6 +57,26 @@ const Questions = () => {
    console.log(`"Response4  " ${response4}`);
    console.log(`"Response 5  "   ${response5}`);
   // console.log(`"Response2  " ${response2}`);
+
+
+  // const cc = useContext(ReadContext);
+  // console.log("Reamin: ", cc.counterRead);
+  var leve = useParams();
+  var levelNext = "dummy";
+  if(leve.test === "second") {
+    if(leve.type === "Easy") {
+      levelNext = "Medium";
+    }
+    if(leve.type === "Medium") {
+      levelNext = "Hard";
+    }
+    
+  }
+  
+  const [isValid, setIsValid] = useState(false);
+
+ 
+
 
   const response1Handler = (choosen_option)=>{
 
@@ -106,6 +133,7 @@ const response5Handler = (choosen_option)=>{
 
     setItems(updated);
     setValid(true);
+    setIsValid(true);
 
 
   }
@@ -179,10 +207,10 @@ const response5Handler = (choosen_option)=>{
 
           <Grid item xs={4}  >
 
-            <Typography sx={{ textAlign: "center", color: "#ffffff" }} variant="h6">Timer</Typography>
-            <Timer />
-
-          </Grid>
+          <Typography sx={{textAlign:"center",color:"#ffffff"}} variant="h6">Timer</Typography>
+        {isValid && <Timer limit="5"/>}
+          
+        </Grid>
 
         </Grid>
 
@@ -217,13 +245,10 @@ const response5Handler = (choosen_option)=>{
 
 
 
-          <Button variant="contained" 
-          color="success" size="large" 
-          sx={{ ml: 2 }} 
-           
-           onClick={handleSubmit}
-           >Submit & next</Button>
+         
 
+       <Link to={leve.test === "second" ? `/level/${levelNext}` : `/codeRead/${leve.type}/code1`}><Button variant="contained" color="success" size="large" sx={{ml:2}} >Submit & next</Button></Link>
+        
         </Box>
 
       </Container>

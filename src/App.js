@@ -18,9 +18,39 @@ import { useState } from "react";
 import AdminNavbar from "./pages/Admin/AdminNavbar";
 
 
+import Timer from "./components/Timer";
 
+// import { TimeContext } from "./timeContext/checkTime";
+// import { useReducer } from "react";
+// import { ReadContext } from "./timeContext/checkTime";
 
+// const initialState =  "false";
 
+// const reducer = (state, action) => {
+//   console.log(action); 
+//     if(action === "true") {
+//         return "true";
+//     }
+//     else {
+//         return initialState;
+//     }
+// }
+
+// const initialState1 = -1;
+  
+// const reducer1 = (state, action) => {
+    
+//   console.log(action);
+//   if(action !== state.read) {
+      
+//         return action;
+//     }
+//     else {
+        
+//         return initialState1;
+//     }
+
+// }
 
 function App() {
 
@@ -33,18 +63,37 @@ function App() {
 
  
   
+  // const [time, dispatch] = useReducer(reducer, initialState );
+  // const [read, read_dispatch] = useReducer(reducer1, initialState1 );
   return (
     // <BrowserRouter>
     <>
-      <Navbar />
+    <BrowserRouter>
+    <Navbar/>
+    {/* <ReadContext.Provider value={{counterRead: read, counterReadDispatch: read_dispatch}}>
+    <TimeContext.Provider value={{counterTime: time, counterDispatch: dispatch}}> */}
+    <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<AdminLogin />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/expertise" element={<Experiment />} />
+        <Route path="/level/:type" element={<Level />} />
 
-      {/* <Home/> */}
+        
+        <Route path="/codeRead/:type/:option" element={<Read />} />
+        {/* <Route path="/aaaa" element={<Timer />} /> */}
+        <Route path="/quiztime/:type/:test" element={<Questions />} />
+        
+    </Routes>
+    {/* </TimeContext.Provider>
+    </ReadContext.Provider> */}
+    {/* <Home/> */}
 
       {/* <Register/> */}
       {/* <Experiment/> */}
-      {/* <Read/> */}
-      {/*    <Level/> */}
-      {/* <Questions/>  */}
+    {/* <Read/> */}
+{/*    <Level/> */}
+     {/* <Questions/>  */}
 
       {/* Admin Pages  */}
 
@@ -58,21 +107,23 @@ function App() {
       
       {/* <QuestionBankLevel/> */}
       {/* <QuestionBankQuestions/> */}
-      <AdminNavbar/>
-      <BrowserRouter>
+      {/* <AdminNavbar/>
+      <BrowserRouter> */}
+    {/* <AdminLogin/> */}
+    {/* <Language/> */}    
+
+    {/* <BrowserRouter>
      <Routes>
          <Route path="/level/:lev" element={<QuestionBankLevel/>} />
          <Route path="/" element={<QuestionBankLanguage/>} />
          <Route path="/code/:lev/:type" element={<QuestionBankCode/>}/>
          <Route path="/question/:lev/:type/:id" element={<QuestionBankQuestions/>}/>
          </Routes>
+    </BrowserRouter>*/}
+
+
+    <Footer/> 
      </BrowserRouter>
-
-
-
-
-      <Footer />
-
 
     </>
   );
