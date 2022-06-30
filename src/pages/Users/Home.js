@@ -2,19 +2,20 @@ import React from 'react'
 
 import {Link} from 'react-router-dom';
 import { Box, Container } from '@mui/system';
-import { styled } from '@mui/system';
+import {styled} from '@mui/system';
 
 
 
 const ParentBox = styled('div')({
-  backgroundColor: "#f1f1f1",
+  backgroundColor: "#fefefe",
   padding: "100px",
   /* position: absolute; */
   /* top: 50%;
   left: 50%; */
   /* transform: translate(-50%, -50%); */
+  border:"1px solid black",
   borderRadius: "10px",
-  
+ 
 
 });
 
@@ -28,10 +29,39 @@ const ParentButton = styled('button')({
     marginTop: "20px",
     marginBottom: "20px",
 
-    borderRadius: "8px",
+    borderRadius: "1.5rem",
     padding: "10px",
     cursor: "pointer",
-    fontSize: "15px",
+    fontSize: "1.5rem",
+    
+    
+      "&:hover": {
+        backgroundColor: '#8B0000'
+      }
+    
+
+     
+    
+
+});
+
+
+
+
+
+
+const Title = styled('h1')({
+ 
+  fontSize:"4rem",
+  display:"flex",
+  alignItem:"center",
+  justifyContent:"center",
+  
+
+
+
+
+
 
 });
 
@@ -39,23 +69,58 @@ const ParentButton = styled('button')({
 
 
 const Home = () => {
-  return (
-    <Container minWidth="md" sx={{display:"flex",justifyContent:"center",alignItems:"center",m:3}}>
-     <Box sx={{width:500,boxShadow:7}}>
 
-     <ParentBox>
+  const home_img="https://images.appypie.com/wp-content/uploads/2020/10/05111505/school-website-builder.svg";
+  // sx={{display:"flex",justifyContent:"center",
+  // alignItems:"center",m:3}}
+  return (
+    <Container maxWidth="xl" sx={{height:"100vh",backgroundColor:"white"}}>
+     
+     <Box sx={{m:3,p:1}}>
+      <Title>Fully Automated Online Assessment System</Title>
+     
+     </Box>
+
+     <Box sx={{display:"flex",justifyContent:"space-between"}}>
+
       
-        <Link to={"/login"} >
-        <ParentButton>Admin</ParentButton>
+     <Box>
+      <img  style={{width:"80%"}} src={home_img}></img>
+     </Box>
+
+
+     <Box sx={{m:"auto"}}>
+         <Link to={"/login"} >
+        <ParentButton admin>Admin</ParentButton>
         </Link>
         
         <Link to={"/register"} >
-        <ParentButton>Participant</ParentButton>
+        <ParentButton participant style={{backgroundColor:"#006400",}} >Participant</ParentButton>
         </Link>
+     </Box>
+
+
+     
+
+
+     </Box>
+     
+   
+
+     
+     
+     
+     {/* <Box sx={{width:500,boxShadow:3}} >
+
+     <ParentBox >
+      
+        
       
       </ParentBox>
       
      </Box>
+
+     */}
   
      
     </Container>

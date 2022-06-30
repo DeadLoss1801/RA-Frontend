@@ -28,7 +28,7 @@ const Navbar = () => {
   
 
   return (
-    <AppBar position="sticky">
+    <AppBar elevation={5} position="sticky" sx={{backgroundColor:"white",color:"black",}}>
       <Container maxWidth="xl">
         <Toolbar disableGutters>
         
@@ -45,7 +45,7 @@ const Navbar = () => {
               mr: 2,
               display: { xs: 'none', md: 'flex' },
               fontFamily: 'monospace',
-              fontWeight: 700,
+              fontWeight: 1000,
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
