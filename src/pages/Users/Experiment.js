@@ -9,7 +9,6 @@ import Layout from "../../components/Layout";
 import Button from '@mui/material/Button';
 import { Link } from "react-router-dom";
 
-export const flow = "Easy";
 
 
 

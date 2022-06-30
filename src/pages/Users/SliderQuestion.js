@@ -1,4 +1,6 @@
 import React from "react";
+import { useState } from "react";
+import { useEffect } from "react";
 import Carousel from 'react-material-ui-carousel'
 import Question from "../../components/Question";
 
@@ -6,57 +8,65 @@ import Question from "../../components/Question";
 
 const SliderQuestion = ()=>{
 
+  const[items,setItems] = useState([]);
 
-    var items = [
-        {
-            ques: "1 .Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
-            option1: "option1",
-            option2: "option2",
-            option3: "option3",
-            option4: "option4",
-
-
-        },
-        {
-            ques: "2 Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
-            option1: "option1",
-            option2: "option2",
-            option3: "option3",
-            option4: "option4",
+  
+    // const items = [
+        // {
+        //     question_text: "1 .Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
+        //     option1: "option1",
+        //     option2: "option2",
+        //     option3: "option3",
+        //     option4: "option4",
 
 
-        },
-        {
-            ques: "3 Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
-            option1: "option1",
-            option2: "option2",
-            option3: "option3",
-            option4: "option4",
+        // },
+        // {
+        //     ques: "2 Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
+        //     option1: "option1",
+        //     option2: "option2",
+        //     option3: "option3",
+        //     option4: "option4",
 
 
-        },
-        {
-            ques: "4 Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
-            option1: "option1",
-            option2: "option2",
-            option3: "option3",
-            option4: "option4",
+        // },
+        // {
+        //     ques: "3 Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
+        //     option1: "option1",
+        //     option2: "option2",
+        //     option3: "option3",
+        //     option4: "option4",
 
 
-        },
-        {
-            ques: "5 Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
-            option1: "option1",
-            option2: "option2",
-            option3: "option3",
-            option4: "option4",
+        // },
+        // {
+        //     ques: "4 Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
+        //     option1: "option1",
+        //     option2: "option2",
+        //     option3: "option3",
+        //     option4: "option4",
 
 
-        },
-    ]
+        // },
+        // {
+        //     ques: "5 Ambitioni dedisse scripsisse iudicaretur. Cras mattis iudicium purus sit amet fermentum. Donec sed odio operae, eu vulputate felis rhoncus",
+        //     option1: "option1",
+        //     option2: "option2",
+        //     option3: "option3",
+        //     option4: "option4",
+
+
+        // },
+    // ];
 
 
     const arraynum = [ 1 , 2 , 3 , 4 , 5 ];
+
+
+
+   
+
+
 
 return (
 
@@ -112,7 +122,7 @@ return (
      
     >
             {
-                items.map( (item, i) => <Question key={i} item={item} /> )
+                items.map((item, i) => <Question id={i} key={i} item={item} /> )
             }
     </Carousel>
 

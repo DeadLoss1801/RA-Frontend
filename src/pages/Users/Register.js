@@ -1,42 +1,83 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Register.css"
 import {Link} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+
+import { useDispatch } from "react-redux";
+import { useSelector } from 'react-redux';
 
 const Register = () => {
 
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
-    const [dob, setDob] = useState('');
+    const [dob, setDob] = useState(null);
     const [age, setAge] = useState('');
-    const [gender, setGender] = useState();
-    const [country, setCountry] = useState('India');
-    const [state, setState] = useState('Delhi');
-    const [profession, setProfession] = useState();
+    const [gender, setGender] = useState(null);
+    const [country, setCountry] = useState(null);
+    const [state, setState] = useState(null);
+    const [profession, setProfession] = useState(null);
     const [tnc, setTnc] = useState( false);
-    
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const calculatingAge = useSelector(state => state.calculatingAge);
+
     const handleSubmit = (e) => {
+
         e.preventDefault();
         const data = {name, email, dob, age, gender, country, state, profession};
         console.log(data);
+
 
         const fullNameField = document.getElementById("fullname");
         const nameError = document.getElementById("nameError");
         var val = /^[A-Za-z ]{1,}$/;
         var filter = 0;
-        if (!val.test(document.getElementById("fullname").value)) {
-            
+
+        if (!val.test(document.getElementById("fullname").value)) {    
+        
             nameError.classList.add("visible");
             fullNameField.classList.add("invalid");
             nameError.setAttribute('aria-hidden', false);
             nameError.setAttribute('aria-invalid', true);
+            window.scrollTo(0, 0);
             filter = 1;
         }
-
-        if(filter === 0) {
+        else {
             nameError.classList.remove("visible");
             fullNameField.classList.remove("invalid");
             nameError.setAttribute('aria-hidden', true);
             nameError.setAttribute('aria-invalid', false);
+        }
+
+        const emailField = document.getElementById("emailcheck");
+        const emailError = document.getElementById("emailError");
+        var val1 = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+        if (!val1.test(document.getElementById("emailcheck").value)) {
+            
+            emailError.classList.add("visible");
+            emailField.classList.add("invalid");
+            emailError.setAttribute('aria-hidden', false);
+            emailError.setAttribute('aria-invalid', true);
+            window.scrollTo(0, 0);
+            filter = 1;
+        }
+        else {
+            emailError.classList.remove("visible");
+            emailField.classList.remove("invalid");
+            emailError.setAttribute('aria-hidden', true);
+            emailError.setAttribute('aria-invalid', false);
+        }
+
+        if(gender === null || country === null || state === null || profession === null || dob === null) {
+            alert("Please fill the details completely");
+            filter = 1;
+        }
+
+        if(filter === 0) {
+
             if(tnc === false) {
                 alert('Please check the terms and conditions box');
             }
@@ -50,6 +91,8 @@ const Register = () => {
                 //     })
 
                 alert('Registered successfully');
+                dispatch({type: "SETTING_REGISTERED_NAME", val: name});
+                navigate("/expertise");
             }
         }
     }
@@ -88,24 +131,52 @@ const Register = () => {
         else {
             calculated_age = today_year - birth_date_year - 1;
         }
-        //console.log(calculated_age);
-        //var output_value = calculated_age;
+
         document.getElementById("calculated_age").value = calculated_age;
-        //age.value = calculated_age;
+
     }
 
-    const handleClick = event => {
-        event.preventDefault();
-        
+    const handleDobAge = (e) => {
+        e.preventDefault();
+
+        setDob(e.target.value);
         calculate_age();
-        //console.log('old value: ', age);
         setAge(calculated_age);
-      };
+        dispatch({type: "SETTING_AGE", val: calculated_age});
+
+        const ageField = document.getElementById("calculated_age");
+        const ageError = document.getElementById("ageError");
+
+        ageError.classList.remove("visible");
+        ageField.classList.remove("invalid");
+        ageError.setAttribute('aria-hidden', true);
+        ageError.setAttribute('aria-invalid', false);
+    }
+
+    const handleClick = () => {
+        const ageField = document.getElementById("calculated_age");
+        const ageError = document.getElementById("ageError");
+        if(calculatingAge === null) {
+                ageError.classList.add("visible");
+                ageField.classList.add("invalid");
+                ageError.setAttribute('aria-hidden', false);
+                ageError.setAttribute('aria-invalid', true);
+                window.scrollTo(0, 0);
+        }
+    }
+
+    // useEffect(() => {
+    //     setName(JSON.parse(window.localStorage.getItem('name')));
+    //   }, []);
+    
+    //   useEffect(() => {
+    //     window.localStorage.setItem('name', name);
+    //   }, [name]);
 
   return (
     <div className='create'>
         
-        <form onSubmit={handleSubmit}>
+        <form className='.formcss'>
         <h1>Register</h1>
             <label>Name</label>
             <input
@@ -113,7 +184,6 @@ const Register = () => {
                 placeholder="Your Full name"
                 required
                 value={name}
-                //pattern="^[A-Za-z ]{1,}$"
                 id="fullname"
                 onChange={(e) => setName(e.target.value)}
             />
@@ -124,16 +194,18 @@ const Register = () => {
                 placeholder="Your email"
                 required
                 value={email}
+                id="emailcheck"
                 onChange={(e) => setEmail(e.target.value)}
 
             />
+            <span role="alert" id="emailError" aria-hidden="true">*Enter a correct email address!</span>
             <label>Date of Birth</label>
             <input
                 type="date"
                 id="birth_date"
                 required
                 value={dob}
-                onChange={(e) => setDob(e.target.value)}
+                onChange={handleDobAge}
             />
             <label>Age</label>
             <input
@@ -142,9 +214,10 @@ const Register = () => {
                 required
                 id="calculated_age"
                 onClick={handleClick}
-                value={age}
+                value={calculatingAge}
                 readOnly
             />
+            <span role="alert" id="ageError" aria-hidden="true">*Please select your Date of Birth first!</span>
             <label>Gender</label>
             <select
                 value={gender}
@@ -161,16 +234,17 @@ const Register = () => {
                 onChange={(e) => setCountry(e.target.value)}          
             >
                 <option value="-Select-" selected disabled>--Select--</option>
-                <option value="india">India</option>
-                <option value="america">America</option> 
+                <option value="India">India</option>
+                <option value="America">America</option> 
             </select>
             <label>State</label>
             <select
                 value={state}
                 onChange={(e) => setState(e.target.value)}
             >
-                <option value="delhi">Delhi</option>
-                <option value="newyork">New York</option>
+                <option value="-Select-" selected disabled>--Select--</option>
+                <option value="Delhi">Delhi</option>
+                <option value="Newyork">New York</option>
             </select>
             <label>Role</label>
             <select
@@ -188,7 +262,9 @@ const Register = () => {
                 onChange={checkboxHandler}
             />By using this form you agree with the storage and handling of your data by this website in accordance with our Privacy Policy.</label>
             <Link to={"/"}><button >Cancel</button></Link>
-            <Link to={"/expertise"}><button >Submit</button></Link>
+            
+                <button onClick={handleSubmit}>Submit</button>
+                
         </form>
     </div>
   );

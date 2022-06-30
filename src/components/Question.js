@@ -1,5 +1,5 @@
 
-import React from "react";
+import React, { useState } from "react";
 
 import { Box } from "@mui/system";
 
@@ -18,22 +18,38 @@ const Question = (props) => {
 
 
 
-    const [value, setValue] =React.useState('');
+  //   const [value, setValue] =React.useState('');
 
-  const handleChange = (event) => {
-    setValue(event.target.value);
-  };
+  // const handleChange = (event) => {
+  //   setValue(event.target.value);
+  // };
   
 
+    
+    
 
+
+    
+
+    
+
+    const [response,setResponse] = useState("");
+  
+  
+
+   
+
+
+    // console.log(response1);
     return (
        
+      
 
      <Box sx={{mt:2}}>
       
      <Paper elevation={3} sx={{width:"100%",height:350}}>
       <Box sx={{p:3}}>
-      <Typography variant="h6" >{props.item.ques}</Typography>
+      <Typography variant="h6" >{props.item.question_text}</Typography>
       <Box sx={{ typography: 'subtitle2',mt:2 }}>
       
       <FormControl>
@@ -41,15 +57,15 @@ const Question = (props) => {
      <RadioGroup
        aria-labelledby="demo-controlled-radio-buttons-group"
        name="controlled-radio-buttons-group"
-       value={value}
-       onChange={handleChange}
+      //  value={value}
+      //  onChange={handleChange}
      >
-       <FormControlLabel value={props.item.option1} control={<Radio />} label={props.item.option1} />
-       <FormControlLabel value={props.item.option2} control={<Radio />} label={props.item.option2} />
-       <FormControlLabel value={props.item.option3} control={<Radio />} label={props.item.option3} />
-       <FormControlLabel value={props.item.option4} control={<Radio />} label={props.item.option4} />
+       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value)}}   checked={response === props.item.option1} value={props.item.option1} control={<Radio />} label={props.item.option1} />
+       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value) }}  checked={response === props.item.option2} value={props.item.option2} control={<Radio />} label={props.item.option2} />
+       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value) }}  checked={response === props.item.option3} value={props.item.option3}  control={<Radio />} label={props.item.option3} />
+       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value) }}  checked={response === props.item.option4}  value={props.item.option4} control={<Radio />} label={props.item.option4} />
      </RadioGroup>
-   </FormControl>
+     </FormControl>
 
      
 

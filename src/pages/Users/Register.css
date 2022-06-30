@@ -1,4 +1,4 @@
-form{
+.formcss{
     background-color:beige;
     padding: 20px 60px;
     border-radius: 15px;
@@ -69,6 +69,33 @@ form{
     display: block;
   }
   
+  #emailError {
+    display: none;
+    font-size: 11px;
+    padding: 3px;
+    color: red;
+    text-align:justify;
+    margin-bottom: 4px;
+  }
+  
+  #emailError.visible {
+    display: block;
+  }
+  
+  #ageError {
+    display: none;
+    font-size: 11px;
+    padding: 3px;
+    color: red;
+    text-align:justify;
+    margin-bottom: 4px;
+  }
+  
+  #ageError.visible {
+    display: block;
+  }
+  
+
   input.invalid {
     border-color: red;
   }

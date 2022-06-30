@@ -12,20 +12,19 @@ import FormControl from '@mui/material/FormControl';
 import TextField from '@mui/material/TextField';
 
 
-const Layout = ()=>{
+const Layout = (props)=>{
 
 
-  const [level, setLevel] = React.useState('');
+  
+  // const handleChangeLevel = (event) => {
+  //   setLevel(event.target.value);
+  // };
 
-  const handleChangeLevel = (event) => {
-    setLevel(event.target.value);
-  };
+  // const [duration, setDuration] = React.useState('');
 
-  const [duration, setDuration] = React.useState('');
-
-  const handleChangeDuration = (event) => {
-    setDuration(event.target.value);
-  };  
+  // const handleChangeDuration = (event) => {
+  //   setDuration(event.target.value);
+  // };  
 
 return (
 
@@ -53,17 +52,17 @@ return (
       <Select
         labelId="demo-select-small"
         id="demo-select-small"
-        value={level}
+        value={props.level}
         
         label="Level"
-        onChange={handleChangeLevel}
+        onChange={(e)=> { props.onChangeLevel(e.target.value) }}
       >
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={10}>Novice</MenuItem>
-        <MenuItem  value={20}>Intermediate</MenuItem>
-        <MenuItem  value={30}>Advance</MenuItem>
+        <MenuItem value={1}>Novice</MenuItem>
+        <MenuItem  value={2}>Intermediate</MenuItem>
+        <MenuItem  value={3}>Advance</MenuItem>
       </Select>
     </FormControl>
 
@@ -82,17 +81,17 @@ return (
       <Select
         labelId="demo-select-small"
         id="demo-select-small"
-        value={duration}
+        value={props.duration}
         
         label="duration"
-        onChange={handleChangeDuration}
+        onChange={(e)=>{props.onChangeDuration(e.target.value)}}
       >
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={10}> &lt; 1 years</MenuItem>
-        <MenuItem  value={20}>1 - 3 years</MenuItem>
-        <MenuItem  value={30}>&gt; 3years</MenuItem>
+        <MenuItem value={1}> &lt; 1 years</MenuItem>
+        <MenuItem  value={2}>1 - 3 years</MenuItem>
+        <MenuItem  value={3}>&gt; 3years</MenuItem>
       </Select>
     </FormControl>
 
@@ -105,7 +104,14 @@ return (
   <Paper elevation={3} style={{padding:6,height:70}}>
  
  <Typography variant="subtitle2" >Time</Typography> 
- <TextField id="outlined-basic" label="Outlined" variant="outlined" size="small" sx={{ m: 1, minWidth: 170 }} />
+ <TextField id="outlined-basic" 
+ label="Outlined"
+  variant="outlined" 
+ size="small" sx={{ m: 1, minWidth: 170 }} 
+ value={props.time}
+ onChange={(e)=>{props.onChangeTime(e.target.value)}}
+ 
+ />
  
  </Paper> 
 
@@ -125,6 +131,9 @@ return (
         InputLabelProps={{
           shrink: true,
         }}
+        
+        value={props.lastused}
+        onChange={(e)=>{props.onChangeLastused(e.target.value)}}
       />
 
       </Paper>

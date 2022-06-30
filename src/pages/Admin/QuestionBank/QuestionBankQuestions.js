@@ -1,57 +1,179 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
-    MenuItem,
-    makeStyles,
-    IconButton,
-    Input,
-  } from "@material-ui/core";
-  import Button from '@mui/material/Button';
-  import Grid from "@mui/material/Grid";
-  import TextField from "@mui/material/TextField";
-  import InputLabel from '@mui/material/InputLabel';
-  import FormControl from '@mui/material/FormControl';
-  import Select from '@mui/material/Select';
-  import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-  import { Container, Typography } from "@mui/material";
+  MenuItem,
+  makeStyles,
+  IconButton,
+  Input,
+} from "@material-ui/core";
+import Button from '@mui/material/Button';
+import Grid from "@mui/material/Grid";
+import TextField from "@mui/material/TextField";
+import InputLabel from '@mui/material/InputLabel';
+import FormControl from '@mui/material/FormControl';
+import Select from '@mui/material/Select';
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import { Container, Typography } from "@mui/material";
+import { useNavigate } from 'react-router-dom';
+import {useParams } from 'react-router-dom';
 
 function QuestionBankQuestions() {
+  const navigate = useNavigate();
+
+  const questions = [
+    {
+      name: 'question1',
+      value: 'question1',
+    },
+    {
+      name: 'question2',
+      value: 'question2',
+    },
+    {
+      name: 'question3',
+      value: 'question3',
+    },
+    {
+      name: 'question4',
+      value: 'question4',
+    },
+    {
+      name: 'question5',
+      value: 'question5',
+    },
+  ]
+
+  const [selectedQuestion, setSelectedQuestion] = useState("");
+  const [question_text, setquestion_text] = useState("");
+  const [option1, setOption1] = useState("");
+  const [option2, setOption2] = useState("");
+  const [option3, setOption3] = useState("");
+  const [option4, setOption4] = useState("");
+  const [correct_option, setcorrect_option] = useState("");
+  const [questionMarks, setquestionMarks] = useState("");
+  const [questionTimer, setquestionTimer] = useState(10);
+  //const [fcid,setFcid] = useState();
+
+  
+  var params = useParams();
+  
+  var nextQs = "dummy";
+  
+  if(params.id === "1") {
+    nextQs = "2";
+  }
+  else if (params.id === "2") {
+    nextQs = "3";
+  }
+  else if(params.id === "3")
+  {
+    nextQs = "4";
+  }
+  else if(params.id === "4")
+  {
+    nextQs = "5";
+  }
+   else if(params.id === "5") 
+   {
+    nextQs = "6";
+   }
+  
+   var nextCo = "temp";
+   var nextLev = "temp1"
+   if(params.type === "code1") {
+    nextCo = "code2";
+   }
+   else if(params.type === "code2") {
+    if(params.lev === "easy") {
+      nextLev = "medium"; 
+    }
+    else if(params.lev === "medium") {
+      nextLev = "hard";
+    }
+   }
+  
+
+
+
+  const marks = parseFloat(questionMarks);
+  const question_time = parseInt(questionTimer);
+  const handleChange = (e) => {
+    setSelectedQuestion(e.target.value);
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // const data = { question_text, option1, option2, option3, option4, correct_option, marks, question_time };
+
+    // console.log(data);
+    // fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
+    //   method: 'POST',
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(data)
+    // }).then(() => {
+    //   console.log('posted succesfully');
+    // })
+    if(nextQs==="6" && nextCo==="code2")
+    {
+      
+      navigate(`/code/${params.lev}/${nextCo}`)
+      
+    }
+    else if(nextQs==="6" && params.type === "code2") {
+      if(params.lev === "hard") {
+        navigate("/");
+      }
+      else {
+        navigate(`/levels/${nextLev}`);
+      }
+    }
+    else{ 
+    navigate(`/question/${params.lev}/${params.type}/${nextQs}`)
+    }
+   
+  };
+
+
   return (
-    <Grid container spacing={0} sx={{backgroundColor:"Lightblue"}}>
-        <Container className='container-question-bank' maxWidth="sm"  sx={{mb:4,textAlign:"center",backgroundColor:"white" , borderRadius:2 , boxShadow:5 , mt:4}}>
+    <Grid container spacing={0} sx={{ backgroundColor: "Lightblue" }}>
+      <Container className='container-question-bank' maxWidth="sm" sx={{ mb: 4, textAlign: "center", backgroundColor: "white", borderRadius: 2, boxShadow: 5, mt: 4 }}>
         <FormControl className="Bx" sx={{ m: 1, minWidth: 250 }} >
-          <InputLabel  id="demo-simple-select-helper-label">Qusetions</InputLabel>
+          <InputLabel id="demo-simple-select-helper-label">Qusetions</InputLabel>
           <Select labelId="demo-simple-select-helper-label"
-            id="demo-simple-select-helper"  onChange="">
-            <MenuItem value="Question1">Question1</MenuItem>
-            <MenuItem value="Question2">Question2</MenuItem>
-            <MenuItem value="Question3">Question3</MenuItem>
-            <MenuItem value="Question4">Question4</MenuItem>
-            <MenuItem value="Question5">Question5</MenuItem>
+            id="demo-simple-select-helper" onChange={handleChange} value={selectedQuestion}>
+            {questions.map(item => (
+              <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
+            ))}
           </Select>
         </FormControl>
+        <p>{selectedQuestion}</p>
         <br></br>
         <br></br>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 500}} id="outlined-basic" label="Question1"  multiline maxRows={100} variant="filled" />
+        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 500 }} id="outlined-basic" label="Question" multiline maxRows={100} variant="filled" onChange={e => setquestion_text(e.target.value)} />
+        <p>{question_text}</p>
         <br></br><br></br>
-      
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 1" required multiline maxRows={100}  variant="filled" />
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 2" required multiline maxRows={100} variant="filled" />
+
+        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 1" required multiline maxRows={100} variant="filled" onChange={e => setOption1(e.target.value)} />
+        <p>{option1}</p>
+        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 2" required multiline maxRows={100} variant="filled" onChange={e => setOption2(e.target.value)} />
+        <p>{option2}</p>
         <br></br>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 3" required multiline maxRows={100} variant="filled" />
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 4" required multiline maxRows={100} variant="filled" />
+        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 3" required multiline maxRows={100} variant="filled" onChange={e => setOption3(e.target.value)} />
+        <p>{option3}</p>
+        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 4" required multiline maxRows={100} variant="filled" onChange={e => setOption4(e.target.value)} />
+        <p>{option4}</p>
         <br></br><br></br>
-        <TextField className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Correct Answer" variant="filled" />
-      
+        <TextField className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Correct Answer" variant="filled" onChange={e => setcorrect_option(e.target.value)} />
+        <p>{correct_option}</p>
         <br></br> <br></br>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Mark" required multiline maxRows={100} variant="filled" />
-        
+        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Mark" required multiline maxRows={100} variant="filled" onChange={e => (setquestionMarks(e.target.value))} />
+        <p>{questionMarks}</p>
         <br></br> <br></br>
-       
-        <Button type="submit" variant="contained" color="primary">
-            Submit
-          </Button>
-          <br></br> <br></br>
-        </Container>
+
+        <Button type="submit" variant="contained" color="primary" onClick={handleSubmit} >
+          Submit
+        </Button>
+        <br></br> <br></br>
+      </Container>
     </Grid>
   )
 }
