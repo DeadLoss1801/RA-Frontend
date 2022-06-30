@@ -112,24 +112,33 @@ function QuestionBankQuestions() {
     // }).then(() => {
     //   console.log('posted succesfully');
     // })
+   
     if(nextQs==="6" && nextCo==="code2")
     {
       
+     
       navigate(`/code/${params.lev}/${nextCo}`)
+      window.location.reload();
       
     }
     else if(nextQs==="6" && params.type === "code2") {
       if(params.lev === "hard") {
+      
         navigate("/");
+        window.location.reload();
       }
       else {
+        
         navigate(`/levels/${nextLev}`);
+        window.location.reload();
       }
     }
     else{ 
+    
     navigate(`/question/${params.lev}/${params.type}/${nextQs}`)
+    window.location.reload();
     }
-   
+    
   };
 
 
