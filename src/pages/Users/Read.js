@@ -9,13 +9,10 @@ import Timer from "../../components/Timer";
 import { useState, useEffect } from "react";
 
 import { Link, useParams } from "react-router-dom";
-// import { createContext } from "react";
-// import { TimeContext } from "../../timeContext/checkTime";
 
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
-
-let x;
 
 const theme = createTheme({
   palette: {
@@ -43,8 +40,8 @@ const Image = styled('img')({
 
 const Read = () => {
 
-  // const a = useContext(TimeContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [codedata, setCodedata] = useState(null);
   //const [isLoading, setIsLaoding] = useState(true);
@@ -75,13 +72,6 @@ const Read = () => {
     quizNext = "second";
   }
 
-  // const getcodeData = async() => {
-  //   const data = await fetch(`https://summerinternshipproject.pythonanywhere.com/getcode/?level=${lev}&code=${codeno}`)
-  //   const images = await data.json();
-  //   setCodedata(images);
-  //   console.log(images);
-  //   //setIsLaoding(false);
-  // }
   useEffect(() => {
     fetch(`https://summerinternshipproject.pythonanywhere.com/getcode/?level=${lev}&code=${codeno}`)
         .then(res => {
@@ -101,37 +91,22 @@ const Read = () => {
   //   return <h2> LOading .... </h2>
   // }
   var url = "jsm";
-  var c_time = 8;
+  var c_time = 4;
   var qs_time = 0;
   if(codedata != null) {
     //setCodedata(codedata.code_image);
     url = mainUrl + codedata.code_image; 
     c_time = codedata.code_time;
     qs_time = codedata.question_time;
-    // console.log(codedata.code_time);
+    dispatch({type: "SENDING_QUESTION_TIME", val: qs_time});
+    console.log(codedata.code_time);
     // console.log(codedata.code_image);
   }
 
-  // function stopin() {
-  //   // console.log("jmd");
-  //   setTimeout(() => {
-  //     navigate(`/quiztime/${levv.type}/${quizNext}`);
-  //   }, 5000)
-  // }
-  
-// const handleClick = (e) => {
-//   e.preventDefault();
-  
-//   // setTimeout(() =>{
-//     a.counterDispatch("true");
-//     // stopin();
-//     // setTimeout(stopin, 5000);
-//     // navigate(`/quiztime/${levv.type}/${quizNext}`);
-//   // }, 10000)
-//   }
 
-
-
+const handleNext = () => {
+  dispatch({type: "BUTTON_CLICKED"});
+}
 
 return (
   
@@ -166,6 +141,7 @@ return (
          
            {isValid && <Timer limit={c_time} typ={levv.type} nex={quizNext} />} 
            
+           
          </Box>
         </Grid>
         <Grid item xs={12}>
@@ -184,10 +160,7 @@ return (
        <Link to={`/quiztime/${levv.type}/${quizNext}`} >
                       <Button variant="contained" color="success" 
                       size="large" sx={{ml:2}} 
-                      // onClick={()=>{a.counterDispatch("true")}}
-                      // onClick={setTimeout(handleClick,20000)}
-                      // onClick={handleClick}
-
+                      onClick={handleNext}
                       >Next</Button>
                       </Link>
         

@@ -86,7 +86,7 @@ function QuestionBankCode() {
     //   .catch(error => console.log('error', error));
 
     
-      navigate(`/question/${params.lev}/${nextCode}/1`)
+      navigate(`/question/${params.lev}/${params.type}/1`)
     
   };
 

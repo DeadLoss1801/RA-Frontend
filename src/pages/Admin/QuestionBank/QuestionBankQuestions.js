@@ -77,6 +77,19 @@ function QuestionBankQuestions() {
     nextQs = "6";
    }
   
+   var nextCo = "temp";
+   var nextLev = "temp1"
+   if(params.type === "code1") {
+    nextCo = "code2";
+   }
+   else if(params.type === "code2") {
+    if(params.lev === "easy") {
+      nextLev = "medium"; 
+    }
+    else if(params.lev === "medium") {
+      nextLev = "hard";
+    }
+   }
   
 
 
@@ -99,11 +112,19 @@ function QuestionBankQuestions() {
     // }).then(() => {
     //   console.log('posted succesfully');
     // })
-    if(nextQs==="6")
+    if(nextQs==="6" && nextCo==="code2")
     {
       
-      navigate(`/code/${params.lev}/${params.type}`)
+      navigate(`/code/${params.lev}/${nextCo}`)
       
+    }
+    else if(nextQs==="6" && params.type === "code2") {
+      if(params.lev === "hard") {
+        navigate("/");
+      }
+      else {
+        navigate(`/levels/${nextLev}`);
+      }
     }
     else{ 
     navigate(`/question/${params.lev}/${params.type}/${nextQs}`)
