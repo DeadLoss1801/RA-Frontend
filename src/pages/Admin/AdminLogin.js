@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import Grid from "@mui/material/Grid";
 import { Container } from '@mui/material';
 import swal from 'sweetalert';
+import { useNavigate } from 'react-router-dom';
+
 const useStyles = makeStyles(theme => ({
   root: {
     display: 'flex',
@@ -44,6 +46,7 @@ const AdminLogin = () => {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   
+  const navigate = useNavigate();
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -58,8 +61,9 @@ const AdminLogin = () => {
       })
       .then((value) => {
         localStorage.setItem('token', response['token']);
-       // localStorage.setItem('user', JSON.stringify(response['user']));
-        window.location.href = "/";
+        // localStorage.setItem('user', JSON.stringify(response['user']));
+        // window.location.href = "/";
+        navigate("/languageSelection");
       });
     } else {
       swal("Failed", response.ans, "error");

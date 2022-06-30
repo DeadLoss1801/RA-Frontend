@@ -4,26 +4,42 @@ import {  Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 
-// import { ReadContext } from "../timeContext/checkTime";
-// import {TimeContext} from "../timeContext/checkTime";
 
 const Timer = (props)=>{
 
-  // const b = useContext(TimeContext);
-  // const b1 = useContext(ReadContext);
-  
   const [time, setTime] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  var params = useParams();
+
+  const isButtonPressed = useSelector(state=>state.isButtonPressed);
+  // console.log(isButtonPressed);
+  
+
+  var levelNext = "dummy";
+  if(params.test === "second") {
+    if(params.type === "Easy") {
+      levelNext = "Medium";
+    }
+    if(params.type === "Medium") {
+      levelNext = "Hard";
+    }
+    
+  }
+  
+  const startingMin = props.limit;
+  let t = startingMin * 60;
+  var rc_time = 0;
 
   useEffect(() => {
-    
-    const startingMin = props.limit;
-    let t = startingMin * 60;
-    // console.log(startingMin);
-    let x = setInterval(function() {
-
-      let hours = Math.floor(t / 3600);
+    let interval;
+    if(!isButtonPressed) {
+      interval = setInterval(() => {
+        let hours = Math.floor(t / 3600);
       let minutes = Math.floor(t / 60);
       let seconds = t % 60;
 
@@ -31,43 +47,53 @@ const Timer = (props)=>{
       minutes = minutes < 10 ? '0' + minutes : minutes;
       hours = hours < 10 ? '0' + hours : hours;
       
-      // console.log(t);
+      console.log(t);
       
       t--;
-      
-      //console.log(b.counterTime);      
-      // if(b.counterTime === "true") {
-      //   clearInterval(x);
-      //   var record_time = startingMin - t;
-      //   console.log("LastTime:",t);
-      //   b1.counterReadDispatch(record_time);
-        
-      //   // b.counterDispatch("false");
-      // }
-      // else {
-      
-      setTime(hours + " : " + minutes + " : " + seconds);
-      
-      //console.log(t);
-      
-      if(t <= 0) {
-        clearInterval(x);
-        setTime("Time up");
 
-        // console.log(props.typ);
-        // navigate(`/quiztime/${props.typ}/${props.nex}`);
-        // setOpen(true);
-        //history.push("/quiztime");
-        //browserHistory.push("/quiztime");
-      
+      rc_time = startingMin*60 - t;
+      console.log(rc_time, " line 57");
+
+      if(params.option === "code0" || params.option === "code1") {
+        dispatch({type: "SENDING_CODE_READING_TIME", val: rc_time});
       }
-    }, 1000)
-    //b.counterDispatch("false");
-    //console.log("is reaching!");
+      else if(params.test === "first" || params.test === "second") {
+        dispatch({type: "SENDING_QUESTION_ANSWERING_TIME", val: rc_time});
+      }
+            
+      setTime(hours + " : " + minutes + " : " + seconds);
 
-  }, [])
+      if(t <= 0) {
+        clearInterval(interval);
+        setTime("Time up");
+        if(params.option === "code0" || params.option === "code1") {
+          navigate(`/quiztime/${props.typ}/${props.nex}`);
+        }
+        else if(params.test === "first") {
+          navigate(`/codeRead/${props.typ}/code1`);
+        }
+        else {
+          if(params.type === "Hard") {
+            navigate("/");  
+          }
+          else {
+            navigate(`/level/${levelNext}`);
+          }
+        }
+      }
 
-  
+      }, 1000);
+    }
+    else if(isButtonPressed) {
+      
+      clearInterval(interval);
+      dispatch({type: "BUTTON_CLICKED"});
+      
+    }
+    return () => clearInterval(interval);
+  }, [isButtonPressed])
+
+
     return (
       
      

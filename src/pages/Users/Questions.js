@@ -19,10 +19,10 @@ import Question4 from './UsersQuestions/Question4';
 import Question5 from './UsersQuestions/Question5';
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
+import { useDispatch } from "react-redux";
 
-// import { useContext } from 'react';
-// import { ReadContext } from '../../timeContext/checkTime';
 
 
 
@@ -43,24 +43,26 @@ const theme = createTheme({
 
 
 const Questions = () => {
- 
- 
-  
+
+  const dispatch = useDispatch();
   const [response1,setResponse1] = useState("");
   const [response2,setResponse2] = useState("");
   const [response3,setResponse3] = useState("");
   const [response4,setResponse4] = useState("");
   const [response5,setResponse5] = useState("");
-  console.log(`"Response 1  "   ${response1}`);
-  console.log(`"Response2  " ${response2}`);
-   console.log(`"Response 3  "   ${response3}`);
-   console.log(`"Response4  " ${response4}`);
-   console.log(`"Response 5  "   ${response5}`);
+  const [isValid, setIsValid] = useState(false);
+
+ 
+  const timeAllotedForQuestions = useSelector(state => state.timeAllotedForQuestions);
+  const recordedTimes = useSelector(state => state.recordedTimes);
+  const recordedTimes1 = useSelector(state => state.recordedTimes1);
+
+  // console.log(`"Response 1  "   ${response1}`);
   // console.log(`"Response2  " ${response2}`);
+  //  console.log(`"Response 3  "   ${response3}`);
+  //  console.log(`"Response4  " ${response4}`);
+  //  console.log(`"Response 5  "   ${response5}`);
 
-
-  // const cc = useContext(ReadContext);
-  // console.log("Reamin: ", cc.counterRead);
   var leve = useParams();
   var levelNext = "dummy";
   if(leve.test === "second") {
@@ -72,11 +74,25 @@ const Questions = () => {
     }
     
   }
-  
-  const [isValid, setIsValid] = useState(false);
 
- 
+  var lev = useParams();
+  if(lev.type === "Easy") {
+    lev = 1;
+  }
+  else if(lev.type === "Medium") {
+    lev = 2;
+  }
+  else {
+    lev = 3;
+  }
 
+  var codeno = useParams();
+  if(codeno.test === "first") {
+    codeno = 0;
+  }
+  else {
+    codeno = 1;
+  }
 
   const response1Handler = (choosen_option)=>{
 
@@ -154,38 +170,48 @@ const response5Handler = (choosen_option)=>{
 
   const handleSubmit = ()=>{
    
+    dispatch({type: "BUTTON_CLICKED"});
      let response = [response1,response2,response3,response4,response5];
 
-    for(var x=0;x<=4;x++)
-    {
+    //  const respo=fetch(`https://summerinternshipproject.pythonanywhere.com/time/?level=${lev}&code_no=${codeno}`, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify({
+    //       question_read_time: (recordedTimes1/60).toFixed(1),
+    //       code_read_time: (recordedTimes/60).toFixed(1)
+    //   })
+    // });
 
-    const res=fetch(`https://summerinternshipproject.pythonanywhere.com/score/?level=1&code_no=0&question_no=${x}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
+  //   for(var x=0;x<=4;x++)
+  //   {
+
+  //   const res=fetch(`https://summerinternshipproject.pythonanywhere.com/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
+  //     method: 'POST',
+  //     headers: {
+  //       'Accept': 'application/json',
+  //       'Content-Type': 'application/json',
+  //     },
+  //     body: JSON.stringify({
         
-          // fevid:0,
-          // fqid:0,
-          selected_answer: response[x],
-          // marks:0,
-          // decision:"1"
+  //         // fevid:0,
+  //         // fqid:0,
+  //         selected_answer: response[x],
+  //         // marks:0,
+  //         // decision:"1"
        
-      })
-    });
+  //     })
+  //   });
 
 
-    console.log(response[x]);
+  //   console.log(response[x]);
+
+  // }
+
 
   }
-
-
-  }
-
-
-// console.log("hritik");
 
   return (
 
@@ -208,7 +234,7 @@ const response5Handler = (choosen_option)=>{
           <Grid item xs={4}  >
 
           <Typography sx={{textAlign:"center",color:"#ffffff"}} variant="h6">Timer</Typography>
-        {isValid && <Timer limit="5"/>}
+        {isValid && <Timer limit={timeAllotedForQuestions}/>}
           
         </Grid>
 
@@ -247,7 +273,9 @@ const response5Handler = (choosen_option)=>{
 
          
 
-       <Link to={leve.test === "second" ? `/level/${levelNext}` : `/codeRead/${leve.type}/code1`}><Button variant="contained" color="success" size="large" sx={{ml:2}} >Submit & next</Button></Link>
+       <Link to={leve.test === "second" ? (leve.type === "Hard" ? "/" : `/level/${levelNext}`) : `/codeRead/${leve.type}/code1`}>
+        <Button variant="contained" color="success" size="large" sx={{ml:2}} onClick={handleSubmit} >Submit & next</Button>
+        </Link>
         
         </Box>
 
