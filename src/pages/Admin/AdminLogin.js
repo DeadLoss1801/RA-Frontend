@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 import { useNavigate } from 'react-router-dom';
 import { styled } from '@mui/system';
 import { Box } from '@mui/system';
-
+import {Paper} from '@mui/material';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -103,7 +103,7 @@ const img_url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJ
 
       <Box >
     
-      <Box sx={{display:"flex",mt:2}}>
+      <Box sx={{display:"flex",mt:4,ml:8,mb:2}}>
       <Image src={img_url}></Image>
       <Box sx={{display:"flex",alignItems:"center",
       justifyContent:"center",ml:2}}>
@@ -118,8 +118,10 @@ const img_url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJ
         {/* <Container className='container' maxWidth="sm" 
         sx={{ mb: 4, textAlign: "center", backgroundColor: "white", borderRadius: 2, boxShadow: 5, mt: 4 }}> */}
           
-         <Box sx={{border:"1px solid black",backgroundColor:"white",borderRadius: 2, boxShadow: 5,}}>
-         
+         <Box sx={{m:4,p:1,
+  
+         backgroundColor:"white",borderRadius: 2, boxShadow: 5,}}>
+         <Paper elevation={5}>
           <form className={classes.root}  onSubmit={handleSubmit} >
             <h1>Admin Dashboard</h1>
             <TextField
@@ -149,6 +151,7 @@ const img_url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJ
               </Button>
             </div>
           </form>
+          </Paper>
           </Box>
 
 
