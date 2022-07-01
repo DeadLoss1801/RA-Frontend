@@ -31,14 +31,15 @@ function AdminNavbar() {
         );
       };
       return (
-        <AppBar position="sticky">
+        <AppBar position="sticky" sx={{backgroundColor:"white"}}>
         <Container maxWidth="xl">
           <Toolbar disableGutters>
           
                 <IconButton size="large" sx={{ p: 1 }}>
                   <Avatar  alt="IIITV" src={img_url}/>
                 </IconButton>
-              
+            
+
             <Typography
               variant="h6"
               noWrap
@@ -50,31 +51,20 @@ function AdminNavbar() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 letterSpacing: '.3rem',
-                color: 'inherit',
+                color: 'common.black',
                 textDecoration: 'none',
               }}
             >
               RECRUITMENT.IIITV.AC.IN
             </Typography>
   
-            
-          <Button  variant="contained"  onClick={saveFile} onMouseOver={(e) => {
-             e.target.style.background = 'lightblue';
-             
-          }} 
-          onMouseOut={(e) => 
-          {
-            e.target.style.background = '';
-          }} 
-          sx={{mr:1, bgcolor:"#212121" }}>Download Data</Button>
-          <Button  variant="contained" onClick={handleLogout} onMouseOver={(e) => {
-             e.target.style.background = 'lightblue';
-          }}  onMouseOut={(e) => 
-          {
-            e.target.style.background = '';
-          }}  sx={{bgcolor:"#212121"}}>Logout</Button>
+          <Box sx={{ml:"600px"}}>
+          <Button  variant="contained"  onClick={saveFile} 
+          sx={{mr:1, bgcolor:"#212121" }}>Download CSV </Button>
+          <Button  variant="contained" onClick={handleLogout} 
+           sx={{bgcolor:"#212121"}}>Logout</Button>
           
-            
+          </Box> 
             
           </Toolbar>
         </Container>

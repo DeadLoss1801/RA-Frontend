@@ -84,13 +84,13 @@ const Register = () => {
                 alert('Please check the terms and conditions box');
             }
             else {
-                // fetch('https://summerinternshipproject.pythonanywhere.com/demographic/', {
-                //         method: 'POST',
-                //         headers: { "Content-Type": "application/json" }, 
-                //         body: JSON.stringify(data)
-                //     }).then(() => {
-                //         console.log('Registered');
-                //     })
+                fetch('https://summerinternshipproject.pythonanywhere.com/demographic/', {
+                        method: 'POST',
+                        headers: { "Content-Type": "application/json" }, 
+                        body: JSON.stringify(data)
+                    }).then(() => {
+                        console.log('Registered');
+                    })
 
                 alert('Registered successfully');
                 dispatch({ type: "SETTING_REGISTERED_NAME", val: name });

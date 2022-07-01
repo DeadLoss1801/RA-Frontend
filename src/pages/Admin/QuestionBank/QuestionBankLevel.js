@@ -15,6 +15,11 @@ import Select from '@mui/material/Select';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Container, Typography } from "@mui/material";
 import { useState } from 'react';
+import { Box } from '@mui/system';
+import { Paper } from '@mui/material';
+import { styled } from '@mui/system';
+
+
 
 function QuestionBankLevel() {
 
@@ -22,15 +27,15 @@ function QuestionBankLevel() {
   const levels = [
     {
       name: 'Easy',
-      value: 'easy',
+      value: "1",
     },
     {
       name: 'Medium',
-      value: 'medium',
+      value: "2",
     },
     {
       name: 'Hard',
-      value: 'hard',
+      value: "3",
     },
   ];
 
@@ -50,12 +55,12 @@ function QuestionBankLevel() {
  
 
 
-  const [selectedLevel, setSelectedLevel] = useState("")
+  const [qlevel, setQlevel] = useState("")
 
   const handleChange = (e) => {
-    setSelectedLevel(e.target.value)
+    setQlevel(e.target.value)
   }
-
+ 
   const handleSubmit = (e) => {
     e.preventDefault();
     // var myHeaders = new Headers();
@@ -76,33 +81,114 @@ function QuestionBankLevel() {
     //   .then(result => console.log(result))
     //   .catch(error => console.log('error', error));
 
+     const data={qlevel};    
+
+
+    fetch("https://summerinternshipproject.pythonanywhere.com/questionbanklevel/", {
+      method: 'POST',
+      credentials:'same-origin',
+     
+      headers: {
+        'Content-Type': 'application/json'
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    
+      body: JSON.stringify(data)
+    }).then(res=>console.log("success"))
+    .catch(error => console.log(error));
+
+
 
      navigate(`/code/${params.lev}/code1`)
   }
 
+  
+  const Title = styled('h1')({
+
+    fontSize: "3rem",
+    display: "flex",
+    alignItem: "center",
+    justifyContent: "center",
+
+  });
+
+
+
+
   return (
-    <Grid container spacing={0} sx={{ backgroundColor: "Lightblue" }}>
-      <Container className='container-question-bank' maxWidth="sm" sx={{ mb: 4, textAlign: "center", backgroundColor: "white", borderRadius: 2, boxShadow: 5, mt: 4 }}>
-        <FormControl sx={{ m: 1, minWidth: 250 }}   >
-          <InputLabel id="demo-simple-select-helper-label">Level</InputLabel>
-          <Select className="Bx" labelId="demo-simple-select-helper-label"
-            id="demo-simple-select-helper" onChange={handleChange} value={selectedLevel}>
+    // <Grid container spacing={0} sx={{ backgroundColor: "Lightblue" }}>
+    //   <Container className='container-question-bank' maxWidth="sm" sx={{ mb: 4, textAlign: "center", backgroundColor: "white", borderRadius: 2, boxShadow: 5, mt: 4 }}>
+    //     <FormControl sx={{ m: 1, minWidth: 250 }}   >
+    //       <InputLabel id="demo-simple-select-helper-label">Level</InputLabel>
+    //       <Select className="Bx" labelId="demo-simple-select-helper-label"
+    //         id="demo-simple-select-helper" onChange={handleChange} value={selectedLevel}>
+    //         {levels.map(item => (
+    //           <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
+    //         )
+    //         )}
+    //       </Select>
+    //       <p>{selectedLevel}</p>
+    //     </FormControl>
+    //     <br></br>
+    //     <br></br>
+        
+    //     <Button type="submit" variant="contained" color="primary" sx={{ mb: 2 }} onClick={handleSubmit}>
+    //       Next
+    //     </Button>
+    
+    //   </Container>
+    // </Grid>
+
+
+    <Container maxWidth="sm" sx={{
+      height: "100vh", display: "flex",
+      alignItems: "center",
+      flexDirection: "column"
+    }}>
+
+
+      <Box sx={{ m: 5 }}>
+        <Title>Question Level</Title>
+      </Box>
+
+      <Paper elevation={6} sx={{ minWidth: "70%", minHeight: "50%" }}>
+        <Box sx={{ minWidth: "50%", p: 3, mt: 4 }}>
+
+
+
+          <TextField
+            
+            select
+            label="Level"
+            onChange={handleChange} value={qlevel}
+            helperText="Please Select a Level"
+            fullWidth
+          >
             {levels.map(item => (
               <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
-            )
-            )}
-          </Select>
-          <p>{selectedLevel}</p>
-        </FormControl>
-        <br></br>
-        <br></br>
-        
-        <Button type="submit" variant="contained" color="primary" sx={{ mb: 2 }} onClick={handleSubmit}>
-          Next
-        </Button>
-    
-      </Container>
-    </Grid>
+             )
+             )}
+          </TextField>
+
+
+          <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mt: 4 }}>
+            <Button type="submit" variant="contained" color="primary" size="large" onClick={handleSubmit} >
+              Next
+            </Button>
+          </Box>
+
+
+        </Box>
+
+      </Paper>
+
+
+
+
+
+    </Container>
+
+
   )
 }
 

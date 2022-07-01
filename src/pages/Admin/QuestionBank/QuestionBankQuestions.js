@@ -102,41 +102,53 @@ function QuestionBankQuestions() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const data = { question_text, option1, option2, option3, option4, correct_option, marks, question_time };
+    const data = { question_text, option1, option2, option3, option4, correct_option, marks };
 
-    // console.log(data);
-    // fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
-    //   method: 'POST',
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(data)
-    // }).then(() => {
-    //   console.log('posted succesfully');
-    // })
-   
+    console.log(data);
+    fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
+      method: 'POST',
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    }).then(() => {
+      console.log('posted succesfully');
+    })
+    
+
+
+    setSelectedQuestion("")
+    setquestion_text("")
+     setOption1("")
+     setOption2("")
+   setOption3("")
+     setOption4("")
+     setcorrect_option("")
+     setquestionMarks("")
+    
+
     if(nextQs==="6" && nextCo==="code2")
     {
       
      
-      navigate(`/code/${params.lev}/${nextCo}`)
-      window.location.reload();
+      // navigate(`/code/${params.lev}/${nextCo}`)
+      // window.location.reload();
       
     }
     else if(nextQs==="6" && params.type === "code2") {
       if(params.lev === "hard") {
       
-        navigate("/");
-        window.location.reload();
+        // navigate("/");
+        // window.location.reload();
       }
       else {
         
-        navigate(`/levels/${nextLev}`);
-        window.location.reload();
+        // navigate(`/levels/${nextLev}`);
+        // window.location.reload();
       }
     }
     else{ 
     
-    navigate(`/question/${params.lev}/${params.type}/${nextQs}`)
-    window.location.reload();
+    // navigate(`/question/${params.lev}/${params.type}/${nextQs}`)
+    // window.location.reload();
     }
     
   };
@@ -157,24 +169,41 @@ function QuestionBankQuestions() {
         <p>{selectedQuestion}</p>
         <br></br>
         <br></br>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 500 }} id="outlined-basic" label="Question" multiline maxRows={100} variant="filled" onChange={e => setquestion_text(e.target.value)} />
+        <TextField type="text" 
+        
+        value={question_text}
+        
+        className="Bx" sx={{ m: 1, minWidth: 500 }} id="outlined-basic" label="Question" multiline maxRows={100} variant="filled" onChange={e => setquestion_text(e.target.value)} />
         <p>{question_text}</p>
         <br></br><br></br>
 
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 1" required multiline maxRows={100} variant="filled" onChange={e => setOption1(e.target.value)} />
+        <TextField type="text" 
+        value={option1}
+        className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 1" required multiline maxRows={100} variant="filled" onChange={e => setOption1(e.target.value)} />
         <p>{option1}</p>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 2" required multiline maxRows={100} variant="filled" onChange={e => setOption2(e.target.value)} />
+        <TextField 
+        value={option2}
+        type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 2" required multiline maxRows={100} variant="filled" onChange={e => setOption2(e.target.value)} />
         <p>{option2}</p>
         <br></br>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 3" required multiline maxRows={100} variant="filled" onChange={e => setOption3(e.target.value)} />
+        <TextField type="text"
+        value={option3}
+        className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 3" required multiline maxRows={100} variant="filled" onChange={e => setOption3(e.target.value)} />
         <p>{option3}</p>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 4" required multiline maxRows={100} variant="filled" onChange={e => setOption4(e.target.value)} />
+        <TextField type="text"
+        value={option4}
+        className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Option 4" required multiline maxRows={100} variant="filled" onChange={e => setOption4(e.target.value)} />
         <p>{option4}</p>
         <br></br><br></br>
-        <TextField className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Correct Answer" variant="filled" onChange={e => setcorrect_option(e.target.value)} />
+        <TextField 
+        
+        value={correct_option}
+        className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Correct Answer" variant="filled" onChange={e => setcorrect_option(e.target.value)} />
         <p>{correct_option}</p>
         <br></br> <br></br>
-        <TextField type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Mark" required multiline maxRows={100} variant="filled" onChange={e => (setquestionMarks(e.target.value))} />
+        <TextField 
+        value={questionMarks}
+        type="text" className="Bx" sx={{ m: 1, minWidth: 250 }} id="outlined-basic" label="Mark" required multiline maxRows={100} variant="filled" onChange={e => (setquestionMarks(e.target.value))} />
         <p>{questionMarks}</p>
         <br></br> <br></br>
 

@@ -5,7 +5,8 @@ const initialState = {isButtonPressed: false,
     recordedTimes: 0,
     recordedTimes1: 0,
     registerName: "",
-    calculatingAge: null
+    calculatingAge: null,
+    showAdminNav:false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -17,7 +18,8 @@ const reducer = (state = initialState, action) => {
             recordedTimes: state.recordedTimes,
             recordedTimes1: state.recordedTimes1,
             registerName: state.registerName,
-            calculatingAge: state.calculatingAge
+            calculatingAge: state.calculatingAge,
+            showAdminNav:state.showAdminNav
         }
     }
     if(action.type === "SENDING_QUESTION_TIME") {
@@ -28,7 +30,8 @@ const reducer = (state = initialState, action) => {
             recordedTimes: state.recordedTimes,
             recordedTimes1: state.recordedTimes1,
             registerName: state.registerName,
-            calculatingAge: state.calculatingAge
+            calculatingAge: state.calculatingAge,
+            showAdminNav:state.showAdminNav
         }
     }
     if(action.type === "SENDING_CODE_READING_TIME") {
@@ -39,7 +42,8 @@ const reducer = (state = initialState, action) => {
             recordedTimes: action.val,
             recordedTimes1: state.recordedTimes1,
             registerName: state.registerName,
-            calculatingAge: state.calculatingAge
+            calculatingAge: state.calculatingAge,
+            showAdminNav:state.showAdminNav
         }
     }
     if(action.type === "SENDING_QUESTION_ANSWERING_TIME") {
@@ -50,7 +54,8 @@ const reducer = (state = initialState, action) => {
             recordedTimes: state.recordedTimes,
             recordedTimes1: action.val,
             registerName: state.registerName,
-            calculatingAge: state.calculatingAge
+            calculatingAge: state.calculatingAge,
+            showAdminNav:state.showAdminNav
         }
     }
     if(action.type === "SETTING_REGISTERED_NAME") {
@@ -61,7 +66,8 @@ const reducer = (state = initialState, action) => {
             recordedTimes: state.recordedTimes,
             recordedTimes1: state.recordedTimes1,
             registerName: "Hi " + action.val + " !",
-            calculatingAge: state.calculatingAge
+            calculatingAge: state.calculatingAge,
+            showAdminNav:state.showAdminNav
         }
     }
     if(action.type === "SETTING_AGE") {
@@ -72,9 +78,26 @@ const reducer = (state = initialState, action) => {
             recordedTimes: state.recordedTimes,
             recordedTimes1: state.recordedTimes1,
             registerName: state.registerName,
-            calculatingAge: action.val
+            calculatingAge: action.val,
+            showAdminNav:state.showAdminNav
         }
     }
+
+   
+    if(action.type === "ADMIN_NAVBAR") {
+        
+        return {
+            isButtonPressed: state.isButtonPressed,
+            timeAllotedForQuestions: state.timeAllotedForQuestions,
+            recordedTimes: state.recordedTimes,
+            recordedTimes1: state.recordedTimes1,
+            registerName: state.registerName,
+            calculatingAge: action.val,
+            showAdminNav:!state.showAdminNav
+        }
+    }
+   
+
     return state;
 }
 

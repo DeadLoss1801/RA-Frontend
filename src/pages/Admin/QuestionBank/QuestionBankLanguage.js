@@ -15,15 +15,17 @@ import Select from '@mui/material/Select';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import { Container, Typography } from "@mui/material";
 import QuestionBankLevel from './QuestionBankLevel';
-
+import { Box } from '@mui/system';
+import { Paper } from '@mui/material';
+import { styled } from '@mui/system';
 
 function QuestionBankLanguage() {
 
-  const navigate  = useNavigate();
+  const navigate = useNavigate();
   const options = [
     {
       name: 'C++',
-      value: '1',
+      value: '2',
     },
     // {
     //   name: 'C',
@@ -44,9 +46,9 @@ function QuestionBankLanguage() {
   ];
 
   const [Language, setLanguage] = useState("");
-  const [selectedValue, setSelectedValue] = useState("");
+  const [admin_programming_language, setadmin_programming_language] = useState("");
   const handleChange = (e) => {
-    setSelectedValue(e.target.value)
+    setadmin_programming_language(e.target.value)
   }
 
   const handleSubmit = (e) => {
@@ -66,45 +68,92 @@ function QuestionBankLanguage() {
     //   .then(result => console.log(result))
     //   .catch(error => console.log('error', error));
 
-      navigate('/levels/easy');
+
+const data={admin_programming_language}
+
+fetch("https://summerinternshipproject.pythonanywhere.com/questionbank/", 
+{
+  method: 'POST', 
+  // credentials:'same-origin',
+  headers: {
+    'Content-Type': 'application/json'
+   
+  },
+  body:      JSON.stringify(data),
+})
+.then(res=>console.log("success"))
+.catch(error => console.log(error));
+
+    navigate('/levels/easy');
   }
 
-  
+  const Title = styled('h1')({
+
+    fontSize: "3rem",
+    display: "flex",
+    alignItem: "center",
+    justifyContent: "center",
+
+  });
 
   return (
     <>
-  
-      <Grid container spacing={0} sx={{ backgroundColor: "Lightblue" }}>
-      <Container className='container-question-bank' maxWidth="sm" sx={{ mb: 4, textAlign: "center", backgroundColor: "white", borderRadius: 2, boxShadow: 5, mt: 4 }}>
-        <Typography>QuestionBank</Typography>
-        <FormControl sx={{ m: 1, minWidth: 250 }}   >
-          <InputLabel id="demo-simple-select-helper-label">Language</InputLabel>
-          <Select className="Bx" labelId="demo-simple-select-helper-label"
-            id="demo-simple-select-helper" onChange={handleChange} value={selectedValue}>
-            {options.map(item => (
-              <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
 
-            )
-            )}
-          </Select>
-          <p>{selectedValue}</p>
-        </FormControl>
-        <br></br>
-        <br></br>
 
-      
-        <Button type="submit" variant="contained" color="primary" sx={{ mb: 2 }} onClick={handleSubmit} >
-          Next
-        </Button>
+      <Container maxWidth="sm" sx={{
+        height: "100vh", display: "flex",
+        alignItems: "center",
+        flexDirection: "column"
+      }}>
 
-        
-       
+
+        <Box sx={{ m: 5 }}>
+          <Title>Question Bank</Title>
+        </Box>
+
+        <Paper elevation={6} sx={{ minWidth: "70%", minHeight: "50%" }}>
+          <Box sx={{ minWidth: "50%", p: 3, mt: 4 }}>
+
+
+
+            <TextField
+              id="outlined-select-currency"
+              select
+              label="Language"
+              onChange={handleChange} value={admin_programming_language}
+              helperText="Please Select a Language"
+              fullWidth
+            >
+              {options.map(item => (
+                <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
+
+              )
+              )}
+            </TextField>
+
+
+            <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", mt: 4 }}>
+              <Button type="submit" variant="contained" color="primary" size="large" onClick={handleSubmit} >
+                Next
+              </Button>
+            </Box>
+
+
+          </Box>
+
+        </Paper>
+
+
+
+
+
       </Container>
-    </Grid>
-   
-   
+
+
+
     </>
   )
 }
+
 
 export default QuestionBankLanguage;

@@ -173,42 +173,42 @@ const response5Handler = (choosen_option)=>{
     dispatch({type: "BUTTON_CLICKED"});
      let response = [response1,response2,response3,response4,response5];
 
-    //  const respo=fetch(`https://summerinternshipproject.pythonanywhere.com/time/?level=${lev}&code_no=${codeno}`, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify({
-    //       question_read_time: (recordedTimes1/60).toFixed(1),
-    //       code_read_time: (recordedTimes/60).toFixed(1)
-    //   })
-    // });
+     const respo=fetch(`https://summerinternshipproject.pythonanywhere.com/time/?level=${lev}&code_no=${codeno}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+          question_read_time: (recordedTimes1/60).toFixed(1),
+          code_read_time: (recordedTimes/60).toFixed(1)
+      })
+    });
 
-  //   for(var x=0;x<=4;x++)
-  //   {
+    for(var x=0;x<=4;x++)
+    {
 
-  //   const res=fetch(`https://summerinternshipproject.pythonanywhere.com/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({
+    const res=fetch(`https://summerinternshipproject.pythonanywhere.com/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         
-  //         // fevid:0,
-  //         // fqid:0,
-  //         selected_answer: response[x],
-  //         // marks:0,
-  //         // decision:"1"
+          // fevid:0,
+          // fqid:0,
+          selected_answer: response[x],
+          // marks:0,
+          // decision:"1"
        
-  //     })
-  //   });
+      })
+    });
 
 
-  //   console.log(response[x]);
+    // console.log(response[x]);
 
-  // }
+  }
 
 
   }

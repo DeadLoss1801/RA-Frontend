@@ -16,10 +16,14 @@ import Read from "./pages/Users/Read";
 import Register from "./pages/Users/Register";
 import AdminNavbar from "./pages/Admin/AdminNavbar";
 import ScrollToTop from "./components/ScrollToTop";
+import { useSelector } from "react-redux";
 
 
 
 function App() {
+ 
+     const showAdminNav= useSelector(state=>state.showAdminNav);
+
 
   const token = localStorage.getItem('token');
   console.log(token)
@@ -33,7 +37,9 @@ function App() {
     <>
     <BrowserRouter>
     <ScrollToTop />
-    <Navbar/>
+
+    {showAdminNav ? <AdminNavbar/> : <Navbar/>}
+    
     <Routes>
 
         <Route path="/" element={<Home />} />

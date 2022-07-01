@@ -1,24 +1,88 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Box, Container, Grid, Typography } from "@mui/material";
-import Card from "../../components/Layout"
 
 
 import Layout from "../../components/Layout";
 
 import Button from '@mui/material/Button';
-import { Link } from "react-router-dom";
+
+import { useEffect } from "react";
+import OtherLayout from "../../components/OtherLayout";
+//import { Lev } from "../components/Layout";
+
+import {Link} from "react-router-dom" 
+import {useNavigate} from "react-router-dom"
+
+const Experiment = () => {
+
+  const [plang, setPlang] = React.useState(null);
+  const [level, setLevel] = React.useState('');
+  const [strtime, setStrTime] = React.useState(0);
+  const [last_used, setLast_used] = React.useState('');
+  const [duration, setDuration] = React.useState('');
+
+  const programming_language = "1";
+
+  //console.log(level);
+  //const levName = useContext(Lev);
+
+  useEffect(() => {
+    fetch('https://summerinternshipproject.pythonanywhere.com/expertise/')
+        .then(res => {
+            return res.json();
+        })
+        .then(dta => {
+            console.log(dta);
+            setPlang(dta);
+        })
+  },[]);
+
+  if(plang != null) {
+    //if(plang[0].programming_language === 1) {
+      plang[0].programming_language = "C++";
+  }
+  //console.log(levName);
+  // const helper =  (d) => {
+  //   console.log(d);
+  // }
+
+  const handleLevel = (newLev) => {
+    setLevel(newLev);
+  }
+  const handleDuration = (newDur) => {
+    setDuration(newDur);
+  }
+  const handleTime = (newTime) => {
+    setStrTime(newTime);
+  }
+  const handleDate = (newDate) => {
+    setLast_used(newDate);
+  }
+
+  const time = parseInt(strtime);
+
+  const navigate=useNavigate();
 
 
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const expertiseData = {programming_language, level, duration, time, last_used};
+    console.log(expertiseData);
+    fetch('https://summerinternshipproject.pythonanywhere.com/expertise/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" }, 
+                    body: JSON.stringify(expertiseData)
+                }).then(() => {
+                    console.log('Done successfully');
+                })
 
 
-const Experiment = (props) => {
+       navigate("/level/Easy");
 
 
-
-
-
+  }
 
   return (
 <>
@@ -45,10 +109,13 @@ const Experiment = (props) => {
 
 
 
-        <Layout></Layout>
-
-
-
+        <Layout lang={plang && plang[0].programming_language} 
+        level={level} onChangeLevel={handleLevel}
+        duration={duration} onChangeDuration={handleDuration}
+        time={strtime} onChangeTime={handleTime}
+        last_used={last_used} onChangeDate={handleDate}       
+        
+        ></Layout>
 
 
 
@@ -76,16 +143,19 @@ const Experiment = (props) => {
 
 
 
-        <Layout></Layout>
+        {/* <Layout lang="Java"></Layout>
 
-        <Layout></Layout>
+        <Layout lang="Python"></Layout>
 
-        <Layout></Layout>
+        <Layout lang="C"></Layout>
 
-        <Layout></Layout>
+        <Layout lang="Javascript"></Layout> */}
         
 
-
+       <OtherLayout lang="JAVA"/>
+       <OtherLayout lang="Python"/>
+       <OtherLayout lang="Javascript"/  >
+       <OtherLayout lang="Ruby"  />
 
 
 
@@ -113,12 +183,11 @@ const Experiment = (props) => {
         
       }} >
        
-  
        <Button variant="contained" size="large" color="secondary" sx={{mr:2}} >Back</Button>
-      
+      {/* <Link to={"/level/Easy"}> */}
        
-
-       <Link to={"/level/Easy"}><Button variant="contained" color="success" size="large" sx={{ml:2}} >Next</Button></Link>
+      <Button variant="contained" color="success" size="large" sx={{ml:2}} onClick={handleSubmit} >Next</Button>
+      {/* </Link> */}
       </Box>
    
       
@@ -126,9 +195,10 @@ const Experiment = (props) => {
 
 
     </Container>
-    
+       
 
 </>
+
   );
 
 
