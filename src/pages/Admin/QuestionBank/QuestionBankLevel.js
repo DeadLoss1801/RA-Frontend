@@ -42,7 +42,7 @@ function QuestionBankLevel() {
   var params = useParams();
   var nextLev = "dummy";
 
-  if(params.lev==="easy")
+  if(params.lev === "easy")
   {
     nextLev = "medium";
   }
@@ -51,10 +51,6 @@ function QuestionBankLevel() {
     nextLev = "hard";
   }
   
-
- 
-
-
   const [qlevel, setQlevel] = useState("")
 
   const handleChange = (e) => {
@@ -81,24 +77,23 @@ function QuestionBankLevel() {
     //   .then(result => console.log(result))
     //   .catch(error => console.log('error', error));
 
-     const data={qlevel};    
+    //  const data={qlevel};    
 
 
-    fetch("https://summerinternshipproject.pythonanywhere.com/questionbanklevel/", {
-      method: 'POST',
-      credentials:'same-origin',
+    // fetch("https://summerinternshipproject.pythonanywhere.com/questionbanklevel/", {
+    //   method: 'POST',
+    //   credentials:'same-origin',
      
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
+    //   headers: {
+    //     'Content-Type': 'application/json'
+    //     // 'Content-Type': 'application/x-www-form-urlencoded',
+    //   },
     
-      body: JSON.stringify(data)
-    }).then(res=>console.log("success"))
-    .catch(error => console.log(error));
+    //   body: JSON.stringify(data)
+    // }).then(res=>console.log("success"))
+    // .catch(error => console.log(error));
 
-
-
+    
      navigate(`/code/${params.lev}/code1`)
   }
 

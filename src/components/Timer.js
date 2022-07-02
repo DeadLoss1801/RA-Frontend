@@ -67,17 +67,24 @@ const Timer = (props)=>{
         clearInterval(interval);
         setTime("Time up");
         if(params.option === "code0" || params.option === "code1") {
-          navigate(`/quiztime/${props.typ}/${props.nex}`);
+          navigate(`/quiztime/${params.type}/${props.nex}`);
         }
         else if(params.test === "first") {
-          navigate(`/codeRead/${props.typ}/code1`);
+          props.autoSubmit();
+          navigate(`/codeRead/${params.type}/code1`);
+          
         }
         else {
           if(params.type === "Hard") {
-            navigate("/");  
+
+            props.autoSubmit();
+            navigate("/");
+              
           }
           else {
+            props.autoSubmit();
             navigate(`/level/${levelNext}`);
+            
           }
         }
       }

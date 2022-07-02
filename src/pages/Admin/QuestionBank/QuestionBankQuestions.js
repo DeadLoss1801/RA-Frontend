@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   MenuItem,
   makeStyles,
@@ -16,8 +16,11 @@ import { Container, Typography } from "@mui/material";
 import { useNavigate } from 'react-router-dom';
 import {useParams } from 'react-router-dom';
 
+
 function QuestionBankQuestions() {
   const navigate = useNavigate();
+  var ques = 0;
+
 
   const questions = [
     {
@@ -51,31 +54,9 @@ function QuestionBankQuestions() {
   const [correct_option, setcorrect_option] = useState("");
   const [questionMarks, setquestionMarks] = useState("");
   const [questionTimer, setquestionTimer] = useState(10);
-  //const [fcid,setFcid] = useState();
 
   
   var params = useParams();
-  
-  var nextQs = "dummy";
-  
-  if(params.id === "1") {
-    nextQs = "2";
-  }
-  else if (params.id === "2") {
-    nextQs = "3";
-  }
-  else if(params.id === "3")
-  {
-    nextQs = "4";
-  }
-  else if(params.id === "4")
-  {
-    nextQs = "5";
-  }
-   else if(params.id === "5") 
-   {
-    nextQs = "6";
-   }
   
    var nextCo = "temp";
    var nextLev = "temp1"
@@ -91,64 +72,49 @@ function QuestionBankQuestions() {
     }
    }
   
-
-
-
   const marks = parseFloat(questionMarks);
   const question_time = parseInt(questionTimer);
+
   const handleChange = (e) => {
     setSelectedQuestion(e.target.value);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { question_text, option1, option2, option3, option4, correct_option, marks };
+    ques++;
+    // const data = { question_text, option1, option2, option3, option4, correct_option, marks };
 
-    console.log(data);
-    fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
-      method: 'POST',
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data)
-    }).then(() => {
-      console.log('posted succesfully');
-    })
+    // console.log(data);
+    // fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
+    //   method: 'POST',
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(data)
+    // }).then(() => {
+    //   console.log('posted succesfully');
+    // })
     
-
 
     setSelectedQuestion("")
     setquestion_text("")
-     setOption1("")
-     setOption2("")
-   setOption3("")
-     setOption4("")
-     setcorrect_option("")
-     setquestionMarks("")
+    setOption1("")
+    setOption2("")
+    setOption3("")
+    setOption4("")
+    setcorrect_option("")
+    setquestionMarks("")
     
 
-    if(nextQs==="6" && nextCo==="code2")
+    if(ques === 5 && nextCo === "code2")
     {
-      
-     
-      // navigate(`/code/${params.lev}/${nextCo}`)
-      // window.location.reload();
-      
+      navigate(`/code/${params.lev}/${nextCo}`)
     }
-    else if(nextQs==="6" && params.type === "code2") {
+    else if(ques === 5 && params.type === "code2") {
       if(params.lev === "hard") {
-      
-        // navigate("/");
-        // window.location.reload();
+        navigate("/languageSelection");
       }
       else {
-        
-        // navigate(`/levels/${nextLev}`);
-        // window.location.reload();
+        navigate(`/levels/${nextLev}`);
       }
-    }
-    else{ 
-    
-    // navigate(`/question/${params.lev}/${params.type}/${nextQs}`)
-    // window.location.reload();
     }
     
   };

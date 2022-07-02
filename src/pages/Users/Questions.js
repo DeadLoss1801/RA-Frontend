@@ -45,11 +45,11 @@ const theme = createTheme({
 const Questions = () => {
 
   const dispatch = useDispatch();
-  const [response1,setResponse1] = useState("");
-  const [response2,setResponse2] = useState("");
-  const [response3,setResponse3] = useState("");
-  const [response4,setResponse4] = useState("");
-  const [response5,setResponse5] = useState("");
+  const [response1,setResponse1] = useState(null);
+  const [response2,setResponse2] = useState(null);
+  const [response3,setResponse3] = useState(null);
+  const [response4,setResponse4] = useState(null);
+  const [response5,setResponse5] = useState(null);
   const [isValid, setIsValid] = useState(false);
 
  
@@ -57,11 +57,11 @@ const Questions = () => {
   const recordedTimes = useSelector(state => state.recordedTimes);
   const recordedTimes1 = useSelector(state => state.recordedTimes1);
 
-  // console.log(`"Response 1  "   ${response1}`);
-  // console.log(`"Response2  " ${response2}`);
-  //  console.log(`"Response 3  "   ${response3}`);
-  //  console.log(`"Response4  " ${response4}`);
-  //  console.log(`"Response 5  "   ${response5}`);
+  console.log(`"Response 1  "   ${response1}`);
+  console.log(`"Response2  " ${response2}`);
+   console.log(`"Response 3  "   ${response3}`);
+   console.log(`"Response4  " ${response4}`);
+   console.log(`"Response 5  "   ${response5}`);
 
   var leve = useParams();
   var levelNext = "dummy";
@@ -171,9 +171,12 @@ const response5Handler = (choosen_option)=>{
   const handleSubmit = ()=>{
    
     dispatch({type: "BUTTON_CLICKED"});
+    if(leve.test === "second" && leve.type === "Hard") {
+      dispatch({ type: "SETTING_REGISTERED_NAME", val: "" });
+    }
      let response = [response1,response2,response3,response4,response5];
 
-     const respo=fetch(`https://summerinternshipproject.pythonanywhere.com/time/?level=${lev}&code_no=${codeno}`, {
+     fetch(`https://summerinternshipproject.pythonanywhere.com/time/?level=${lev}&code_no=${codeno}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -188,7 +191,7 @@ const response5Handler = (choosen_option)=>{
     for(var x=0;x<=4;x++)
     {
 
-    const res=fetch(`https://summerinternshipproject.pythonanywhere.com/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
+    fetch(`https://summerinternshipproject.pythonanywhere.com/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -234,7 +237,7 @@ const response5Handler = (choosen_option)=>{
           <Grid item xs={4}  >
 
           <Typography sx={{textAlign:"center",color:"#ffffff"}} variant="h6">Timer</Typography>
-        {isValid && <Timer limit={timeAllotedForQuestions}/>}
+        {isValid && <Timer limit={timeAllotedForQuestions} autoSubmit={handleSubmit} />}
           
         </Grid>
 

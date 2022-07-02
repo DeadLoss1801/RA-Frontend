@@ -69,20 +69,20 @@ function QuestionBankLanguage() {
     //   .catch(error => console.log('error', error));
 
 
-const data={admin_programming_language}
+// const data={admin_programming_language}
 
-fetch("https://summerinternshipproject.pythonanywhere.com/questionbank/", 
-{
-  method: 'POST', 
-  // credentials:'same-origin',
-  headers: {
-    'Content-Type': 'application/json'
+// fetch("https://summerinternshipproject.pythonanywhere.com/questionbank/", 
+// {
+//   method: 'POST', 
+//   // credentials:'same-origin',
+//   headers: {
+//     'Content-Type': 'application/json'
    
-  },
-  body:      JSON.stringify(data),
-})
-.then(res=>console.log("success"))
-.catch(error => console.log(error));
+//   },
+//   body:      JSON.stringify(data),
+// })
+// .then(res=>console.log("success"))
+// .catch(error => console.log(error));
 
     navigate('/levels/easy');
   }

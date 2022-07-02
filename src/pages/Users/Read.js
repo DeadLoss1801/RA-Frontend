@@ -139,7 +139,7 @@ return (
          
          <Typography variant="h4" sx={{color: "#ffffff",fontWeight: 'Regular' ,p:3}}>Timer</Typography>
          
-           {isValid && <Timer limit={c_time} typ={levv.type} nex={quizNext} />} 
+           {isValid && <Timer limit={c_time} nex={quizNext} />} 
            
            
          </Box>

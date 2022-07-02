@@ -46,8 +46,8 @@ function App() {
         <Route path="/login" element={<AdminLogin />} />
         <Route path="/languageSelection" element={<QuestionBankLanguage />} />
         <Route path="/levels/:lev" element={<QuestionBankLevel />} />
-        <Route path="/code/:lev/:type/" element={<QuestionBankCode />}/>
-        <Route path="/question/:lev/:type/:id" element={<QuestionBankQuestions />}/>
+        <Route path="/code/:lev/:type" element={<QuestionBankCode />}/>
+        <Route path="/question/:lev/:type" element={<QuestionBankQuestions />}/>
 
         <Route path="/register" element={<Register />} />
         <Route path="/expertise" element={<Experiment />} />
