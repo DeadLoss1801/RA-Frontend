@@ -45,14 +45,14 @@ const Level = ()=>{
   
 return (
 
-<Container minWidth="lg" sx={{backgroundColor:"lightblue" ,
+<Container maxWidth="xl" sx={{backgroundColor:"#f5f5f5" ,
  height:"100vh" ,
  display:"flex",
  justifyContent:"center",
  alignItems:"center"}}>
 
 <Box  >       
-<Card sx={{ maxWidth: 355 ,boxShadow:5}} >
+<Card sx={{ maxWidth: 355 ,minHeight:200,boxShadow:5}} >
       {/* <CardMedia
         component="img"
         height="140"

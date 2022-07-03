@@ -8,7 +8,7 @@ const Image = styled("img")({
 
     borderRadius:"50%",
     width:80,
-    marginTop:"10px"
+    marginTop:"30px"
 
 
 });

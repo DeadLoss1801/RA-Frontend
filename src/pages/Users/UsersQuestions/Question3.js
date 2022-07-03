@@ -18,12 +18,22 @@ const Question3 = (props) =>{
 
 // const [value,setValue] = useState("");
 // console.log(value);
-const handleChange = (e)=>{
+// const handleChange = (e)=>{
 
-    // setValue(e.target.value);
+    
 
+//     props.onChangeResponse3(e.target.value);
+// }
+
+const handleClick = (e) =>{
+
+  if (e.target.value === props.response3) {
+    props.onChangeResponse3("");
+  } else {
     props.onChangeResponse3(e.target.value);
+  }
 }
+
 
 return (
 
@@ -40,13 +50,13 @@ return (
         <RadioGroup  aria-labelledby="question1-response"
          name="question1-container"
          value={props.response3}
-         onChange={handleChange}
+        //  onChange={handleChange}
          >
         
-        <FormControlLabel control={<Radio />}   label={props.item.option1}  value={props.item.option1}     />
-        <FormControlLabel control={<Radio />}   label={props.item.option2}  value={props.item.option2}     />
-        <FormControlLabel control={<Radio />}   label={props.item.option3}  value={props.item.option3}     />
-        <FormControlLabel control={<Radio />}   label={props.item.option4}  value={props.item.option4}     />     
+        <FormControlLabel control={<Radio onClick={handleClick} />}   label={props.item.option1}  value={props.item.option1}     />
+        <FormControlLabel control={<Radio onClick={handleClick} />}   label={props.item.option2}  value={props.item.option2}     />
+        <FormControlLabel control={<Radio onClick={handleClick} />}   label={props.item.option3}  value={props.item.option3}     />
+        <FormControlLabel control={<Radio onClick={handleClick} />}   label={props.item.option4}  value={props.item.option4}     />     
 
         </RadioGroup>
         

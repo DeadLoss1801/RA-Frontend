@@ -97,8 +97,8 @@ const Timer = (props)=>{
     return (
       
      
-        <Paper elevation={3}  sx={{width:"80%",height:50,display:"flex",
-         alignItems:"center",justifyContent:"center",m:"auto"}} >
+        <Paper elevation={8}  sx={{width:"80%",height:50,display:"flex",
+         alignItems:"center",justifyContent:"center",m:"auto",backgroundColor:"white"}} >
          {/* <Box sx={{p:1}}>
 
          <Typography variant="body1">23</Typography>
@@ -107,7 +107,7 @@ const Timer = (props)=>{
            <Typography variant="h4">:</Typography>   */}
          <Box  sx={{p:1}}>
 
-         <Typography variant="body1">{time}</Typography>
+         <Typography variant="body1" sx={{color:"gray",fontWeight:800,fontSize:"1.5rem"}}  >{time}</Typography>
          {/* <Typography variant="subtitle2" >minutes</Typography> */}
          </Box>
 

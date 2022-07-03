@@ -57,11 +57,11 @@ const Questions = () => {
   const recordedTimes = useSelector(state => state.recordedTimes);
   const recordedTimes1 = useSelector(state => state.recordedTimes1);
 
-  // console.log(`"Response 1  "   ${response1}`);
-  // console.log(`"Response2  " ${response2}`);
-  //  console.log(`"Response 3  "   ${response3}`);
-  //  console.log(`"Response4  " ${response4}`);
-  //  console.log(`"Response 5  "   ${response5}`);
+  console.log(`Response 1  =   ${response1}`);
+  console.log(`Response2  = ${response2}`);
+   console.log(`Response 3 =   ${response3}`);
+   console.log(`Response4  = ${response4}`);
+   console.log(`Response 5  =   ${response5}`);
 
   var leve = useParams();
   var levelNext = "dummy";

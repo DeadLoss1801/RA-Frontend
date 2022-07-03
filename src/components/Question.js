@@ -60,10 +60,10 @@ const Question = (props) => {
       //  value={value}
       //  onChange={handleChange}
      >
-       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value)}}   checked={response === props.item.option1} value={props.item.option1} control={<Radio />} label={props.item.option1} />
-       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value) }}  checked={response === props.item.option2} value={props.item.option2} control={<Radio />} label={props.item.option2} />
-       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value) }}  checked={response === props.item.option3} value={props.item.option3}  control={<Radio />} label={props.item.option3} />
-       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value) }}  checked={response === props.item.option4}  value={props.item.option4} control={<Radio />} label={props.item.option4} />
+       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value)}}    value={props.item.option1} control={<Radio />} label={props.item.option1} />
+       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value) }}   value={props.item.option2} control={<Radio />} label={props.item.option2} />
+       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value) }}   value={props.item.option3}  control={<Radio />} label={props.item.option3} />
+       <FormControlLabel   onChange={(e)=>{setResponse(e.target.value) }}    value={props.item.option4} control={<Radio />} label={props.item.option4} />
      </RadioGroup>
      </FormControl>
 
