@@ -36,8 +36,8 @@ function App() {
  
     return (
     <>
-    <DownloadData/>
-    {/* <BrowserRouter>
+    {/* <DownloadData/> */}
+    <BrowserRouter>
     <ScrollToTop />
 
     {showAdminNav ? <AdminNavbar/> : <Navbar/>}
@@ -59,7 +59,7 @@ function App() {
         
     </Routes> 
     <Footer/> 
-    </BrowserRouter> */}
+    </BrowserRouter>
 
     </>
   );

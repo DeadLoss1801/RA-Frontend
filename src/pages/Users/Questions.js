@@ -20,7 +20,7 @@ import Question5 from './UsersQuestions/Question5';
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-
+import { ClipLoader } from 'react-spinners';
 import { useDispatch } from "react-redux";
 
 
@@ -45,14 +45,14 @@ const theme = createTheme({
 const Questions = () => {
 
   const dispatch = useDispatch();
-  const [response1,setResponse1] = useState("");
-  const [response2,setResponse2] = useState("");
-  const [response3,setResponse3] = useState("");
-  const [response4,setResponse4] = useState("");
-  const [response5,setResponse5] = useState("");
+  const [response1, setResponse1] = useState("");
+  const [response2, setResponse2] = useState("");
+  const [response3, setResponse3] = useState("");
+  const [response4, setResponse4] = useState("");
+  const [response5, setResponse5] = useState("");
   const [isValid, setIsValid] = useState(false);
+  const [loading, setLoading] = useState(true);
 
- 
   const timeAllotedForQuestions = useSelector(state => state.timeAllotedForQuestions);
   const recordedTimes = useSelector(state => state.recordedTimes);
   const recordedTimes1 = useSelector(state => state.recordedTimes1);
@@ -65,21 +65,21 @@ const Questions = () => {
 
   var leve = useParams();
   var levelNext = "dummy";
-  if(leve.test === "second") {
-    if(leve.type === "Easy") {
+  if (leve.test === "second") {
+    if (leve.type === "Easy") {
       levelNext = "Medium";
     }
-    if(leve.type === "Medium") {
+    if (leve.type === "Medium") {
       levelNext = "Hard";
     }
-    
+
   }
 
   var lev = useParams();
-  if(lev.type === "Easy") {
+  if (lev.type === "Easy") {
     lev = 1;
   }
-  else if(lev.type === "Medium") {
+  else if (lev.type === "Medium") {
     lev = 2;
   }
   else {
@@ -87,51 +87,51 @@ const Questions = () => {
   }
 
   var codeno = useParams();
-  if(codeno.test === "first") {
+  if (codeno.test === "first") {
     codeno = 0;
   }
   else {
     codeno = 1;
   }
 
-  const response1Handler = (choosen_option)=>{
+  const response1Handler = (choosen_option) => {
 
-        setResponse1(choosen_option);
-        
+    setResponse1(choosen_option);
+
 
   }
 
-  const response2Handler = (choosen_option)=>{
+  const response2Handler = (choosen_option) => {
 
     setResponse2(choosen_option);
-    
 
-}
 
-const response3Handler = (choosen_option)=>{
+  }
 
-  setResponse3(choosen_option);
-  
+  const response3Handler = (choosen_option) => {
 
-}
+    setResponse3(choosen_option);
 
-const response4Handler = (choosen_option)=>{
 
-  setResponse4(choosen_option);
-  
+  }
 
-}
+  const response4Handler = (choosen_option) => {
 
-const response5Handler = (choosen_option)=>{
+    setResponse4(choosen_option);
 
-  setResponse5(choosen_option);
-  
 
-}
+  }
+
+  const response5Handler = (choosen_option) => {
+
+    setResponse5(choosen_option);
+
+
+  }
 
 
   const [items, setItems] = useState([]);
-  const [valid,setValid] = useState(false);
+  const [valid, setValid] = useState(false);
 
   async function getData() {
 
@@ -150,110 +150,114 @@ const response5Handler = (choosen_option)=>{
     setItems(updated);
     setValid(true);
     setIsValid(true);
+    setLoading(false);
 
 
   }
   useEffect(() => {
 
 
-    
-  
+
+
     getData();
 
 
-    
-
-  },[]);
 
 
+  }, []);
 
 
-  const handleSubmit = ()=>{
-   
-    dispatch({type: "BUTTON_CLICKED"});
-     let response = [response1,response2,response3,response4,response5];
 
-     const respo=fetch(`https://summerinternshipproject.pythonanywhere.com/time/?level=${lev}&code_no=${codeno}`, {
+
+  const handleSubmit = () => {
+
+    dispatch({ type: "BUTTON_CLICKED" });
+    let response = [response1, response2, response3, response4, response5];
+
+    const respo = fetch(`https://summerinternshipproject.pythonanywhere.com/time/?level=${lev}&code_no=${codeno}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-          question_read_time: (recordedTimes1/60).toFixed(1),
-          code_read_time: (recordedTimes/60).toFixed(1)
+        question_read_time: (recordedTimes1 / 60).toFixed(1),
+        code_read_time: (recordedTimes / 60).toFixed(1)
       })
     });
 
-    for(var x=0;x<=4;x++)
-    {
+    for (var x = 0; x <= 4; x++) {
 
-    const res=fetch(`https://summerinternshipproject.pythonanywhere.com/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        
+      const res = fetch(`https://summerinternshipproject.pythonanywhere.com/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+
           // fevid:0,
           // fqid:0,
           selected_answer: response[x],
           // marks:0,
           // decision:"1"
-       
-      })
-    });
+
+        })
+      });
 
 
-    // console.log(response[x]);
+      // console.log(response[x]);
+
+    }
+
 
   }
-
-
-  }
-
+  console.log(items);
   return (
 
     <ThemeProvider theme={theme}>
-      <Container maxWidth="lg" sx={{ bgcolor: "primary.main", height: "325vh", mt: 4, mb: 2, borderRadius: 2, boxShadow: 7 }}>
-
-        {/* <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
-      <Typography variant="h3">Questions</Typography>
       
-       <Typography variant="h6">Timer</Typography>
-     </Box> */}
+        {/* {
+          loading ? (<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "80vh" }}> <ClipLoader loading={loading} size={100} /> </Box>) :
+            ( */}
+              <Container maxWidth="lg" sx={{ bgcolor: "primary.main", height: "325vh", mt: 4, mb: 2, borderRadius: 2, boxShadow: 7 }}>
+              
+              {/* /* <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+            <Typography variant="h3">Questions</Typography>
+            
+             <Typography variant="h6">Timer</Typography>
+           </Box> */ }
 
-        <Grid container spacing={2}  >
+              <Grid container spacing={2}>
 
-          <Grid item xs={8}  >
-            <Typography variant="h3" sx={{ color: "#ffffff" }}>Questions</Typography>
+                <Grid item xs={8}  >
+                  <Typography variant="h3" sx={{ color: "#ffffff" }}>Questions</Typography>
 
-          </Grid>
+                </Grid>
 
-          <Grid item xs={4}  >
+                <Grid item xs={4}  >
 
-          <Typography sx={{textAlign:"center",color:"#ffffff"}} variant="h6">Timer</Typography>
-        {isValid && <Timer limit={timeAllotedForQuestions}/>}
-          
-        </Grid>
+                  <Typography sx={{ textAlign: "center", color: "#ffffff" }} variant="h6">Timer</Typography>
+                  {isValid && <Timer limit={timeAllotedForQuestions} />}
 
-        </Grid>
+                </Grid>
+
+              </Grid>
 
 
-        {/* <SliderQuestion /> */}
+        {/* /* <SliderQuestion /> */ }
      
 
-      {valid && <Question1 response1={response1} onChangeResponse1={response1Handler}  item={items[0]} />}  
-        
-         {valid && <Question2 item={items[1]}  response2={response2}  onChangeResponse2={response2Handler} />} 
+         {valid && <Question1 response1={response1} onChangeResponse1={response1Handler} item={items[0]} />}
 
-        {valid && <Question3 item={items[2]} response3={response3}  onChangeResponse3={response3Handler}/>}
-        
+        {valid && <Question2 item={items[1]} response2={response2} onChangeResponse2={response2Handler} />}
 
-        {valid && <Question4 item={items[3]}  response4={response4}  onChangeResponse4={response4Handler} />} 
+        {valid && <Question3 item={items[2]} response3={response3} onChangeResponse3={response3Handler} />}
 
-{valid && <Question5 item={items[4]} response5={response5}  onChangeResponse5={response5Handler}/>}
+
+        {valid && <Question4 item={items[3]} response4={response4} onChangeResponse4={response4Handler} />}
+
+        {valid && <Question5 item={items[4]} response5={response5} onChangeResponse5={response5Handler} />}
 
 
         <Box sx={{
@@ -271,15 +275,19 @@ const response5Handler = (choosen_option)=>{
 
 
 
-         
 
-       <Link to={leve.test === "second" ? (leve.type === "Hard" ? "/" : `/level/${levelNext}`) : `/codeRead/${leve.type}/code1`}>
-        <Button variant="contained" color="success" size="large" sx={{ml:2}} onClick={handleSubmit} >Submit & next</Button>
-        </Link>
-        
+
+          <Link to={leve.test === "second" ? (leve.type === "Hard" ? "/" : `/level/${levelNext}`) : `/codeRead/${leve.type}/code1`}>
+            <Button variant="contained" color="success" size="large" sx={{ ml: 2 }} onClick={handleSubmit} >Submit & next</Button>
+          </Link>
+
         </Box>
 
-      </Container>
+        </Container>
+        
+      {/* )} */}
+
+     
 
     </ThemeProvider>
   );
