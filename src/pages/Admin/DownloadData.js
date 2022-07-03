@@ -1,29 +1,28 @@
 import { Container, Box, Title, Paper, Button, Typography } from '@mui/material'
 import { styled } from '@mui/system';
 import { useEffect, useState } from 'react';
-import React from 'react'
+import React from 'react';
+import download from "downloadjs";
 
 function DownloadData() {
-  const [userData,setUserData] = useState([]);
+    const [userData, setUserData] = useState([]);
+    const [downloadData, setDownloadData] = useState([]);
+    useEffect(() => {
+        var myHeaders = new Headers();
 
-   useEffect(() => {
-    var myHeaders = new Headers();
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
 
-    var requestOptions = {
-      method: 'GET',
-      headers: myHeaders,
-      redirect: 'follow'
-    };
-    
-    fetch("https://summerinternshipproject.pythonanywhere.com/demographic/", requestOptions)
-      .then(response => response.json())
-      .then(result => setUserData(result))
-      .catch(error => console.log('error', error));
-   
-     console.log(userData)
-   }, [])
-   
+        fetch("https://summerinternshipproject.pythonanywhere.com/getcsv/", requestOptions)
+            .then(response => response.json())
+            .then(result => setUserData(result))
+            .catch(error => console.log('error', error));
 
+        //console.log(userData)
+    }, [])
 
 
 
@@ -38,10 +37,26 @@ function DownloadData() {
 
     });
 
-    const handleClick = () =>
-    {
-        
-    }
+    const handleClick = (e) => {
+        var myHeaders = new Headers();
+
+        const id = e.target.value;
+        var requestOptions = {
+            method: 'GET',
+            headers: myHeaders,
+            redirect: 'follow'
+        };
+
+        fetch(`https://summerinternshipproject.pythonanywhere.com/download/?user=${id}`, requestOptions)
+            .then(response => response.text())
+            .then(result => download(result, "data.csv", "text/csv"))
+            .catch(error => console.log('error', error));
+    
+            console.log(downloadData);
+        }
+
+
+
     return (
         <>
             <Container maxWidth="sm" sx={{
@@ -58,20 +73,21 @@ function DownloadData() {
                     minWidth: "90%", minHeight: "70%", height: 500,
                     overflow: "auto",
                 }}> */}
-                   
-                    {userData.map((item =>
-                    
-                        <Paper sx={{ m: 2, display: "flex", backgroundColor: "lightblue", height: "10%" }}>
-                        <Typography sx={{ m: 1, ml: 3, mr: 30 }}>{item.name}</Typography>
-                        <Button sx={{ m: 1 }} variant="contained" color="primary" size="large" onClick={handleClick}>Download</Button>
-                        </Paper>
-                        
-                    ))}
-                        
-                  
 
-                    
-               
+                {userData.map((item =>
+
+
+                    <Paper sx={{ m: 2, display: "flex", backgroundColor: "lightblue", height: "10%" }}>
+                        <Typography sx={{ m: 1, ml: 3, mr: 30 }}>{item.name}</Typography>
+                        <Button sx={{ m: 1 }} variant="contained" color="primary" size="large" onClick={handleClick} value={item.uid}>Download</Button>
+                    </Paper>
+
+                ))}
+
+
+
+
+
             </Container>
         </>
     )
