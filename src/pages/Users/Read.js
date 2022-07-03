@@ -12,8 +12,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-
-
+import { Paper } from '@mui/material';
 const theme = createTheme({
   palette: {
     primary: {
@@ -118,6 +117,7 @@ return (
       <Grid container spacing={2} >
         
         <Grid item xs={8}  >
+        <Paper elevation={5}>
           <Box sx={{bgcolor: '#212121', width:"100%",
           height:500,
           overflow:"auto",
@@ -129,23 +129,37 @@ return (
           <Image  src={codedata && url} alt="code"></Image>
           
           </Box>
+          </Paper>
         </Grid>
+        
         <Grid item xs={4}>
-        <Box   sx={{bgcolor: 'secondary.light', width:"100%",
+        <Paper elevation={5}>
+        <Box   sx={{bgcolor: 'white', width:"100%",
         height:500,
          boxShadow: 5,
          borderRadius:"2%",
          }}>
          
-         <Typography variant="h4" sx={{color: "#ffffff",fontWeight: 'Regular' ,p:3}}>Timer</Typography>
+         <Typography variant="h4" sx={{color: "#000000",fontWeight: 'Regular' ,p:3}}>Timer</Typography>
          
            {isValid && <Timer limit={c_time} typ={levv.type} nex={quizNext} />} 
            
-           
+          <Box sx={{color:"#000000",display:"flex",alignItems:"flexStart",
+          
+          border:"1px solid gray",maxWidth:"80%",
+          minHeight:"40%",overflow:"auto",p:3,m:5,
+          boxShadow:3,borderRadius:"10px",
+          backgroundColor:"#f5f5f5"
+          }}>
+           <Typography variant="subtitle1">{isValid && codedata.code_text}</Typography>
+          
+          </Box>
          </Box>
+         </Paper>
         </Grid>
         <Grid item xs={12}>
-        <Box  sx={{bgcolor: '#fffde7', width:"100%",
+         <Paper elevation={5}>  
+        <Box  sx={{bgcolor: "white", width:"100%",
         height:100,
         boxShadow: 5,borderRadius:"8px",
         display:"flex",
@@ -165,6 +179,8 @@ return (
                       </Link>
         
         </Box>
+
+        </Paper>
         </Grid>
 
 
