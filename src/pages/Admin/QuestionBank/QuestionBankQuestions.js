@@ -72,35 +72,11 @@ function QuestionBankQuestions() {
 
 
   var params = useParams();
-<<<<<<< HEAD
 
-  var nextQs = "dummy";
-
-  if (params.id === "1") {
-    nextQs = "2";
-  }
-  else if (params.id === "2") {
-    nextQs = "3";
-  }
-  else if (params.id === "3") {
-    nextQs = "4";
-  }
-  else if (params.id === "4") {
-    nextQs = "5";
-  }
-  else if (params.id === "5") {
-    nextQs = "6";
-  }
-
-  var nextCo = "temp";
-  var nextLev = "temp1"
-  if (params.type === "code1") {
-=======
   
    var nextCo = "temp";
    var nextLev = "temp1"
    if(params.type === "code1") {
->>>>>>> 7c0a96effab077067ea93f155bd294fe6280dfbb
     nextCo = "code2";
   }
   else if (params.type === "code2") {
@@ -110,16 +86,8 @@ function QuestionBankQuestions() {
     else if (params.lev === "medium") {
       nextLev = "hard";
     }
-<<<<<<< HEAD
-  }
-
-
-
-
-=======
    }
   
->>>>>>> 7c0a96effab077067ea93f155bd294fe6280dfbb
   const marks = parseFloat(questionMarks);
   const question_time = parseInt(questionTimer);
 
@@ -130,9 +98,8 @@ function QuestionBankQuestions() {
   const handleSubmit = (e) => {
     e.preventDefault();
     ques++;
-    // const data = { question_text, option1, option2, option3, option4, correct_option, marks };
+    const data = { question_text, option1, option2, option3, option4, correct_option, marks };
 
-<<<<<<< HEAD
     console.log(data);
     fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
       method: 'POST',
@@ -142,17 +109,6 @@ function QuestionBankQuestions() {
       console.log('posted succesfully');
     })
 
-=======
-    // console.log(data);
-    // fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
-    //   method: 'POST',
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify(data)
-    // }).then(() => {
-    //   console.log('posted succesfully');
-    // })
-    
->>>>>>> 7c0a96effab077067ea93f155bd294fe6280dfbb
 
     setSelectedQuestion("")
     setquestion_text("")
@@ -162,35 +118,6 @@ function QuestionBankQuestions() {
     setOption4("")
     setcorrect_option("")
     setquestionMarks("")
-<<<<<<< HEAD
-
-
-    if (nextQs === "6" && nextCo === "code2") {
-
-
-      // navigate(`/code/${params.lev}/${nextCo}`)
-      // window.location.reload();
-
-    }
-    else if (nextQs === "6" && params.type === "code2") {
-      if (params.lev === "hard") {
-
-        // navigate("/");
-        // window.location.reload();
-      }
-      else {
-
-        // navigate(`/levels/${nextLev}`);
-        // window.location.reload();
-      }
-    }
-    else {
-
-      // navigate(`/question/${params.lev}/${params.type}/${nextQs}`)
-      // window.location.reload();
-    }
-
-=======
     
 
     if(ques === 5 && nextCo === "code2")
@@ -206,7 +133,6 @@ function QuestionBankQuestions() {
       }
     }
     
->>>>>>> 7c0a96effab077067ea93f155bd294fe6280dfbb
   };
 
 
