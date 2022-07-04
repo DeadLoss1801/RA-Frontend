@@ -5,6 +5,7 @@ const initialState = {isButtonPressed: false,
     recordedTimes: 0,
     recordedTimes1: 0,
     registerName: "",
+//
     calculatingAge: null,
     showAdminNav:false,
 };
@@ -65,7 +66,7 @@ const reducer = (state = initialState, action) => {
             timeAllotedForQuestions: state.timeAllotedForQuestions,
             recordedTimes: state.recordedTimes,
             recordedTimes1: state.recordedTimes1,
-            registerName: "Hi " + action.val + " !",
+            registerName: action.val ,
             calculatingAge: state.calculatingAge,
             showAdminNav:state.showAdminNav
         }

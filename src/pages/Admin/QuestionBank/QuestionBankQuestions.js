@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   MenuItem,
   makeStyles,
@@ -31,8 +31,11 @@ const Title = styled('h1')({
 
 
 
+
 function QuestionBankQuestions() {
   const navigate = useNavigate();
+  var ques = 0;
+
 
   const questions = [
     {
@@ -66,10 +69,10 @@ function QuestionBankQuestions() {
   const [correct_option, setcorrect_option] = useState("");
   const [questionMarks, setquestionMarks] = useState("");
   const [questionTimer, setquestionTimer] = useState(10);
-  //const [fcid,setFcid] = useState();
 
 
   var params = useParams();
+<<<<<<< HEAD
 
   var nextQs = "dummy";
 
@@ -92,6 +95,12 @@ function QuestionBankQuestions() {
   var nextCo = "temp";
   var nextLev = "temp1"
   if (params.type === "code1") {
+=======
+  
+   var nextCo = "temp";
+   var nextLev = "temp1"
+   if(params.type === "code1") {
+>>>>>>> 7c0a96effab077067ea93f155bd294fe6280dfbb
     nextCo = "code2";
   }
   else if (params.type === "code2") {
@@ -101,21 +110,29 @@ function QuestionBankQuestions() {
     else if (params.lev === "medium") {
       nextLev = "hard";
     }
+<<<<<<< HEAD
   }
 
 
 
 
+=======
+   }
+  
+>>>>>>> 7c0a96effab077067ea93f155bd294fe6280dfbb
   const marks = parseFloat(questionMarks);
   const question_time = parseInt(questionTimer);
+
   const handleChange = (e) => {
     setSelectedQuestion(e.target.value);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = { question_text, option1, option2, option3, option4, correct_option, marks };
+    ques++;
+    // const data = { question_text, option1, option2, option3, option4, correct_option, marks };
 
+<<<<<<< HEAD
     console.log(data);
     fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
       method: 'POST',
@@ -125,7 +142,17 @@ function QuestionBankQuestions() {
       console.log('posted succesfully');
     })
 
-
+=======
+    // console.log(data);
+    // fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
+    //   method: 'POST',
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(data)
+    // }).then(() => {
+    //   console.log('posted succesfully');
+    // })
+    
+>>>>>>> 7c0a96effab077067ea93f155bd294fe6280dfbb
 
     setSelectedQuestion("")
     setquestion_text("")
@@ -135,6 +162,7 @@ function QuestionBankQuestions() {
     setOption4("")
     setcorrect_option("")
     setquestionMarks("")
+<<<<<<< HEAD
 
 
     if (nextQs === "6" && nextCo === "code2") {
@@ -162,6 +190,23 @@ function QuestionBankQuestions() {
       // window.location.reload();
     }
 
+=======
+    
+
+    if(ques === 5 && nextCo === "code2")
+    {
+      navigate(`/code/${params.lev}/${nextCo}`)
+    }
+    else if(ques === 5 && params.type === "code2") {
+      if(params.lev === "hard") {
+        navigate("/languageSelection");
+      }
+      else {
+        navigate(`/levels/${nextLev}`);
+      }
+    }
+    
+>>>>>>> 7c0a96effab077067ea93f155bd294fe6280dfbb
   };
 
 

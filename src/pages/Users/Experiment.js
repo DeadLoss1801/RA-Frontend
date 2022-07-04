@@ -69,6 +69,7 @@ const Experiment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const expertiseData = {programming_language, level, duration, time, last_used};
+    const emptyData = { ffuid: null, ffqbid: null };
     console.log(expertiseData);
     fetch('https://summerinternshipproject.pythonanywhere.com/expertise/', {
                     method: 'POST',
@@ -77,6 +78,14 @@ const Experiment = () => {
                 }).then(() => {
                     console.log('Done successfully');
                 })
+
+                fetch('https://summerinternshipproject.pythonanywhere.com/evaluation/', {
+                  method: 'POST',
+                  headers: { "Content-Type": "application/json" }, 
+                  body: JSON.stringify(emptyData)
+              }).then(() => {
+                  console.log('Initialized evaluation');
+              })
 
 
        navigate("/level/Easy");
