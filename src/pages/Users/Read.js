@@ -12,6 +12,8 @@ import { Link, useParams } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import { ClipLoader, ScaleLoader } from "react-spinners";
+
 import { Paper } from '@mui/material';
 const theme = createTheme({
   palette: {
@@ -45,6 +47,7 @@ const Read = () => {
   const [codedata, setCodedata] = useState(null);
   //const [isLoading, setIsLaoding] = useState(true);
   const [isValid, setIsValid] = useState(false);
+  const [loading,setLoading] = useState(true);
 
   const mainUrl = "https://summerinternshipproject.pythonanywhere.com";
 
@@ -81,6 +84,7 @@ const Read = () => {
             setCodedata(dta);
             //setIsLaoding(false);
             setIsValid(true);
+            setLoading(false);
         })
    //getcodeData();
     console.log(codedata);
@@ -109,11 +113,15 @@ const handleNext = () => {
 
 return (
   
-
+  
   <ThemeProvider theme={theme}>
-    <Container  maxWidth="lg" >
-    
-    <Box  sx={{m:2,pb:4}}>
+  
+    <Container  maxWidth="lg" sx={{minHeight:"100vh"}}>
+    {
+        loading ? <Box sx={{display:"flex",justifyContent:"center",alignItems:"center",minHeight:"80vh"}}> <ScaleLoader loading={loading} size={100} /> </Box>
+
+   
+    : <Box  sx={{m:2,pb:4}}>
       <Grid container spacing={2} >
         
         <Grid item xs={8}  >
@@ -188,15 +196,15 @@ return (
       
       </Box>
     
-
+    }
      
     </Container>
+  
+    
 
    </ThemeProvider>
+  
 
-)
-
-
-}
+)}
 
 export default Read;

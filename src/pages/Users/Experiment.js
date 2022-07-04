@@ -69,7 +69,10 @@ const Experiment = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const expertiseData = {programming_language, level, duration, time, last_used};
+<<<<<<< HEAD
     const emptyData = { ffuid: null, ffqbid: null };
+=======
+>>>>>>> b92e57ff355ab39dbcd687984aa4de06cafff1f7
     console.log(expertiseData);
     fetch('https://summerinternshipproject.pythonanywhere.com/expertise/', {
                     method: 'POST',
@@ -78,6 +81,7 @@ const Experiment = () => {
                 }).then(() => {
                     console.log('Done successfully');
                 })
+<<<<<<< HEAD
 
                 fetch('https://summerinternshipproject.pythonanywhere.com/evaluation/', {
                   method: 'POST',
@@ -86,6 +90,8 @@ const Experiment = () => {
               }).then(() => {
                   console.log('Initialized evaluation');
               })
+=======
+>>>>>>> b92e57ff355ab39dbcd687984aa4de06cafff1f7
 
 
        navigate("/level/Easy");
