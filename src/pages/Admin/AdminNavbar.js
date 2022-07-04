@@ -13,6 +13,7 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useState } from 'react';
+import { Link} from "react-router-dom";
 
 import {saveAs} from "file-saver";
 function AdminNavbar() {
@@ -59,13 +60,18 @@ function AdminNavbar() {
             </Typography>
   
           <Box sx={{ml:"600px"}}>
-          <Button  variant="contained"  onClick={saveFile} 
-          sx={{mr:1, bgcolor:"#212121" }}>Download CSV </Button>
-          <Button   onClick={handleLogout} 
+            <Link to={"/downloadData"}>
+          <Button  variant="contained"  
+          // onClick={saveFile} 
+          sx={{mr:1, bgcolor:"#212121" }}>Download CSV </Button></Link>
+          <Button   onClick={handleLogout} variant="contained"
            sx={{bgcolor:"#212121"}}>Logout</Button>
           
           </Box> 
             
+         
+
+              
           </Toolbar>
         </Container>
       </AppBar>

@@ -50,6 +50,7 @@ function App() {
         <Route path="/levels/:lev" element={<QuestionBankLevel />} />
         <Route path="/code/:lev/:type" element={<QuestionBankCode />}/>
         <Route path="/question/:lev/:type" element={<QuestionBankQuestions />}/>
+        <Route path="/downloadData" element={<DownloadData />}/>
 
         <Route path="/register" element={<Register />} />
         <Route path="/expertise" element={<Experiment />} />
