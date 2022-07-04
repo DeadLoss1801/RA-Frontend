@@ -61,7 +61,7 @@ function AdminNavbar() {
           <Box sx={{ml:"600px"}}>
           <Button  variant="contained"  onClick={saveFile} 
           sx={{mr:1, bgcolor:"#212121" }}>Download CSV </Button>
-          <Button  variant="contained" onClick={handleLogout} 
+          <Button   onClick={handleLogout} 
            sx={{bgcolor:"#212121"}}>Logout</Button>
           
           </Box> 

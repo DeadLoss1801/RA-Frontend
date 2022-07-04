@@ -142,7 +142,7 @@ const response5Handler = (choosen_option)=>{
 
       updated.push(data);
 
-
+      // console.log(updated.length);
 
     }
 

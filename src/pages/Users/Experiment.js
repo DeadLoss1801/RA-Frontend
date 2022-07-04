@@ -22,7 +22,7 @@ const Experiment = () => {
   const [last_used, setLast_used] = React.useState('');
   const [duration, setDuration] = React.useState('');
 
-  const programming_language = "1";
+  const programming_language = "2";
 
   //console.log(level);
   //const levName = useContext(Lev);
@@ -68,15 +68,15 @@ const Experiment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // const expertiseData = {programming_language, level, duration, time, last_used};
-    // console.log(expertiseData);
-    // fetch('https://summerinternshipproject.pythonanywhere.com/expertise/', {
-    //                 method: 'POST',
-    //                 headers: { "Content-Type": "application/json" }, 
-    //                 body: JSON.stringify(expertiseData)
-    //             }).then(() => {
-    //                 console.log('Done successfully');
-    //             })
+    const expertiseData = {programming_language, level, duration, time, last_used};
+    console.log(expertiseData);
+    fetch('https://summerinternshipproject.pythonanywhere.com/expertise/', {
+                    method: 'POST',
+                    headers: { "Content-Type": "application/json" }, 
+                    body: JSON.stringify(expertiseData)
+                }).then(() => {
+                    console.log('Done successfully');
+                })
 
 
        navigate("/level/Easy");

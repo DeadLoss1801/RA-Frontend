@@ -1,10 +1,63 @@
-import { Container, Box, Title, Paper, Button, Typography } from '@mui/material'
-import { styled } from '@mui/system';
-import { useEffect, useState } from 'react';
-import React from 'react';
-import download from "downloadjs";
 
-function DownloadData() {
+
+
+
+
+
+
+
+
+
+import download from "downloadjs";
+import * as React from 'react';
+import { styled } from '@mui/material/styles';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Paper from '@mui/material/Paper';
+ import { useEffect, useState } from 'react';
+import { Button } from "@mui/material";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+  [`&.${tableCellClasses.head}`]: {
+    backgroundColor: theme.palette.common.black,
+    color: theme.palette.common.white,
+  },
+  [`&.${tableCellClasses.body}`]: {
+    fontSize: 14,
+  },
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+  '&:nth-of-type(odd)': {
+    backgroundColor: theme.palette.action.hover,
+  },
+  // hide last border
+  '&:last-child td, &:last-child th': {
+    border: 0,
+  },
+}));
+
+function createData(name, calories, fat, carbs, protein) {
+  return { name, calories, fat, carbs, protein };
+}
+
+const rows = [
+  createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
+  createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
+  createData('Eclair', 262, 16.0, 24, 6.0),
+  createData('Cupcake', 305, 3.7, 67, 4.3),
+  createData('Gingerbread', 356, 16.0, 49, 3.9),
+];
+
+const DownloadData = () => {
+
+
+
+
     const [userData, setUserData] = useState([]);
     const [downloadData, setDownloadData] = useState([]);
     useEffect(() => {
@@ -21,23 +74,10 @@ function DownloadData() {
             .then(result => setUserData(result))
             .catch(error => console.log('error', error));
 
-        //console.log(userData)
+        // console.log(userData)
     }, [])
 
-
-
-
-
-    const Title = styled('h1')({
-
-        fontSize: "3rem",
-        display: "flex",
-        alignItem: "center",
-        justifyContent: "center",
-
-    });
-
-    const handleClick = (e) => {
+        const handleClick = (e) => {
         var myHeaders = new Headers();
 
         const id = e.target.value;
@@ -57,40 +97,55 @@ function DownloadData() {
 
 
 
-    return (
-        <>
-            <Container maxWidth="sm" sx={{
-                height: "100vh", display: "flex",
-                alignItems: "center",
-                flexDirection: "column"
-            }}>
-
-                <Box sx={{ m: 5 }}>
-                    <Title>Download Data</Title>
-                </Box>
-
-                {/* <Paper elevation={6} sx={{
-                    minWidth: "90%", minHeight: "70%", height: 500,
-                    overflow: "auto",
-                }}> */}
-
-                {userData.map((item =>
-
-
-                    <Paper sx={{ m: 2, display: "flex", backgroundColor: "lightblue", height: "10%" }}>
-                        <Typography sx={{ m: 1, ml: 3, mr: 30 }}>{item.name}</Typography>
-                        <Button sx={{ m: 1 }} variant="contained" color="primary" size="large" onClick={handleClick} value={item.uid}>Download</Button>
-                    </Paper>
-
-                ))}
 
 
 
 
 
-            </Container>
-        </>
-    )
+
+
+
+      console.log(userData);
+
+
+
+
+
+
+  return (
+    <TableContainer component={Paper}>
+      <Table sx={{ minWidth: 300 }} aria-label="customized table">
+        <TableHead>
+          <TableRow>
+            <StyledTableCell>Name</StyledTableCell>
+            <StyledTableCell align="right">Email</StyledTableCell>
+            {/* <StyledTableCell align="right">Fat&nbsp;(g)</StyledTableCell>
+            <StyledTableCell align="right">Carbs&nbsp;(g)</StyledTableCell> */}
+            <StyledTableCell align="right">Download Csv</StyledTableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {userData.map((user) => (
+            <StyledTableRow key={user.name}>
+              <StyledTableCell component="th" scope="row">
+                {user.name}
+              </StyledTableCell>
+              {/* <StyledTableCell align="right">{row.calories}</StyledTableCell> */}
+              {/* <StyledTableCell align="right">{row.fat}</StyledTableCell> */}
+              <StyledTableCell align="right">{user.email}</StyledTableCell>
+              <StyledTableCell align="right">
+
+
+              <Button sx={{ m: 1 }} variant="contained" color="primary" size="large" 
+              onClick={handleClick} value={user.uid}>Download</Button>
+              </StyledTableCell>
+            </StyledTableRow>
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  );
 }
 
-export default DownloadData
+export default DownloadData;
+
