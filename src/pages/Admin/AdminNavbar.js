@@ -60,13 +60,14 @@ function AdminNavbar() {
             </Typography>
   
           <Box sx={{ml:"600px"}}>
-            <Link to={"/downloadData"}>
+           
+          <Link to={"/downloadData"}>
           <Button  variant="contained"  
-          // onClick={saveFile} 
+          // onClick={saveFile}
+           disabled="true"
           sx={{mr:1, bgcolor:"#212121" }}>Download CSV </Button></Link>
           <Button   onClick={handleLogout} variant="contained"
            sx={{bgcolor:"#212121"}}>Logout</Button>
-          
           </Box> 
             
          
