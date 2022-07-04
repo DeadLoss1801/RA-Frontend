@@ -47,19 +47,8 @@ function QuestionBankCode() {
   ]
 
  var params = useParams();
- var nextCode = "dummy";
-
- if(params.type==="code1")
- {
-  nextCode = "code2";
- }
- else if(params.type === "code2")
- {
-  nextCode= "code3";
- }
  
-
-
+ 
   // const [code,setCode] = useState("");
   const [selectedcode, setSelectedCode] = useState("");
   const [code_image, setcode_image] = useState();
@@ -71,7 +60,6 @@ function QuestionBankCode() {
 
   const code_time = parseInt(codeTimer);
   const question_time = parseInt(questionTimer);
-  //var num = 1;
   
 
   const handleImage = (e) => {
@@ -83,25 +71,25 @@ function QuestionBankCode() {
   console.log(code_image);
   const handleSubmit = (e) => {
     e.preventDefault();
-    var formdata = new FormData();
-    formdata.append("code_text", code_text);
-    formdata.append("code_time", code_time);
-    formdata.append("question_time", question_time);
-    formdata.append("code_image", code_image);
+    // var formdata = new FormData();
+    // formdata.append("code_text", code_text);
+    // formdata.append("code_time", code_time);
+    // formdata.append("question_time", question_time);
+    // formdata.append("code_image", code_image);
 
-    var requestOptions = {
-      method: 'POST',
-      body: formdata,
-      redirect: 'follow'
-    };
+    // var requestOptions = {
+    //   method: 'POST',
+    //   body: formdata,
+    //   redirect: 'follow'
+    // };
 
-    fetch("https://summerinternshipproject.pythonanywhere.com/code/", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+    // fetch("https://summerinternshipproject.pythonanywhere.com/code/", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
 
     
-      navigate(`/question/${params.lev}/${params.type}/1`)
+      navigate(`/question/${params.lev}/${params.type}`)
     
   };
 

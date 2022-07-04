@@ -29,6 +29,7 @@ const Register = () => {
         e.preventDefault();
 
         const data = { name, email, dob, age, gender, country, state, profession };
+        
         console.log(data);
 
 
@@ -92,8 +93,9 @@ const Register = () => {
                         console.log('Registered');
                     })
 
+
                 alert('Registered successfully');
-                dispatch({ type: "SETTING_REGISTERED_NAME", val: name });
+                dispatch({ type: "SETTING_REGISTERED_NAME", val: "Hi " + name + " !" });
                 navigate("/expertise");
             }
         }
@@ -228,8 +230,8 @@ const Register = () => {
                     onChange={(e) => setGender(e.target.value)}
                 >
                     <option value="-Select-" selected disabled>--Select--</option>
-                    <option value="1">Male</option>
-                    <option value="2">Female</option>
+                    <option value="2">Male</option>
+                    <option value="1">Female</option>
                     <option value="3">Others</option>
                 </select>
                 <label>Country</label>
