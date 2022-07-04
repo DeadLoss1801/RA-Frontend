@@ -20,7 +20,7 @@ import Question5 from './UsersQuestions/Question5';
 import { Link } from "react-router-dom";
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { ClipLoader } from 'react-spinners';
+import { ClipLoader, ScaleLoader } from 'react-spinners';
 import { useDispatch } from "react-redux";
 
 
@@ -217,9 +217,9 @@ const Questions = () => {
 
     <ThemeProvider theme={theme}>
       
-        {/* {
-          loading ? (<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "80vh" }}> <ClipLoader loading={loading} size={100} /> </Box>) :
-            ( */}
+        {
+          loading ? (<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "80vh" }}> <ScaleLoader loading={loading} size={100} /> </Box>) :
+            (
               <Container maxWidth="lg" sx={{ bgcolor: "primary.main", height: "325vh", mt: 4, mb: 2, borderRadius: 2, boxShadow: 7 }}>
               
               {/* /* <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
@@ -285,7 +285,7 @@ const Questions = () => {
 
         </Container>
         
-      {/* )} */}
+       )} 
 
      
 

@@ -12,7 +12,7 @@ import { Link, useParams } from "react-router-dom";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { ClipLoader } from "react-spinners";
+import { ClipLoader, ScaleLoader } from "react-spinners";
 
 import { Paper } from '@mui/material';
 const theme = createTheme({
@@ -118,7 +118,7 @@ return (
   
     <Container  maxWidth="lg" sx={{minHeight:"100vh"}}>
     {
-        loading ? <Box sx={{display:"flex",justifyContent:"center",alignItems:"center",minHeight:"80vh"}}> <ClipLoader loading={loading} size={100} /> </Box>
+        loading ? <Box sx={{display:"flex",justifyContent:"center",alignItems:"center",minHeight:"80vh"}}> <ScaleLoader loading={loading} size={100} /> </Box>
 
    
     : <Box  sx={{m:2,pb:4}}>
