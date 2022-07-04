@@ -2,7 +2,7 @@ import React from "react";
 import Paper from '@mui/material/Paper';
 import {  Typography } from "@mui/material";
 import { Box } from "@mui/system";
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -35,9 +35,10 @@ const Timer = (props)=>{
   let t = startingMin * 60;
   var rc_time = 0;
 
-  useEffect(() => {
+  useEffect(() => {  
     let interval;
     if(!isButtonPressed) {
+      
       interval = setInterval(() => {
         let hours = Math.floor(t / 3600);
       let minutes = Math.floor(t / 60);
@@ -88,8 +89,9 @@ const Timer = (props)=>{
           }
         }
       }
-
+      
       }, 1000);
+      
     }
     else if(isButtonPressed) {
       
