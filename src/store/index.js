@@ -1,11 +1,18 @@
 import { createStore } from "redux"
+import { applyMiddleware } from "redux";
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+
+const persistConfig = {
+    key: 'main-root',
+    storage,
+}
 
 const initialState = {isButtonPressed: false, 
     timeAllotedForQuestions: 0,
     recordedTimes: 0,
     recordedTimes1: 0,
     registerName: "",
-//
     calculatingAge: null,
     showAdminNav:false,
 };
@@ -93,15 +100,19 @@ const reducer = (state = initialState, action) => {
             recordedTimes: state.recordedTimes,
             recordedTimes1: state.recordedTimes1,
             registerName: state.registerName,
-            calculatingAge: action.val,
+            calculatingAge: state.calculatingAge,
             showAdminNav:!state.showAdminNav
         }
     }
    
-
     return state;
 }
 
-const store = createStore(reducer);
+const persistedReducer = persistReducer(persistConfig, reducer);
 
+const store = createStore(persistedReducer, applyMiddleware());
+
+const Persistor = persistStore(store);
+
+export { Persistor };
 export default store;

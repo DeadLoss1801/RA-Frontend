@@ -11,10 +11,9 @@ import Typography from '@mui/material/Typography';
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
-//import { flow } from "./Experiment";
-
 
 import Modal from '@mui/material/Modal';
+import { useDispatch } from "react-redux";
 
 const style = {
   position: 'absolute',
@@ -31,7 +30,7 @@ const style = {
 };
 
 
-const Level = ()=>{
+const Level = () => {
 
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -39,8 +38,6 @@ const Level = ()=>{
   let params = useParams();
 
   //const lev = flow;
-
-
 
   
 return (
@@ -79,7 +76,9 @@ return (
           <Typography id="modal-modal-title" variant="h6" component="h2" color="warning.main">
             Are you Ready to Start ?
           </Typography>
-          <Link to={`/codeRead/${params.type}/code0`}><Button variant="contained" color="success" size="medium" sx={{m:2}} >Confirm</Button></Link>
+          <Link to={`/codeRead/${params.type}/code0`} style={{ textDecoration: 'none' }}>
+            <Button variant="contained" color="success" size="medium" sx={{m:2}} >Confirm</Button>
+            </Link>
           <Button variant="contained" color="warning" size="medium"  sx={{m:2}} onClick={handleClose} >Back</Button>
         </Box>
       </Modal>

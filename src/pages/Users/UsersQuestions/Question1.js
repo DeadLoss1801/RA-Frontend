@@ -30,7 +30,7 @@ const Question1 = (props) =>{
 const handleClick = (e) =>{
 
   if (e.target.value === props.response1) {
-    props.onChangeResponse1("");
+    props.onChangeResponse1(null);
   } else {
     props.onChangeResponse1(e.target.value);
   }

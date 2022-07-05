@@ -176,6 +176,7 @@ const Questions = () => {
     dispatch({type: "BUTTON_CLICKED"});
     if(leve.test === "second" && leve.type === "Hard") {
       dispatch({ type: "SETTING_REGISTERED_NAME", val: "" });
+      dispatch({ type: "SETTING_AGE", val: null });
     }
      let response = [response1,response2,response3,response4,response5];
 
@@ -282,13 +283,13 @@ const Questions = () => {
         }}>
 
 
-          <Button variant="contained" size="large" color="secondary" sx={{ mr: 2 }} >Back</Button>
+          {/* <Button variant="contained" size="large" color="secondary" sx={{ mr: 2 }} >Back</Button> */}
 
 
 
 
 
-          <Link to={leve.test === "second" ? (leve.type === "Hard" ? "/" : `/level/${levelNext}`) : `/codeRead/${leve.type}/code1`}>
+          <Link to={leve.test === "second" ? (leve.type === "Hard" ? "/" : `/level/${levelNext}`) : `/codeRead/${leve.type}/code1`} style={{ textDecoration: 'none' }}>
             <Button variant="contained" color="success" size="large" sx={{ ml: 2 }} onClick={handleSubmit} >Submit & next</Button>
           </Link>
 

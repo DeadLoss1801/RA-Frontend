@@ -10,6 +10,7 @@ import { styled } from '@mui/system';
 import { Box } from '@mui/system';
 import {Paper} from '@mui/material';
 import { useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
 
 
 const useStyles = makeStyles(theme => ({
@@ -153,9 +154,11 @@ const img_url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJ
               autoComplete="new-password"
             />
             <div>
-              <Button variant="contained" onClick="">
+              <Link to={"/"} style={{ textDecoration: 'none' }} >
+              <Button variant="contained">
                 Cancel
               </Button>
+              </Link>
               <Button type="submit" variant="contained" color="primary">
                 Login
               </Button>

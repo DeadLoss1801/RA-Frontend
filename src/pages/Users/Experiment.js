@@ -4,12 +4,9 @@ import { Box, Container, Grid, Typography } from "@mui/material";
 
 
 import Layout from "../../components/Layout";
-
 import Button from '@mui/material/Button';
-
 import { useEffect } from "react";
 import OtherLayout from "../../components/OtherLayout";
-//import { Lev } from "../components/Layout";
 
 import {Link} from "react-router-dom" 
 import {useNavigate} from "react-router-dom"
@@ -25,7 +22,6 @@ const Experiment = () => {
   const programming_language = "2";
 
   //console.log(level);
-  //const levName = useContext(Lev);
 
   useEffect(() => {
     fetch('https://summerinternshipproject.pythonanywhere.com/expertise/')
@@ -43,9 +39,6 @@ const Experiment = () => {
       plang[0].programming_language = "C++";
   }
   //console.log(levName);
-  // const helper =  (d) => {
-  //   console.log(d);
-  // }
 
   const handleLevel = (newLev) => {
     setLevel(newLev);
@@ -87,7 +80,6 @@ const Experiment = () => {
               }).then(() => {
                   console.log('Initialized evaluation');
               })
-
 
        navigate("/level/Easy");
 
@@ -193,7 +185,9 @@ const Experiment = () => {
         
       }} >
        
+       <Link to={"/register"} style={{ textDecoration: 'none' }}>
        <Button variant="contained" size="large" color="secondary" sx={{mr:2}} >Back</Button>
+       </Link>
       {/* <Link to={"/level/Easy"}> */}
        
       <Button variant="contained" color="success" size="large" sx={{ml:2}} onClick={handleSubmit} >Next</Button>

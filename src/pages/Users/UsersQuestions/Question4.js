@@ -27,7 +27,7 @@ const Question4 = (props) =>{
 const handleClick = (e) =>{
 
   if (e.target.value === props.response4) {
-    props.onChangeResponse4("");
+    props.onChangeResponse4(null);
   } else {
     props.onChangeResponse4(e.target.value);
   }
