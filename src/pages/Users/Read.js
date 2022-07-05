@@ -179,7 +179,7 @@ return (
       
        
 
-       <Link to={`/quiztime/${levv.type}/${quizNext}`} >
+       <Link to={`/quiztime/${levv.type}/${quizNext}`} style={{ textDecoration: 'none' }}>
                       <Button variant="contained" color="success" 
                       size="large" sx={{ml:2}} 
                       onClick={handleNext}
