@@ -172,19 +172,16 @@ const img_url="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJ
               sx={{width:"300px",m:2}}
             />
             <div>
-<<<<<<< HEAD
-              <Button sx={{m:1}} variant="contained" onClick="">
-                Cancel
-              </Button>
-              <Button sx={{m:1}} type="submit" variant="contained" color="primary">
-=======
+
+              
+
               <Link to={"/"} style={{ textDecoration: 'none' }} >
               <Button variant="contained">
                 Cancel
               </Button>
               </Link>
               <Button type="submit" variant="contained" color="primary">
->>>>>>> 156ab01526f8c425dc181f6ac328b4627dd8a3ff
+
                 Login
               </Button>
             </div>
