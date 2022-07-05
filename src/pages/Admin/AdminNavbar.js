@@ -64,7 +64,7 @@ function AdminNavbar() {
           <Link to={"/downloadData"}>
           <Button  variant="contained"  
           // onClick={saveFile}
-           disabled="true"
+          
           sx={{mr:1, bgcolor:"#212121" }}>Download CSV </Button></Link>
           <Button   onClick={handleLogout} variant="contained"
            sx={{bgcolor:"#212121"}}>Logout</Button>
