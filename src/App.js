@@ -18,7 +18,7 @@ import AdminNavbar from "./pages/Admin/AdminNavbar";
 import ScrollToTop from "./components/ScrollToTop";
 import { useSelector } from "react-redux";
 import DownloadData from "./pages/Admin/DownloadData";
-
+import React from "react"
 
 
 function App() {
@@ -35,7 +35,7 @@ function App() {
 
  
     return (
-    <>
+    <div>
     {/* <DownloadData/> */}
     <BrowserRouter>
     <ScrollToTop />
@@ -62,7 +62,7 @@ function App() {
     <Footer/> 
     </BrowserRouter>
 
-    </>
+    </div>
   );
 }
 
