@@ -32,6 +32,7 @@ const Timer = (props)=>{
   }
   
   const startingMin = props.limit;
+
   let t = startingMin * 60;
   var rc_time = 0;
 
@@ -49,7 +50,7 @@ const Timer = (props)=>{
       hours = hours < 10 ? '0' + hours : hours;
       
       console.log(t);
-      
+
       t--;
 
       rc_time = startingMin*60 - t;
@@ -61,7 +62,7 @@ const Timer = (props)=>{
       else if(params.test === "first" || params.test === "second") {
         dispatch({type: "SENDING_QUESTION_ANSWERING_TIME", val: rc_time});
       }
-            
+      
       setTime(hours + " : " + minutes + " : " + seconds);
 
       if(t <= 0) {
