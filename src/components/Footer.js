@@ -26,11 +26,11 @@ const Footer = ()=>{
 
       <Box sx={{display:"flex",justifyContent:"center",alignItems:"center"}}>
       
-      <Image src={img_url} ></Image>
+      {/* <Image src={img_url} ></Image> */}
 
       </Box>
 
-     <Box  >
+     <Box sx={{marginTop:"3rem"}} >
      <Grid container spacing={2}  >
         
         <Grid item xs={6}>
@@ -63,7 +63,7 @@ const Footer = ()=>{
 
       <Grid  item xs={12} sx={{display:"flex",justifyContent:"center",alignItems:"center"}}>
       
-     <Typography variant="h6" sx={{color:"#ffffff",fontStyle: 'italic'}}>© All Rights Reserved - Recruitment Testing </Typography>
+     <Typography variant="h6" sx={{color:"#ffffff",fontStyle: 'italic',marginTop:"4rem"}}>© All Rights Reserved - Code Comprehension Assessment Portal </Typography>
 
       </Grid>
 

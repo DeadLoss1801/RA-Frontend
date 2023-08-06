@@ -184,7 +184,7 @@ const Register = () => {
 
             <form className='.formcss'>
                 <h1>Register</h1>
-                <label>Name</label>
+                <label>Name*</label>
                 <input
                     type="text"
                     placeholder="Your Full name"
@@ -194,7 +194,7 @@ const Register = () => {
                     onChange={(e) => setName(e.target.value)}
                 />
                 <span role="alert" id="nameError" aria-hidden="true">*Name should be in characters only and shouldn't include any special character!</span>
-                <label>Email</label>
+                <label>Email*</label>
                 <input
                     type="email"
                     placeholder="Your email"
@@ -205,7 +205,7 @@ const Register = () => {
 
                 />
                 <span role="alert" id="emailError" aria-hidden="true">*Enter a correct email address!</span>
-                <label>Date of Birth</label>
+                <label>Date of Birth*</label>
                 <input
                     type="date"
                     id="birth_date"
@@ -224,7 +224,7 @@ const Register = () => {
                     readOnly
                 />
                 <span role="alert" id="ageError" aria-hidden="true">*Please select your Date of Birth first!</span>
-                <label>Gender</label>
+                <label>Gender*</label>
                 <select
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
@@ -234,7 +234,7 @@ const Register = () => {
                     <option value="1">Female</option>
                     <option value="3">Others</option>
                 </select>
-                <label>Country</label>
+                <label>Country*</label>
                 {/* <select
                     value={country}
                     onChange={handleCountry}
@@ -250,7 +250,7 @@ const Register = () => {
                 <CountryDropdown
           value={country}
           onChange={(val) => setCountry(val)} />
-            <label>State</label>
+            <label>State*</label>
         <RegionDropdown
           country={country}
           value={state}
@@ -269,7 +269,7 @@ const Register = () => {
                     }
                    
                 </select> */}
-                <label>Role</label>
+                <label>Role*</label>
                 <select
                     value={profession}
                     onChange={(e) => setProfession(e.target.value)}

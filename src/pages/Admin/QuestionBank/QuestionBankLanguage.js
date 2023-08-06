@@ -27,22 +27,22 @@ function QuestionBankLanguage() {
       name: 'C++',
       value: '2',
     },
-    // {
-    //   name: 'C',
-    //   value: 'C',
-    // },
-    // {
-    //   name: 'Java',
-    //   value: 'Java',
-    // },
-    // {
-    //   name: 'Python',
-    //   value: 'Python',
-    // },
-    // {
-    //   name: 'Javascript',
-    //   value: 'Javascript',
-    // },
+    {
+      name: 'C',
+      value: 'C',
+    },
+    {
+      name: 'Java',
+      value: 'Java',
+    },
+    {
+      name: 'Python',
+      value: 'Python',
+    },
+    {
+      name: 'Javascript',
+      value: 'Javascript',
+    },
   ];
 
   const [Language, setLanguage] = useState("");

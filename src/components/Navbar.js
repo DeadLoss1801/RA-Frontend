@@ -14,6 +14,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 import { useState } from 'react';
 import { useSelector } from 'react-redux/es/exports';
+import { Outlet, Link } from "react-router-dom";
+import About from './About'
 
 const pages = ['Products', 'Pricing', 'Blog'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
@@ -33,7 +35,7 @@ const Navbar = () => {
         <Toolbar disableGutters>
         
               <IconButton size="large" sx={{ p: 1 }}>
-                <Avatar  alt="IIITV" src={img_url}/>
+                {/* <Avatar  alt="IIITV" src={img_url}/> */}
               </IconButton>
             
           <Typography
@@ -51,7 +53,7 @@ const Navbar = () => {
               textDecoration: 'none',
             }}
           >
-            RECRUITMENT.IIITV.AC.IN
+            Code Comprehension Assessment Portal
           </Typography>
 
 
@@ -63,7 +65,11 @@ const Navbar = () => {
 
           </Box>
           
-          
+          <button style={{padding:"0.7rem",marginLeft:"1rem", backgroundColor:"#f1356d",}}>
+            <Link style={{textDecoration:"none",  color:"white"}} to="/About">About Us</Link>
+            
+            
+            </button>
         </Toolbar>
       </Container>
     </AppBar>

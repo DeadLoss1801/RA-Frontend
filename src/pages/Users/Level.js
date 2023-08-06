@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 
 import Modal from '@mui/material/Modal';
 import { useDispatch } from "react-redux";
+import Instruction from "../../components/Instruction";
 
 const style = {
   position: 'absolute',
@@ -82,7 +83,8 @@ return (
           <Button variant="contained" color="warning" size="medium"  sx={{m:2}} onClick={handleClose} >Back</Button>
         </Box>
       </Modal>
-        <Button size="small">Instructions</Button>
+        {/* <Button size="small">Instructions</Button> */}
+        <Button size="small"><Instruction/></Button>
       </CardActions>
     </Card>
     </Box>    

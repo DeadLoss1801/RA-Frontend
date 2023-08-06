@@ -19,6 +19,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import { useSelector } from "react-redux";
 import DownloadData from "./pages/Admin/DownloadData";
 import React from "react"
+import About from "./components/About";
 
 
 function App() {
@@ -53,10 +54,12 @@ function App() {
         <Route path="/downloadData" element={<DownloadData />}/>
 
         <Route path="/register" element={<Register />} />
+        <Route path="/About" element={<About />} />
         <Route path="/expertise" element={<Experiment />} />
         <Route path="/level/:type" element={<Level />} />
         <Route path="/codeRead/:type/:option" element={<Read />} />
         <Route path="/quiztime/:type/:test" element={<Questions />} />
+
         
     </Routes> 
     <Footer/> 

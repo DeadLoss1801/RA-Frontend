@@ -39,10 +39,14 @@ return (
 
 <Grid item xs={2.4}>
 
-<Paper elevation={3} style={{padding:6,height:70}}>
+<Paper elevation={3} style={{padding:6,height:70,
+
+}}>
  
 <Typography variant="subtitle2" >Language Name</Typography> 
-<FormControlLabel sx={{ m: 1, minWidth: 170 }} value="female" control={<Radio />} label={props.lang} />
+<FormControlLabel sx={{ m: 1, minWidth: 170, '@media (min-width:600px)': {
+  minWidth: "10vw",
+}, }} value="female" control={<Radio />} label={props.lang} />
 
 </Paper> 
 
@@ -54,7 +58,9 @@ return (
 <Paper elevation={3} style={{padding:6,height:70}}>
  
 <Typography variant="subtitle2" >Level</Typography> 
-<FormControl sx={{ m: 1, minWidth: 170 }} size="small">
+<FormControl sx={{ m: 1, minWidth: 170, '@media (min-width:600px)': {
+  minWidth: "10vw",
+}, }} size="small">
       <InputLabel id="demo-select-small">Level</InputLabel>
       <Select
         labelId="demo-select-small"
@@ -83,7 +89,9 @@ return (
   <Paper elevation={3} style={{padding:6,height:70}}>
  
 <Typography variant="subtitle2" >Duration</Typography> 
-<FormControl sx={{ m: 1, minWidth: 170 }} size="small">
+<FormControl sx={{ m: 1, minWidth: 170 , '@media (min-width:600px)': {
+  minWidth: "10vw",
+}, }} size="small">
       <InputLabel id="demo-select-small">Duration</InputLabel>
       <Select
         labelId="demo-select-small"
@@ -114,7 +122,9 @@ return (
  <TextField id="outlined-basic" 
  label="Outlined"
   variant="outlined" 
- size="small" sx={{ m: 1, minWidth: 170 }} 
+ size="small" sx={{ m: 1, minWidth: 170, '@media (min-width:600px)': {
+  minWidth: "10vw",
+}, }} 
  value={time}
  onChange={(e)=>setTime(e.target.value)}
  

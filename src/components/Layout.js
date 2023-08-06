@@ -10,8 +10,13 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 
 import TextField from '@mui/material/TextField';
+import styled from 'styled-components';
 
 //const Lev = createContext();
+
+const Section=styled.section`
+display:flex;
+`
 
 const Layout = (props)=>{
 
@@ -66,10 +71,21 @@ const Layout = (props)=>{
   // </Lev.Provider>
 
   
+  
+  
 
 
 return (
-<Grid container spacing={2}  style={{padding:"10px",marginTop:"10px"}} >
+  <Section>
+
+  
+<Grid container spacing={2}  style={{padding:"10px",marginTop:"10px",
+
+
+}}
+
+
+>
 
 <Grid item xs={2.4}>
 
@@ -88,7 +104,13 @@ return (
 <Paper elevation={3} style={{padding:6,height:70}}>
  
 <Typography variant="subtitle2" >Level</Typography> 
-<FormControl sx={{ m: 1, minWidth: 170 }} size="small">
+<FormControl sx={{ m: 1, minWidth: 170,
+'@media (min-width:600px)': {
+  minWidth: "10vw",
+},
+
+
+}} size="small">
       <InputLabel id="demo-select-small">Level</InputLabel>
       <Select
         labelId="demo-select-small"
@@ -117,7 +139,11 @@ return (
   <Paper elevation={3} style={{padding:6,height:70}}>
  
 <Typography variant="subtitle2" >Duration</Typography> 
-<FormControl sx={{ m: 1, minWidth: 170 }} size="small">
+<FormControl sx={{ m: 1, minWidth: 170,
+
+'@media (min-width:600px)': {
+  minWidth: "10vw",
+},}} size="small">
       <InputLabel id="demo-select-small">Duration</InputLabel>
       <Select
         labelId="demo-select-small"
@@ -148,7 +174,11 @@ return (
  <TextField id="outlined-basic" type="number" 
  value={props.time} onChange={(e) => {props.onChangeTime(e.target.value)}} 
  label="Time(in months)" InputProps={{inputProps:{max: 10000, min:0}}}
- variant="outlined" size="small" sx={{ m: 1, minWidth: 170 }} />
+ variant="outlined" size="small" sx={{ m: 1, minWidth: 170,
+ 
+  '@media (min-width:600px)': {
+    minWidth: "10vw",
+  },}} />
  
  </Paper> 
 
@@ -166,11 +196,17 @@ return (
         size="small"
         value={props.last_used}
         onChange={(e) => {props.onChangeDate(e.target.value)}}
-        sx={{ m: 1, minWidth: 170 }}
+        className="date"
+        sx={{ m: 1, minWidth: 170,
+          '@media (min-width:600px)': {
+            minWidth: "10vw",
+          },
+        }}
         
         InputLabelProps={{
           shrink: true,
         }}
+
       />
 
       </Paper>
@@ -180,7 +216,7 @@ return (
 </Grid>
 
  
-
+</Section>
 )
 
 

@@ -212,7 +212,7 @@ function QuestionBankCode() {
       <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mt: 2 }}>
        <Box>
        <label htmlFor="select-image"></label>  
-       <input type="file" id="select-image" onChange={handleImage} />
+       <input type="file" accept=".png,.jpg,.jpeg,.pdf" id="select-image" onChange={handleImage} />
        </Box> 
         <Button type="submit" variant="contained" color="primary" size="large" onClick={handleSubmit} >
           Next

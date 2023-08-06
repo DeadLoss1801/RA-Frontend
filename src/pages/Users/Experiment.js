@@ -36,9 +36,10 @@ const Experiment = () => {
 
   if(plang != null) {
     //if(plang[0].programming_language === 1) {
-      plang[0].programming_language = "C++";
+      plang[0].programming_language = "python";
   }
   //console.log(levName);
+  
 
   const handleLevel = (newLev) => {
     setLevel(newLev);
