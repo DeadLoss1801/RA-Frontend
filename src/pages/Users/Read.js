@@ -49,7 +49,7 @@ const Read = () => {
   const [isValid, setIsValid] = useState(false);
   const [loading,setLoading] = useState(true);
 
-  const mainUrl = "https://summerinternshipproject.pythonanywhere.com";
+  const mainUrl = "https://assesment-web.onrender.com";
 
   var levv = useParams();
   var lev = useParams();
@@ -75,7 +75,7 @@ const Read = () => {
   }
 
   useEffect(() => {
-    fetch(`https://summerinternshipproject.pythonanywhere.com/getcode/?level=${lev}&code=${codeno}`)
+    fetch(`https://assesment-web.onrender.com/getcode/?level=${lev}&code=${codeno}`)
         .then(res => {
             return res.json();
         })

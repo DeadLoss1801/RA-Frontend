@@ -71,22 +71,22 @@ function QuestionBankCode() {
   console.log(code_image);
   const handleSubmit = (e) => {
     e.preventDefault();
-    // var formdata = new FormData();
-    // formdata.append("code_text", code_text);
-    // formdata.append("code_time", code_time);
-    // formdata.append("question_time", question_time);
-    // formdata.append("code_image", code_image);
+    var formdata = new FormData();
+    formdata.append("code_text", code_text);
+    formdata.append("code_time", code_time);
+    formdata.append("question_time", question_time);
+    formdata.append("code_image", code_image);
 
-    // var requestOptions = {
-    //   method: 'POST',
-    //   body: formdata,
-    //   redirect: 'follow'
-    // };
+    var requestOptions = {
+      method: 'POST',
+      body: formdata,
+      redirect: 'follow'
+    };
 
-    // fetch("https://summerinternshipproject.pythonanywhere.com/code/", requestOptions)
-    //   .then(response => response.text())
-    //   .then(result => console.log(result))
-    //   .catch(error => console.log('error', error));
+    fetch("https://assesment-web.onrender.com/code/", requestOptions)
+      .then(response => response.text())
+      .then(result => console.log(result))
+      .catch(error => console.log('error', error));
 
     
       navigate(`/question/${params.lev}/${params.type}`)

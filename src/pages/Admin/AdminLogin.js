@@ -50,7 +50,7 @@ const Form = styled("form")({
 
 
 async function loginUser(credentials) {
-  return fetch('https://summerinternshipproject.pythonanywhere.com/login/', {
+  return fetch('https://assesment-web.onrender.com/login/', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

@@ -31,7 +31,7 @@ function AdminNavbar() {
   
     const saveFile = () => {
         saveAs(
-          "https://summerinternshipproject.pythonanywhere.com/download",
+          "https://assesment-web.onrender.com/download",
           "data.csv"
         );
       };

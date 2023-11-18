@@ -85,7 +85,7 @@ const Register = () => {
                 alert('Please check the terms and conditions box');
             }
             else {
-                fetch('https://summerinternshipproject.pythonanywhere.com/demographic/', {
+                fetch('https://assesment-web.onrender.com/demographic/', {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" }, 
                         body: JSON.stringify(data)
@@ -276,9 +276,8 @@ const Register = () => {
                 >
                     <option value="----Select----" selected disabled>--Select--</option>
                     <option value="1">Student</option>
-                    <option value="3">Professor</option>
+                    <option value="3">Academician</option>
                     <option value="2">Industrialist</option>
-
                 </select>
 
                 <label id="Tnc"><input type="checkbox" id="cbox"

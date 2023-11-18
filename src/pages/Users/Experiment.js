@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import React, { useContext,useState } from "react";
 
-import { Box, Container, Grid, Typography } from "@mui/material";
+import { Box, Container, Grid,ButtonGroup, Typography } from "@mui/material";
 
 
 import Layout from "../../components/Layout";
@@ -19,27 +19,40 @@ const Experiment = () => {
   const [last_used, setLast_used] = React.useState('');
   const [duration, setDuration] = React.useState('');
 
-  const programming_language = "2";
+  // const programming_language = "2";
 
   //console.log(level);
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    fetch('https://summerinternshipproject.pythonanywhere.com/expertise/')
-        .then(res => {
-            return res.json();
-        })
-        .then(dta => {
-            console.log(dta);
-            setPlang(dta);
-        })
-  },[]);
-
-  if(plang != null) {
-    //if(plang[0].programming_language === 1) {
-      plang[0].programming_language = "python";
-  }
-  //console.log(levName);
   
+  const [selectedLanguage, setSelectedLanguage] = useState('');
+  // useEffect(() => {
+  //   fetch('https://assesment-web.onrender.com/expertise/')
+  //       .then(res => {
+  //           return res.json();
+  //       })
+  //       .then(dta => {
+  //           console.log(dta);
+  //           setPlang(dta);
+  //       })
+  //       const data = [
+  //         { name: 'C++', value: '1' },
+  //         { name: 'Python', value: '2' },
+  //         { name: 'Javascript', value: '3' },
+  //       ];
+  //       setPlang(data);
+  //     }, []);
+ 
+
+  // if(plang != null) {
+  //   //if(plang[0].programming_language === 1) {
+  //     plang[0].programming_language = "1";
+  // }
+  //console.log(levName);
+  const handleLanguageSelect = (language) => {
+    setSelectedLanguage(language);
+  }
+
 
   const handleLevel = (newLev) => {
     setLevel(newLev);
@@ -56,17 +69,17 @@ const Experiment = () => {
 
   const time = parseInt(strtime);
 
-  const navigate=useNavigate();
+  
 
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const expertiseData = {programming_language, level, duration, time, last_used};
+    const expertiseData = {selectedLanguage, level, duration, time, last_used};
     const emptyData = { ffuid: null, ffqbid: null };
 
     console.log(expertiseData);
-    fetch('https://summerinternshipproject.pythonanywhere.com/expertise/', {
+    fetch('https://assesment-web.onrender.com/expertise/', {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" }, 
                     body: JSON.stringify(expertiseData)
@@ -74,7 +87,7 @@ const Experiment = () => {
                     console.log('Done successfully');
                 })
 
-                fetch('https://summerinternshipproject.pythonanywhere.com/evaluation/', {
+                fetch('https://assesment-web.onrender.com/evaluation/', {
                   method: 'POST',
                   headers: { "Content-Type": "application/json" }, 
                   body: JSON.stringify(emptyData)
@@ -111,8 +124,13 @@ const Experiment = () => {
 
 
 
+        <ButtonGroup>
+        <Button onClick={() => handleLanguageSelect("1")}>C++</Button>
+        <Button onClick={() => handleLanguageSelect("2")}>Python</Button>
+        <Button onClick={() => handleLanguageSelect("3")}>JavaScript</Button>
+      </ButtonGroup>
 
-        <Layout lang={plang && plang[0].programming_language} 
+        <Layout lang={selectedLanguage} 
         level={level} onChangeLevel={handleLevel}
         duration={duration} onChangeDuration={handleDuration}
         time={strtime} onChangeTime={handleTime}
@@ -138,10 +156,10 @@ const Experiment = () => {
       }} >
 
 
-        <Typography variant="h4" component="h2" marginLeft={2} marginTop={3} color="common.white">
+        {/* <Typography variant="h4" component="h2" marginLeft={2} marginTop={3} color="common.white">
 
           Other Language
-        </Typography>
+        </Typography> */}
 
 
 
@@ -155,16 +173,16 @@ const Experiment = () => {
         <Layout lang="Javascript"></Layout> */}
         
 
-       <OtherLayout lang="JAVA"/>
+       {/* <OtherLayout lang="JAVA"/>
        <OtherLayout lang="Python"/>
        <OtherLayout lang="Javascript"/  >
-       <OtherLayout lang="Ruby"  />
+       <OtherLayout lang="Ruby"  /> */}
 
 
 
 
 
-      </Box>
+      {/* </Box>
 
 
 
@@ -184,7 +202,7 @@ const Experiment = () => {
         
         padding: "5px",
         
-      }} >
+      }} > */}
        
        <Link to={"/register"} style={{ textDecoration: 'none' }}>
        <Button variant="contained" size="large" color="secondary" sx={{mr:2}} >Back</Button>

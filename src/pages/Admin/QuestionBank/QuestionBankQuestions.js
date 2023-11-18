@@ -101,7 +101,7 @@ function QuestionBankQuestions() {
     const data = { question_text, option1, option2, option3, option4, correct_option, marks };
 
     console.log(data);
-    fetch('https://summerinternshipproject.pythonanywhere.com/question/', {
+    fetch('https://assesment-web.onrender.com/question/', {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)

@@ -60,7 +60,7 @@ const DownloadData = () => {
             redirect: 'follow'
         };
 
-        fetch("https://summerinternshipproject.pythonanywhere.com/getcsv/", requestOptions)
+        fetch("https://assesment-web.onrender.com/getcsv/", requestOptions)
             .then(response => response.json())
             .then(result => setUserData(result))
             .catch(error => console.log('error', error));
@@ -78,7 +78,7 @@ const DownloadData = () => {
             redirect: 'follow'
         };
 
-        fetch(`https://summerinternshipproject.pythonanywhere.com/download/?user=${id}`, requestOptions)
+        fetch(`https://assesment-web.onrender.com/download/?user=${id}`, requestOptions)
             .then(response => response.text())
             .then(result => download(result, "data.csv", "text/csv"))
             .catch(error => console.log('error', error));
