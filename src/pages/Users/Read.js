@@ -86,7 +86,7 @@ const Read = () => {
             setIsValid(true);
             setLoading(false);
         })
-   //getcodeData();
+  //  getcodeData();
     console.log(codedata);
    },[]);
 
