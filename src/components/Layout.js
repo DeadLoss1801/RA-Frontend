@@ -16,6 +16,7 @@ import styled from 'styled-components';
 
 const Section=styled.section`
 display:flex;
+margin:2rem;
 `
 
 const Layout = (props)=>{
@@ -79,27 +80,46 @@ return (
   <Section>
 
   
-<Grid container spacing={2}  style={{padding:"10px",marginTop:"10px",
+<Grid container spacing={2}  style={{padding:"10px",marginTop:"10px"}}>
+<Grid item xs={12} md={6} lg={3}>
+          <Paper elevation={3} style={{ padding: 6, height: 70 }}>
+            <Typography variant="subtitle2">Language Name</Typography>
+            <FormControl
+              sx={{ m: 1, minWidth: 170 }}
+              size="small"
+            >
+              <InputLabel id="demo-select-language">Select Language</InputLabel>
+              <Select
+                labelId="demo-select-language"
+                id="demo-select-language"
+                value={props.selectedLanguage}
+                label="Language"
+                onChange={(e) => { props.onLanguageChange(e.target.value) }}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value="C++">C++</MenuItem>
+                <MenuItem value="Python">Python</MenuItem>
+                <MenuItem value="JavaScript">JavaScript</MenuItem>
+              </Select>
+            </FormControl>
+          </Paper>
+        </Grid>
 
+{/* <Grid item xs={2.4}> */}
 
-}}
-
-
->
-
-<Grid item xs={2.4}>
-
-<Paper elevation={3} style={{padding:6,height:70}}>
+{/* <Paper elevation={3} style={{padding:6,height:70}}>
  
 <Typography variant="subtitle2" >Language Name</Typography> 
 <FormControlLabel sx={{ m: 1, minWidth: 170 }} value="C++" control={<Radio />} label={props.lang} />
 
-</Paper> 
+</Paper>  */}
 
 
-</Grid>
+{/* </Grid> */}
 
-<Grid item xs={2.4}>
+<Grid item xs={12} md={6} lg={3}>
 
 <Paper elevation={3} style={{padding:6,height:70}}>
  
@@ -134,7 +154,7 @@ return (
   </Grid>
 
 
-  <Grid item xs={2.4}>
+  <Grid item xs={12} md={6} lg={3}>
  
   <Paper elevation={3} style={{padding:6,height:70}}>
  
@@ -166,7 +186,7 @@ return (
 
 
   </Grid>
-  <Grid item xs={2.4}>
+  <Grid item xs={12} md={6} lg={3}>
     
   <Paper elevation={3} style={{padding:6,height:70}}>
  
@@ -184,7 +204,7 @@ return (
 
   </Grid>
 
-  <Grid item xs={2.4}>
+  <Grid item xs={12} md={6} lg={3}>
   <Paper elevation={3} style={{padding:6,height:70}}>
 
   <Typography variant="subtitle2" >Last Used</Typography>  
