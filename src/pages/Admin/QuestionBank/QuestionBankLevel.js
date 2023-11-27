@@ -61,42 +61,37 @@ function QuestionBankLevel() {
     e.preventDefault();
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    var raw = JSON.stringify({
-      "qlevel": "1",
-      "fqbid": 0
-    });
+    // var raw = JSON.stringify({
+    //   "qlevel": "1",
+    //   "fqbid": 0
+    // });
 
-    var requestOptions = {
-      method: 'POST',
-      headers: myHeaders,
-      body: raw,
-      redirect: 'follow'
-    };
-    fetch("https://assesment-web.onrender.com/questionbanklevel/", requestOptions)
-      .then(response => response.text())
-      .then(result => console.log(result))
-      .catch(error => console.log('error', error));
+    // var requestOptions = {
+    //   method: 'POST',
+    //   headers: myHeaders,
+    //   body: raw,
+    //   redirect: 'follow'
+    // };
+    // fetch("https://assesment-web.onrender.com/questionbanklevel/", requestOptions)
+    //   .then(response => response.text())
+    //   .then(result => console.log(result))
+    //   .catch(error => console.log('error', error));
 
-     const data={qlevel};    
+      const data = { qlevel };
 
-
-    fetch("https://assesment-web.onrender.com/questionbanklevel/", {
-      method: 'POST',
-      credentials:'same-origin',
-     
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
+      fetch("https://assesment-web.onrender.com/questionbanklevel/", {
+        method: 'POST',
+        credentials: 'same-origin',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(res => console.log("success"))
+      .catch(error => console.log(error));
     
-      body: JSON.stringify(data)
-    }).then(res=>console.log("success"))
-    .catch(error => console.log(error));
-
-    
-     navigate(`/code/${params.lev}/code1`)
-  }
-
+      navigate(`/code/${params.lev}/code1`);
+    }
   
   const Title = styled('h1')({
 
