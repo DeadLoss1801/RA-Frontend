@@ -29,8 +29,7 @@ function QuestionBankLanguage() {
   const [selectedLanguage, setSelectedLanguage] = useState("");
 
   // const [Language, setLanguage] = useState("");
-  const [admin_programming_language, setAdmin_programming_language] =
-    useState("");
+  // const [admin_programming_language, setAdmin_programming_language] =useState("");
   // const handleChange = (e) => {
   //   setadmin_programming_language(e.target.value)
   // }
@@ -88,7 +87,7 @@ function QuestionBankLanguage() {
               select
               label="Language"
               onChange={handleChange}
-              value={admin_programming_language}
+              value={selectedLanguage}
               helperText="Please Select a Language"
               fullWidth
             >
