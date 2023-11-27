@@ -94,11 +94,11 @@ const Experiment = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const expertiseData = {ffuid ,selectedLanguage, level, duration, time, last_used};
+    const expertiseData = {selectedLanguage, level, duration, time, last_used};
     const emptyData = { ffuid: null, ffqbid: null };
 
     console.log(expertiseData);
-    fetch('https://assesment-web.onrender.com/expertise/', {
+    fetch(`https://assesment-web.onrender.com/expertise/?ffuid=${ffuid}`, {
                     method: 'POST',
                     headers: { "Content-Type": "application/json" }, 
                     body: JSON.stringify(expertiseData)
@@ -106,7 +106,7 @@ const Experiment = () => {
                     console.log('Done successfully');
                 })
 
-                fetch('https://assesment-web.onrender.com/evaluation/', {
+                fetch(`https://assesment-web.onrender.com/evaluation/?ffuid=${ffuid}`, {
                   method: 'POST',
                   headers: { "Content-Type": "application/json" }, 
                   body: JSON.stringify(emptyData)
