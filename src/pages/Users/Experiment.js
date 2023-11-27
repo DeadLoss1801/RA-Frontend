@@ -84,22 +84,22 @@ const Experiment = () => {
 
   const time = parseInt(strtime);
 
-  useEffect(() => {
-    const fetchUid = async () => {
-      try {
-        const response = await fetch('https://assesment-web.onrender.com/demographic/');
-        const data = await response.json();
-        const uid = data[0]?.uid;
-        console.log('Fetched uid:', uid);
-        setFfuid(uid);
-        localStorage.setItem('ffuid', uid);
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchUid = async () => {
+  //     try {
+  //       const response = await fetch('https://assesment-web.onrender.com/demographic/');
+  //       const data = await response.json();
+  //       const uid = data[0]?.uid;
+  //       console.log('Fetched uid:', uid);
+  //       setFfuid(uid);
+  //       localStorage.setItem('ffuid', uid);
+  //     } catch (error) {
+  //       console.error('Error:', error);
+  //     }
+  //   };
 
-    fetchUid();
-  }, []);
+  //   fetchUid();
+  // }, []);
  
   
 
