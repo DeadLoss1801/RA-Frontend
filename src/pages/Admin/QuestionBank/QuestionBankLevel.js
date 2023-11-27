@@ -87,11 +87,23 @@ function QuestionBankLevel() {
         },
         body: JSON.stringify(data)
       })
-      .then(res => console.log("success"))
-      .catch(error => console.log(error));
+      .then(res => res.json())
+      .then(data => {
+       
+        const questionBankId = data?.question_bank_level_id;
     
+       
+        if (questionBankId) {
+          localStorage.setItem('question_bank_id', questionBankId);
+        }
+      })
+      .catch(error => {
+        console.error('Error fetching question bank data:', error);
+      });
+    
+      
       navigate(`/code/${params.lev}/code1`);
-    }
+    };
   
   const Title = styled('h1')({
 

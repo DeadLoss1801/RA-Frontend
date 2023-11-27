@@ -92,6 +92,7 @@ const Experiment = () => {
         const uid = data[0]?.uid;
         console.log('Fetched uid:', uid);
         setFfuid(uid);
+        localStorage.setItem('ffuid', uid);
       } catch (error) {
         console.error('Error:', error);
       }
@@ -125,6 +126,7 @@ const Experiment = () => {
       console.log('Evaluation initialized.');
 
       navigate("/level/Easy");
+      
     } catch (error) {
       console.error('Error:', error);
     }
