@@ -118,20 +118,34 @@ const Experiment = () => {
       });
       console.log('Expertise data submitted successfully.');
 
-      await fetch(`https://assesment-web.onrender.com/evaluation/?ffuid=${ffuid}`, {
+      const evaluationInitResponse = await fetch(`https://assesment-web.onrender.com/evaluation/?ffuid=${ffuid}`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emptyData)
       });
-      console.log('Evaluation initialized.');
-
-      navigate("/level/Easy");
-      
+  
+      if (evaluationInitResponse.ok) {
+        const evaluationInitData = await evaluationInitResponse.json();
+        const { evaluation_id } = evaluationInitData; // Assuming API response contains evaluation_id
+  
+        if (evaluation_id) {
+          localStorage.setItem('evaluation_id', evaluation_id);
+          console.log('Evaluation initialized with evaluation ID:', evaluation_id);
+          navigate("/level/Easy");
+        } else {
+          console.error('Evaluation ID not found');
+          alert('Evaluation ID not found.');
+        }
+      } else {
+        console.error('Error initializing evaluation:', evaluationInitResponse.status);
+       
+      }
     } catch (error) {
-      console.error('Error:', error);
+      console.error('Error during initialization:', error);
+     
     }
   };
-
+  
   return (
 <>
 
