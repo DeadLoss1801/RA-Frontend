@@ -6,6 +6,8 @@ import { CountryDropdown, RegionDropdown, CountryRegionData } from 'react-countr
 import { useDispatch } from "react-redux";
 import { useSelector } from 'react-redux';
 
+const API_BASE_URL = process.env.REACT_APP_API;
+
 const Register = () => {
 
     const [name, setName] = useState('');
@@ -86,7 +88,7 @@ const Register = () => {
                 const data = { name, email, dob, age, gender, country, state, profession };
     
                 try {
-                    const response = await fetch('https://assesment-web.onrender.com/demographic/', {
+                    const response = await fetch(`${API_BASE_URL}/demographic/`, {
                         method: 'POST',
                         headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(data)

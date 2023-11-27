@@ -14,7 +14,11 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ClipLoader, ScaleLoader } from "react-spinners";
 
+
+
 import { Paper } from '@mui/material';
+
+const API_BASE_URL = process.env.REACT_APP_API;
 const theme = createTheme({
   palette: {
     primary: {
@@ -49,7 +53,7 @@ const Read = () => {
   const [isValid, setIsValid] = useState(false);
   const [loading,setLoading] = useState(true);
 
-  const mainUrl = "https://assesment-web.onrender.com";
+  const mainUrl = `${API_BASE_URL}`;
 
   var levv = useParams();
   var lev = useParams();
@@ -75,7 +79,7 @@ const Read = () => {
   }
 
   useEffect(() => {
-    fetch(`https://assesment-web.onrender.com/getcode/?level=${lev}&code=${codeno}`)
+    fetch(`${API_BASE_URL}/getcode/?level=${lev}&code=${codeno}`)
         .then(res => {
             return res.json();
         })

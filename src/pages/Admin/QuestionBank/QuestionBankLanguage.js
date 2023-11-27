@@ -19,6 +19,8 @@ import { Box } from "@mui/system";
 import { Paper } from "@mui/material";
 import { styled } from "@mui/system";
 
+const API_BASE_URL = process.env.REACT_APP_API;
+
 function QuestionBankLanguage() {
   const navigate = useNavigate();
   const options = [
@@ -43,7 +45,7 @@ function QuestionBankLanguage() {
     
     try {
       const response = await fetch(
-        "https://assesment-web.onrender.com/questionbank/",
+        `${API_BASE_URL}/questionbank/`,
         {
           method: "POST",
           headers: {

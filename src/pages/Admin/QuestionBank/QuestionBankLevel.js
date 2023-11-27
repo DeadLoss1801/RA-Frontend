@@ -19,7 +19,7 @@ import { Box } from '@mui/system';
 import { Paper } from '@mui/material';
 import { styled } from '@mui/system';
 
-
+const API_BASE_URL = process.env.REACT_APP_API;
 
 function QuestionBankLevel() {
 
@@ -79,7 +79,7 @@ function QuestionBankLevel() {
 
       const data = { qlevel };
 
-      fetch("https://assesment-web.onrender.com/questionbanklevel/", {
+      fetch(`${API_BASE_URL}/questionbanklevel/`, {
         method: 'POST',
         credentials: 'same-origin',
         headers: {

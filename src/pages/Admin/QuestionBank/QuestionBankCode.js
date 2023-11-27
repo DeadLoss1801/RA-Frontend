@@ -61,7 +61,7 @@ function QuestionBankCode() {
   const code_time = parseInt(codeTimer);
   const question_time = parseInt(questionTimer);
   
-
+  const API_BASE_URL = process.env.REACT_APP_API;
   const handleImage = (e) => {
     setcode_image(e.target.files[0]);
    
@@ -90,7 +90,7 @@ function QuestionBankCode() {
       redirect: 'follow'
     };
   
-    fetch("https://assesment-web.onrender.com/code/", requestOptions)
+    fetch(`${API_BASE_URL}/code/`, requestOptions)
       .then(response => response.text())
       .then(result => {
        

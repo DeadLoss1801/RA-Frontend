@@ -19,6 +19,7 @@ import { Box } from '@mui/system';
 import { Paper } from '@mui/material';
 import { styled } from '@mui/system';
 
+const API_BASE_URL = process.env.REACT_APP_API;
 
 const Title = styled('h1')({
 
@@ -101,7 +102,7 @@ function QuestionBankQuestions() {
     const data = { question_text, option1, option2, option3, option4, correct_option, marks };
 
     console.log(data);
-    fetch('https://assesment-web.onrender.com/question/', {
+    fetch(`${API_BASE_URL}/question/`, {
       method: 'POST',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(data)

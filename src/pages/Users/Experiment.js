@@ -19,6 +19,8 @@ const Experiment = () => {
   const [last_used, setLast_used] = React.useState('');
   const [duration, setDuration] = React.useState('');
 
+  const API_BASE_URL = process.env.REACT_APP_API;
+
   // const programming_language = "2";
 
   //console.log(level);
@@ -111,14 +113,14 @@ const Experiment = () => {
 
     console.log(expertiseData);
     try {
-      await fetch(`https://assesment-web.onrender.com/expertise/?ffuid=${ffuid}`, {
+      await fetch(`${API_BASE_URL}/expertise/?ffuid=${ffuid}`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(expertiseData)
       });
       console.log('Expertise data submitted successfully.');
 
-      const evaluationInitResponse = await fetch(`https://assesment-web.onrender.com/evaluation/?ffuid=${ffuid}`, {
+      const evaluationInitResponse = await fetch(`${API_BASE_URL}/evaluation/?ffuid=${ffuid}`, {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(emptyData)

@@ -46,11 +46,11 @@ const Form = styled("form")({
     
   
 })
-
+const API_BASE_URL = process.env.REACT_APP_API;
 
 
 async function loginUser(credentials) {
-  return fetch('https://assesment-web.onrender.com/login/', {
+  return fetch(`${API_BASE_URL}/login/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'

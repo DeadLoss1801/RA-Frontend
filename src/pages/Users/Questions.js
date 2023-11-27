@@ -23,7 +23,7 @@ import { useSelector } from 'react-redux';
 import { ClipLoader, ScaleLoader } from 'react-spinners';
 import { useDispatch } from "react-redux";
 
-
+const API_BASE_URL = process.env.REACT_APP_API;
 
 
 const theme = createTheme({
@@ -139,7 +139,7 @@ const Questions = () => {
 
     let updated = [];
     for (let val = 0; val <= 4; val++) {
-      const response = await fetch(`https://assesment-web.onrender.com/getquestion/?question=${val}`);
+      const response = await fetch(`${API_BASE_URL}/getquestion/?question=${val}`);
       const data = await response.json();
 
       updated.push(data);
@@ -180,7 +180,7 @@ const Questions = () => {
     }
      let response = [response1,response2,response3,response4,response5];
 
-     fetch(`https://assesment-web.onrender.com/time/?level=${lev}&code_no=${codeno}`, {
+     fetch(`${API_BASE_URL}/time/?level=${lev}&code_no=${codeno}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -196,7 +196,7 @@ const Questions = () => {
 
      
 
-    fetch(`https://assesment-web.onrender.com/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
+    fetch(`${API_BASE_URL}/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',

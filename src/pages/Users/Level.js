@@ -16,6 +16,8 @@ import Modal from '@mui/material/Modal';
 import { useDispatch } from "react-redux";
 import Instruction from "../../components/Instruction";
 
+const API_BASE_URL = process.env.REACT_APP_API;
+
 const style = {
   position: 'absolute',
   top: '50%',
