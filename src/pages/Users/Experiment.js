@@ -69,55 +69,51 @@ const Experiment = () => {
 
   const time = parseInt(strtime);
 
-  const fetchUid = async () => {
-    try {
-      const response = await fetch('https://assesment-web.onrender.com/demographic/');
-      const data = await response.json();
-      
-     
-      const uid = data[0]?.uid; 
-  
-      
-      console.log('Fetched uid:', uid);
-      setFfuid(uid);
-      return uid;
-    } catch (error) {
-      console.error('Error:', error);
-      return null;
-    }
-  };
-  
-  fetchUid()
+  useEffect(() => {
+    const fetchUid = async () => {
+      try {
+        const response = await fetch('https://assesment-web.onrender.com/demographic/');
+        const data = await response.json();
+        const uid = data[0]?.uid;
+        console.log('Fetched uid:', uid);
+        setFfuid(uid);
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
+
+    fetchUid();
+  }, []);
  
   
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const expertiseData = {selectedLanguage, level, duration, time, last_used};
+    const expertiseData = { selectedLanguage, level, duration, time, last_used };
     const emptyData = { ffuid: null, ffqbid: null };
 
     console.log(expertiseData);
-    fetch(`https://assesment-web.onrender.com/expertise/?ffuid=${ffuid}`, {
-                    method: 'POST',
-                    headers: { "Content-Type": "application/json" }, 
-                    body: JSON.stringify(expertiseData)
-                }).then(() => {
-                    console.log('Done successfully');
-                })
+    try {
+      await fetch(`https://assesment-web.onrender.com/expertise/?ffuid=${ffuid}`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(expertiseData)
+      });
+      console.log('Expertise data submitted successfully.');
 
-                fetch(`https://assesment-web.onrender.com/evaluation/?ffuid=${ffuid}`, {
-                  method: 'POST',
-                  headers: { "Content-Type": "application/json" }, 
-                  body: JSON.stringify(emptyData)
-              }).then(() => {
-                  console.log('Initialized evaluation');
-              })
+      await fetch(`https://assesment-web.onrender.com/evaluation/?ffuid=${ffuid}`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(emptyData)
+      });
+      console.log('Evaluation initialized.');
 
-       navigate("/level/Easy");
-
-
-  }
+      navigate("/level/Easy");
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
   return (
 <>
