@@ -12,7 +12,7 @@ import {Link} from "react-router-dom"
 import {useNavigate} from "react-router-dom"
 
 const Experiment = () => {
-
+  const [ffuid, setFfuid] = useState(null);
   const [plang, setPlang] = React.useState(null);
   const [level, setLevel] = React.useState('');
   const [strtime, setStrTime] = React.useState(0);
@@ -69,13 +69,32 @@ const Experiment = () => {
 
   const time = parseInt(strtime);
 
+  const fetchUid = async () => {
+    try {
+      const response = await fetch('https://assesment-web.onrender.com/demographic/');
+      const data = await response.json();
+      
+     
+      const uid = data[0]?.uid; 
   
-
+      
+      console.log('Fetched uid:', uid);
+      setFfuid(uid);
+      return uid;
+    } catch (error) {
+      console.error('Error:', error);
+      return null;
+    }
+  };
+  
+  fetchUid()
+ 
+  
 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const expertiseData = {selectedLanguage, level, duration, time, last_used};
+    const expertiseData = {ffuid ,selectedLanguage, level, duration, time, last_used};
     const emptyData = { ffuid: null, ffqbid: null };
 
     console.log(expertiseData);
