@@ -45,11 +45,11 @@ const theme = createTheme({
 const Questions = () => {
 
   const dispatch = useDispatch();
-  const [response1,setResponse1] = useState(null);
-  const [response2,setResponse2] = useState(null);
-  const [response3,setResponse3] = useState(null);
-  const [response4,setResponse4] = useState(null);
-  const [response5,setResponse5] = useState(null);
+  const [response1, setResponse1] = useState(null);
+  const [response2, setResponse2] = useState(null);
+  const [response3, setResponse3] = useState(null);
+  const [response4, setResponse4] = useState(null);
+  const [response5, setResponse5] = useState(null);
   const [isValid, setIsValid] = useState(false);
   const [loading, setLoading] = useState(true);
 
@@ -60,9 +60,9 @@ const Questions = () => {
 
   console.log(`Response 1  =   ${response1}`);
   console.log(`Response2  = ${response2}`);
-   console.log(`Response 3 =   ${response3}`);
-   console.log(`Response4  = ${response4}`);
-   console.log(`Response 5  =   ${response5}`);
+  console.log(`Response 3 =   ${response3}`);
+  console.log(`Response4  = ${response4}`);
+  console.log(`Response 5  =   ${response5}`);
 
 
   var leve = useParams();
@@ -171,16 +171,17 @@ const Questions = () => {
 
 
 
-  const handleSubmit = ()=>{
-   
-    dispatch({type: "BUTTON_CLICKED"});
-    if(leve.test === "second" && leve.type === "Hard") {
+  const handleSubmit = () => {
+
+    dispatch({ type: "BUTTON_CLICKED" });
+    if (leve.test === "second" && leve.type === "Hard") {
       dispatch({ type: "SETTING_REGISTERED_NAME", val: "" });
       dispatch({ type: "SETTING_AGE", val: null });
     }
-     let response = [response1,response2,response3,response4,response5];
-
-     fetch(`${API_BASE_URL}/time/?level=${lev}&code_no=${codeno}`, {
+    let response = [response1, response2, response3, response4, response5];
+    const ffuid = localStorage.getItem("user_id");
+    const evid = localStorage.getItem("evaluation_id");
+    fetch(`${API_BASE_URL}/time/?level=${lev}&code_no=${codeno}&ffuid=${ffuid}&evid=${evid}`, {
       method: 'POST',
       headers: {
         'Accept': 'application/json',
@@ -194,16 +195,16 @@ const Questions = () => {
 
     for (var x = 0; x <= 4; x++) {
 
-     
 
-    fetch(`${API_BASE_URL}/score/?level=${lev}&code_no=${codeno}&question_no=${x}`, {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        
+
+      fetch(`${API_BASE_URL}/score/?level=${lev}&code_no=${codeno}&question_no=${x}&ffuid=${ffuid}&evid=${evid}`, {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+
           // fevid:0,
           // fqid:0,
           selected_answer: response[x],
@@ -224,12 +225,12 @@ const Questions = () => {
   return (
 
     <ThemeProvider theme={theme}>
-      
-        {
-          loading ? ( <Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "80vh" }}> <ScaleLoader loading={loading} size={100} /> </Box>) :
-            (
-              <Container maxWidth="lg" sx={{ bgcolor: "primary.main", height: "325vh", mt: 4, mb: 2, borderRadius: 2, boxShadow: 7 }}>
-              
+
+      {
+        loading ? (<Box sx={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "80vh" }}> <ScaleLoader loading={loading} size={100} /> </Box>) :
+          (
+            <Container maxWidth="lg" sx={{ bgcolor: "primary.main", height: "325vh", mt: 4, mb: 2, borderRadius: 2, boxShadow: 7 }}>
+
               {/* /* <Box sx={{display:"flex",justifyContent:"space-between",alignItems:"center"}}>
             <Typography variant="h3">Questions</Typography>
             
@@ -242,66 +243,66 @@ const Questions = () => {
                   <Typography variant="h3" sx={{ color: "#ffffff" }}>Questions</Typography>
 
                 </Grid>
-             
-               
+
+
 
                 <Grid item xs={4}  >
 
 
-          <Typography sx={{textAlign:"center",color:"#ffffff"}} variant="h6">Timer</Typography>
-        {isValid && <Timer limit={timeAllotedForQuestions} autoSubmit={handleSubmit} />}
-          
-        </Grid>
+                  <Typography sx={{ textAlign: "center", color: "#ffffff" }} variant="h6">Timer</Typography>
+                  {isValid && <Timer limit={timeAllotedForQuestions} autoSubmit={handleSubmit} />}
+
+                </Grid>
 
 
-        </Grid>
+              </Grid>
 
 
-        {/* /* <SliderQuestion /> */ }
-     
-
-         {valid && <Question1 response1={response1} onChangeResponse1={response1Handler} item={items[0]} />}
-
-        {valid && <Question2 item={items[1]} response2={response2} onChangeResponse2={response2Handler} />}
-
-        {valid && <Question3 item={items[2]} response3={response3} onChangeResponse3={response3Handler} />}
+              {/* /* <SliderQuestion /> */}
 
 
-        {valid && <Question4 item={items[3]} response4={response4} onChangeResponse4={response4Handler} />}
+              {valid && <Question1 response1={response1} onChangeResponse1={response1Handler} item={items[0]} />}
 
-        {valid && <Question5 item={items[4]} response5={response5} onChangeResponse5={response5Handler} />}
+              {valid && <Question2 item={items[1]} response2={response2} onChangeResponse2={response2Handler} />}
 
-
-        <Box sx={{
-          bgcolor: '#fffde7', width: "100%",
-          height: 100,
-          boxShadow: 5, borderRadius: "8px",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          mt: 3
-        }}>
+              {valid && <Question3 item={items[2]} response3={response3} onChangeResponse3={response3Handler} />}
 
 
-          {/* <Button variant="contained" size="large" color="secondary" sx={{ mr: 2 }} >Back</Button> */}
+              {valid && <Question4 item={items[3]} response4={response4} onChangeResponse4={response4Handler} />}
+
+              {valid && <Question5 item={items[4]} response5={response5} onChangeResponse5={response5Handler} />}
 
 
+              <Box sx={{
+                bgcolor: '#fffde7', width: "100%",
+                height: 100,
+                boxShadow: 5, borderRadius: "8px",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                mt: 3
+              }}>
+
+
+                {/* <Button variant="contained" size="large" color="secondary" sx={{ mr: 2 }} >Back</Button> */}
 
 
 
-          <Link to={leve.test === "second" ? (leve.type === "Hard" ? "/" : `/level/${levelNext}`) : `/codeRead/${leve.type}/code1`} style={{ textDecoration: 'none' }}>
-            <Button variant="contained" color="success" size="large" sx={{ ml: 2 }} onClick={handleSubmit} >Submit & next</Button>
-          </Link>
 
-        </Box>
 
-        </Container>
-        
-       )
-       
-       } 
+                <Link to={leve.test === "second" ? (leve.type === "Hard" ? "/" : `/level/${levelNext}`) : `/codeRead/${leve.type}/code1`} style={{ textDecoration: 'none' }}>
+                  <Button variant="contained" color="success" size="large" sx={{ ml: 2 }} onClick={handleSubmit} >Submit & next</Button>
+                </Link>
 
-     
+              </Box>
+
+            </Container>
+
+          )
+
+      }
+
+
 
     </ThemeProvider>
   );

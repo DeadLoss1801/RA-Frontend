@@ -9,8 +9,9 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
- import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from "@mui/material";
+const API_BASE_URL = process.env.REACT_APP_API;
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -49,44 +50,42 @@ const DownloadData = () => {
 
 
 
-    const [userData, setUserData] = useState([]);
-    const [downloadData, setDownloadData] = useState([]);
-    useEffect(() => {
-        var myHeaders = new Headers();
+  const [userData, setUserData] = useState([]);
+  const [downloadData, setDownloadData] = useState([]);
+  useEffect(() => {
+    var myHeaders = new Headers();
 
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
 
-        fetch("https://assesment-web.onrender.com/getcsv/", requestOptions)
-            .then(response => response.json())
-            .then(result => setUserData(result))
-            .catch(error => console.log('error', error));
+    fetch("http://localhost:8000/getcsv/", requestOptions)
+      .then(response => response.json())
+      .then(result => setUserData(result))
+      .catch(error => console.log('error', error));
 
-        // console.log(userData)
-    }, [])
+    // console.log(userData)
+  }, [])
 
-        const handleClick = (e) => {
-        var myHeaders = new Headers();
+  const handleClick = (e) => {
+    var myHeaders = new Headers();
 
-        const id = e.target.value;
-        var requestOptions = {
-            method: 'GET',
-            headers: myHeaders,
-            redirect: 'follow'
-        };
+    const id = e.target.value;
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
 
-        fetch(`https://assesment-web.onrender.com/download/?user=${id}`, requestOptions)
-            .then(response => response.text())
-            .then(result => download(result, "data.csv", "text/csv"))
-            .catch(error => console.log('error', error));
-    
-            console.log(downloadData);
-        }
+    fetch(`http://localhost:8000/download/?user=${id}`, requestOptions)
+      .then(response => response.text())
+      .then(result => download(result, "data.csv", "text/csv"))
+      .catch(error => console.log('error', error));
 
-
+    console.log(downloadData);
+  }
 
 
 
@@ -96,7 +95,9 @@ const DownloadData = () => {
 
 
 
-      console.log(userData);
+
+
+  console.log(userData);
 
 
 
@@ -127,8 +128,8 @@ const DownloadData = () => {
               <StyledTableCell align="right">
 
 
-              <Button sx={{ m: 1 }} variant="contained" color="primary" size="large" 
-              onClick={handleClick} value={user.uid}>Download</Button>
+                <Button sx={{ m: 1 }} variant="contained" color="primary" size="large"
+                  onClick={handleClick} value={user.uid}>Download</Button>
               </StyledTableCell>
             </StyledTableRow>
           ))}
